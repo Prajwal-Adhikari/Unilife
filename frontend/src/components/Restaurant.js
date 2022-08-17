@@ -1,7 +1,7 @@
-export default function Home() {
+export default function Restaurants() {
     return (
         <div className="homepage">
-        <h1>homepage</h1>
+        <h1>Restaurants</h1>
         </div>
     );
 }
