@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const User = require("../models/users.js");
 const CryptoJS = require("crypto-js");  //Crypto is a module in Node. js which deals with an algorithm that performs data encryption and decryption
-const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');    //jwt -> jsonwebtoken
 
 //REGISTER
 router.post("/register", async (req,res)=>{
@@ -45,8 +45,8 @@ router.post("/login",async(req,res)=>{
         {expiresIn : "3d"}
         );
 
-        const { password, ...others} = user._doc;
-        res.status(200).json({others,accessToken});
+        const { password, ...others} = user._doc;   //cause everything is stored in doc file
+        res.status(200).json({...others,accessToken}); //currently this not working
     }catch(err)
     {
         res.status(500).json(err);
