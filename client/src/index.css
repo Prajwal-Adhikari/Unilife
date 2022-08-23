@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans:ital,wght@1,500&family=Poppins:wght@400;500;600&display=swap');
+:root {
+    /* --Oswald: 'Oswald', sans-serif;
+    --Bebas: 'Bebas Neue', cursive; */
+    --Test:  'Merriweather Sans', sans-serif;
+    --OK : 'Poppins', sans-serif;
+}
+* {
+    box-sizing: border-box;
+    scroll-behavior: smooth !important;
+}
+
+html {
+    overflow-x: hidden !important;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    overflow-x: hidden !important;
+    width: 100%;
+    height: 100%;
+}

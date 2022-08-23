@@ -1,0 +1,64 @@
+.login {
+    width: 100%;
+    height: 100%;
+    background-image: url('https://www.raiuniversity.edu/wp-content/uploads/Hostel-min.jpg');
+    background-size: cover;
+}
+
+.register{
+    width: 100%;
+    height: 100%;
+    background-image: url('https://img.freepik.com/free-vector/young-students-walking-front-university-college-building-flat-vector-illustration-cartoon-people-relaxing-sitting-grass-campus_74855-8747.jpg?w=2000');
+    background-size: cover;
+
+}
+.login-right h1, .signup-right h1 {
+    font-weight: bolder;
+    padding: 5px 0 15px 0;
+    border-bottom: 5px solid #faca2c;
+}
+
+.login-left h4, .signup-left h4 {
+    font-weight: bold;
+}
+
+
+.login-left, .login-right, .signup-left, .signup-right{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+   
+
+   
+}
+.form-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+}
+form label {
+    color: #040514 !important;
+  }
+
+form input::placeholder {
+  font-size: 12px;
+  letter-spacing: 0.5px;
+}
+form input {
+    border-radius: 4px;
+    height: 2.5rem;
+    width: 18rem;
+}
+
+.signup-right{
+    margin-top: 7vh;
+}
+
+.btn-login,.btn-register{
+    border: 1px solid rgb(110, 116, 110);
+}

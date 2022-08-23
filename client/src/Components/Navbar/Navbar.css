@@ -1,0 +1,49 @@
+nav {
+    background: rgb(187, 187, 187,0.2) !important;
+    font-family: var(--OK);
+    height: 13vh;
+}
+
+
+.navbar-brand {
+    font-weight: 900;
+    letter-spacing: 2px;
+    font-size: 36px;
+    
+}
+
+.nav-item .btn {
+    margin: 0px 25px;
+    padding: 5px 25px !important;
+    border-radius: 3px;
+}
+
+.btn-login {
+    background-color: #fff;
+    color: #000000 !important;
+}
+
+.btn-login:hover{
+    background-color: rgb(233, 159, 0);
+
+}
+.btn-register {
+    background-color:#ffffff;
+    color: #000000 !important;
+}
+
+.btn-register:hover {
+    background-color: #000000 ;
+    color: #ffffff !important;
+}
+
+
+
+.logo{
+    color: rgb(153, 145, 145);
+}
+.logo:hover{
+    color: rgb(233, 159, 0);
+    transition:ease-in-out;
+    transition-delay: 0.15s;
+}
