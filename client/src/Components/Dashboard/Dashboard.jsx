@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../redux/actions/authActions';
 import './Dashboard.css';
@@ -26,10 +27,12 @@ class Dashboard extends Component {
                 </h3>
                 <button
                   onClick={this.onLogoutClick}
-                  className="btn btn-lg btn-warning mt-5"
-                >
+                  className="btn btn-lg btn-warning mt-5">
                   Logout
                 </button>
+                <Link to="/payment" className="btn btn-large text-success">
+                      Checkout for payment
+                </Link>
               </div>
             </div>
           </div>

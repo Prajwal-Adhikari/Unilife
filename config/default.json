@@ -1,4 +1,6 @@
 {
-    "mongoURI": "mongodb+srv://TeamUnilife:Ce53Ob19yQYhzof6@cluster0.4nebu.mongodb.net/?retryWrites=true&w=majority",
+    "mongoURI": "mongodb+srv://TeamUnilife:Ce53Ob19yQYhzof6@cluster0.4nebu.mongodb.net/?retryWrites=true&w=majority", 
+    "mongoURL" : "mongodb://cluster0-shard-00-00.4nebu.mongodb.net:27017,cluster0-shard-00-01.4nebu.mongodb.net:27017,cluster0-shard-00-02.4nebu.mongodb.net:27017/TeamUnilife?replicaSet=atlas-92s7rv-shard-0",
     "secretOrKey": "secret"
 }
+
