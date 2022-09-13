@@ -13,7 +13,8 @@ import setAuthToken from './utils/setAuthToken';
 import { setCurrentUser, logoutUser } from './redux/actions/authActions';
 import PrivateRoute from './Components/private-route/PrivateRoute';
 import Dashboard from './Components/Dashboard/Dashboard';
-import Payment from './Components/Payment/Payment';
+
+
 
 function App() {
   // Check for token to keep user logged in
@@ -42,10 +43,6 @@ function App() {
           <Route path="/login" component={Login} />
           <Switch>
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
-            <Route path="*" component={NotFound} />
-          </Switch>
-          <Switch>
-            <PrivateRoute exact path="/payment" component={Payment} />
             <Route path="*" component={NotFound} />
           </Switch>
           <Route path="*" component={NotFound} />
