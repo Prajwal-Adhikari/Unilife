@@ -15,7 +15,9 @@ Router.post('/additems',(req,res)=>{
         title : req.body.title,
         productby : req.body.productby,
         description : req.body.description,
-        price : req.body.price
+        price : req.body.price,
+        category : req.body.category,
+        rating : req.body.rating
     });
 
     newProducts.save()
