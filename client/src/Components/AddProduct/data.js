@@ -1,37 +1,57 @@
 import { useState } from "react";
-import { ProductListItem } from "./ProductListItem";
-import FileUpload from './FileUpload/FileUpload';
-import FileList from './FileList/FileList';
-import'./app.css'
+import React from "react";
+import "./product.css";
+import ItemForm from "./addproduct";
 
+function Data (){
+  const [image, setImage] = useState('')
+  const [loading, setLoading] = useState(false)
 
-function App() {
-    const [files, setFiles] = useState([])
+  const uploadImage = async e => {
+    const files = e.target.files
+    const data = new FormData()
+    data.append('file', files[0])
+    data.append('upload_preset')
+    setLoading(true)
+    
+   
 
-  const removeFile = (filename) => {
-    setFiles(files.filter(file => file.name !== filename))
+    
+    setLoading(false)
   }
-  useState[(Items, setItems)] = useState([]);
+  const [items , setItems] = useState([]);
   const addItem = item => 
   {
-    setItems([...items, item])
-    alert(`${item.name} is added successfully`)
-  }
-  const deleteItem = item =>{
-    setItems(Items.filter(itemProduct  => itemProduct.id !== product.id))
-    alert(`${item.name} is removed successfully`)  
-}
+    setItems ([...items, item])
+  alert(`${item.Name} is added successfully`)
+  
+  };
+  const deleteItem = items => 
+  {
+    setItems (items.filter(itemproduct => itemproduct.id !== items.id ))
+  alert(`${items.Name} is deleted successfully`)
+  
+  };
+  
 
+  
   return (
-    <div className="data">
-      <ItemForm addItemProp={addItem} />
-      {
-        items.map(item => <ProductListItem key={ product.id} product = {item}/>)
-      }
-      <div className="title">Upload file</div>
-      <FileUpload files={files} setFiles={setFiles}
-        removeFile={removeFile} />
-      <FileList files={files} removeFile={removeFile} />
+    <div className="App">
+       
+      <ItemForm addItemProp={addItem}/>
+    
+      <input
+        type="file"
+        name="file"
+        placeholder="Upload an image"
+        onChange={uploadImage}
+      />
+      {loading ? (
+        <h3>Loading...</h3>
+      ) : (
+        <img src={image} style={{ width: '300px' }} />
+      )}
     </div>
-  );
-    }
+  )
+}
+export default Data;

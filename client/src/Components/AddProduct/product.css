@@ -1,0 +1,51 @@
+.title {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-bottom: 1em;
+}
+.price{
+     width: 1550px;
+  height: 80px;
+    padding: 10px 100px 10px;
+}
+.description{
+  
+    width: 1550px;
+  height: 70px;
+    padding: 10px 100px 10px;
+ 
+}
+.name{
+    width: 1550px;
+    height: 80px;
+      padding: 10px 100px 10px;
+}
+input{
+    padding: 10px 300px 10px;
+   border-spacing: 10cm;
+    border: 1px solid black;
+}
+
+.App {
+    text-align: center;
+    background-color: blanchedalmond;
+  padding-bottom: 590px;
+    
+  }
+
+ .Btn{
+    
+    width: 1550px;
+  height: 80px;
+    padding: 10px 100px 10px;
+ }
+
+  
+  @keyframes App-logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
