@@ -13,7 +13,7 @@ const User = require('../../models/User');
  
 //For email-verification 
 const mailgun = require("mailgun-js");
-const DOMAIN = 'sandbox150d8cf6029847779d55cb6e0c4066dd.mailgun.org'; 
+const DOMAIN = config.get("MAILGUN_DOMAIN"); 
 const mg = mailgun({apiKey: config.get('MAILGUN_APIKEY'), domain: DOMAIN});
 
 //Post Router api/users/register

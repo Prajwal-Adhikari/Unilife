@@ -3,6 +3,7 @@
     "mongoURL" : "mongodb://cluster0-shard-00-00.4nebu.mongodb.net:27017,cluster0-shard-00-01.4nebu.mongodb.net:27017,cluster0-shard-00-02.4nebu.mongodb.net:27017/TeamUnilife?replicaSet=atlas-92s7rv-shard-0",
     "secretOrKey": "secret",
     "MAILGUN_APIKEY" : "fa7a0db3ab1a9de73d5b38d668f8293c-680bcd74-cf9e1353",
+    "MAILGUN_DOMAIN" : "sandbox150d8cf6029847779d55cb6e0c4066dd.mailgun.org",
     "JWT_ACC_ACTIVATE"  : "accountactivatekey123",
     "CLIENT_URL" : "http://localhost:3000"
 }
