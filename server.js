@@ -31,6 +31,7 @@ require("./config/passport")(passport);
 // Routes
 app.use("/api/users", usersRouter);
 app.use("/api/users",addProduct);
+
 /* //Serve static assets if in production
 if (process.env.NODE_ENV = "production") {
     app.use(express.static('client/build'));
