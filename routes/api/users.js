@@ -5,8 +5,8 @@ const jwt = require('jsonwebtoken');
 const config = require('config');
 
 //Load Input Validation
-const validateRegisterInput = require('../../validation/register');
-const validateLoginInput = require('../../validation/login');
+const validateRegisterInput = require('./validation/register');
+const validateLoginInput = require('./validation/login');
 
 // Load User model
 const User = require('../../models/User');
@@ -43,18 +43,17 @@ Router.post('/register', (req, res) => {
         subject: 'Account Activation',
         html : `
             <h2> Please Click on the given link to activate your account.</h2>
-            <a><p>${config.get("CLIENT_URL")}/authenication/activation/${token}</p></a>
+            <a href="${config.get("CLIENT_URL")}/activation${token}"><p>${config.get("CLIENT_URL")}/activation${token}</p></a>
         `
         }; 
         mg.messages().send(data, function (error, body) {
             if(error){
                 return res.json({
-                    message : err.message
+                    message : error.message
                 });
             }
             console.log(body);
             return res.json({message : "Email has been sent, kindly activate your account"})
-            
         });
 });
 
