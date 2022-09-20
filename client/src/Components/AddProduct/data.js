@@ -39,7 +39,7 @@ function Data (){
     <div className="App">
        
       <ItemForm addItemProp={addItem}/>
-    
+    < div className="files-input">
       <input
         type="file"
         name="file"
@@ -51,6 +51,7 @@ function Data (){
       ) : (
         <img src={image} style={{ width: '300px' }} />
       )}
+      </div>
     </div>
   )
 }

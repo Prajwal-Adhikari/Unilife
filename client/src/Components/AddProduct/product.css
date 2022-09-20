@@ -7,6 +7,7 @@
      width: 1550px;
   height: 80px;
     padding: 10px 100px 10px;
+    border-radius: 4px;
 }
 .description{
   
@@ -22,23 +23,93 @@
 }
 input{
     padding: 10px 300px 10px;
-   border-spacing: 10cm;
-    border: 1px solid black;
+   border-spacing: 100cm;
+    border: 50px solid black;
+    border: none;
+    border-radius: 7px;
+  
 }
 
 .App {
     text-align: center;
     background-color: blanchedalmond;
   padding-bottom: 590px;
+  background-image: url(../AddProduct/Image/hostel.jpg);
     
   }
 
  .Btn{
-    
-    width: 1550px;
-  height: 80px;
-    padding: 10px 100px 10px;
+  background-color: none;
+  border: none;
+  color: black;
+  padding: 15px 32px;
+  
+  
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+   
  }
+
+
+  /* .file-inputs {
+        position: relative;
+        margin-bottom: 1.5em;
+
+        input {
+            position: relative;
+            text-align: right;
+            opacity: 0;
+            z-index: 2;
+            cursor: pointer;
+            height: 46px;
+            max-width: 200px;
+        }
+
+        button {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            color: #fff;
+            background-color: #f55e30;
+            font-size: 1.1rem;
+            cursor: pointer;
+            border-radius: 4px;
+            border: none;
+            outline: none;
+            // padding: 1em;
+            transition: background-color 0.4s;
+            box-shadow: 0px 8px 24px rgba(149, 157, 165, 0.5);
+
+            i {
+                width: 1.5em;
+                height: 1.5em;
+                padding: 0.4em;
+                background-color: #fff;
+                color: #f55e30;
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-right: 0.8em;
+                font-size: 0.8em;
+            }
+        }
+
+        &:hover {
+            button {
+                background-color: #f15120;
+            }
+        }
+    }
+} */
 
   
   @keyframes App-logo-spin {
