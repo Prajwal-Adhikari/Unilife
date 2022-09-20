@@ -1,4 +1,4 @@
 {
-    "mongoURI": "mongodb+srv://TeamUnilife:hMytTfaord9pzIox@cluster0.4nebu.mongodb.net/?retryWrites=true&w=majority",
+    "mongoURI": "mongodb+srv://TeamUnilife:Ce53Ob19yQYhzof6@cluster0.4nebu.mongodb.net/?retryWrites=true&w=majority",
     "secretOrKey": "secret"
 }
