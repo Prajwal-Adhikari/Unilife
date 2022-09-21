@@ -4,16 +4,19 @@
     margin-bottom: 1em;
 }
 .price{
-     width: 1550px;
-  height: 80px;
-    padding: 10px 100px 10px;
-    border-radius: 4px;
+  padding: 10px 300px 10px;
+  border-spacing: 100cm;
+   border: 50px solid black;
+   border: none;
+   border-radius: 7px;
 }
 .description{
   
-    width: 1550px;
-  height: 70px;
-    padding: 10px 100px 10px;
+  padding: 10px 300px 10px;
+  border-spacing: 100cm;
+   border: 50px solid black;
+   border: none;
+   border-radius: 7px;
  
 }
 .name{
@@ -21,6 +24,15 @@
     height: 80px;
       padding: 10px 100px 10px;
 }
+.Product{
+  padding: 10px 300px 10px;
+  border-spacing: 100cm;
+   border: 50px solid black;
+   border: none;
+   border-radius: 7px;
+}
+
+
 input{
     padding: 10px 300px 10px;
    border-spacing: 100cm;
@@ -28,6 +40,13 @@ input{
     border: none;
     border-radius: 7px;
   
+}
+.Name{
+  padding: 10px 30px 10px;
+  border-spacing: 100cm;
+   border: 50px solid black;
+   border: none;
+   border-radius: 7px;
 }
 
 .App {
@@ -51,7 +70,13 @@ input{
    
  }
 
-
+.Image{
+  padding: 10px 300px 10px;
+  border-spacing: 100cm;
+   border: 50px solid black;
+   border: none;
+   border-radius: 7px;
+}
   
   
   @keyframes App-logo-spin {
