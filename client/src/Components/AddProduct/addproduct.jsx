@@ -23,7 +23,6 @@ export const ItemForm = ({ addItemProp }) => {
     setPrice('');
     setdescription('');
     setProduct('');
-
      setUpload('');
   } 
    
@@ -62,6 +61,7 @@ export const ItemForm = ({ addItemProp }) => {
           setProduct(event.target.value);
         }}
       />
+      </div>
       <div class="description">
       <input 
    type="text"
@@ -72,9 +72,7 @@ export const ItemForm = ({ addItemProp }) => {
         }}
       />
       </div>
-      
-       </div>
-       <div class="Image">
+      <div class="Image" >
       <input 
    type="text"
         placeholder="Url input"
@@ -84,9 +82,12 @@ export const ItemForm = ({ addItemProp }) => {
         }}
       />
       </div>
+      
+   
+    
    
 
-      <div className="Btn" >
+      <div className="Button" >
         
       <input type="button" value="Add" onClick={addItem} />
       </div>
