@@ -114,7 +114,6 @@ Router.post('/login', (req, res) => {
 });
 
 //AccountActivation
-//currently for a temporary file
 Router.post('/activation',(req,res) => {
     const {token} = req.body;
     if(token) {
