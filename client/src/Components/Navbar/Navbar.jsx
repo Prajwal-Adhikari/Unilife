@@ -6,7 +6,7 @@ import { FaGithub } from 'react-icons/fa';
 class Navbar extends Component {
   render() {
     return (
-      <nav class="navbar navbar-expand-md navbar-dark fixed-top">
+      <nav class="navbar navbar-expand-md navbar-dark">
         <div className="container">
           <Link class="navbar-brand border-none" to="/">
             <p className='logo'>Unilife</p>

@@ -5,6 +5,8 @@ import Home from './Components/Home/Home';
 import Login from './Components/Auth/Login';
 import Register from './Components/Auth/Register';
 import Navbar from './Components/Navbar/Navbar';
+//import AddProduct from './Components/AddProduct/addProduct';
+import ItemForm from './Components/AddProduct/addProduct';
 import NotFound from './Components/NotFound/NotFound';
 import { Provider } from 'react-redux';
 import store from './redux/store';
@@ -43,6 +45,7 @@ function App() {
           <Route path="/login" component={Login} />
           <Switch>
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
+            <PrivateRoute exact path="/additems" component={ItemForm}/>
             <Route path="*" component={NotFound} />
           </Switch>
           <Route path="*" component={NotFound} />
