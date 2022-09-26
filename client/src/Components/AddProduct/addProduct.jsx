@@ -1,31 +1,33 @@
 import React, { useState } from "react";
-
+import { saveProduct } from '../../redux/actions/authActions';
+import { connect} from "react-redux";
 
 export const ItemForm = ({ addItemProp }) => {
   const [Name, setName] = useState("");
   const [Price, setPrice] = useState("");
-  const [description, setdescription] = useState("");
-  const [Product, setProduct] = useState("");
-  const [imagepath, setimagepath] = useState("");
+  const [Description, setDescription] = useState("");
+  const [Productby, setProductby] = useState("");
+  const [Imagepath, setImagepath] = useState("");
   const [Category, setCategory] = useState("");
 
 
-  const addItem = _=> { 
-    addItemProp({
-      id: (new Date).getTime(),
+ const addItem = () => { 
+    const addItemProp = ({
+      // id: (new Date).getTime(),
       Name,
       Price,
-      description, 
-      Product,
+      Description, 
+      Productby,
       Category,
-      imagepath,
+      Imagepath,
     });
-    setName('')
+    setName('');
     setPrice('');
-    setdescription('');
-    setProduct('');
+    setDescription('');
+    setProductby('');
     setCategory('');
-    setimagepath('');
+    setImagepath('');
+    console.log(Productby);
   } 
    
 
@@ -57,9 +59,9 @@ export const ItemForm = ({ addItemProp }) => {
       <input
         type="text"
         placeholder="Product By"
-        value={Product}
+        value={Productby}
         onChange={(event) => {
-          setProduct(event.target.value);
+          setProductby(event.target.value);
         }}
       />
 
@@ -78,9 +80,9 @@ export const ItemForm = ({ addItemProp }) => {
       <input 
         type="text"
         placeholder="Description"
-        value={description}
+        value={Description}
         onChange={(event) => {
-          setdescription(event.target.value);
+          setDescription(event.target.value);
         }}
       />
       </div>
@@ -90,21 +92,26 @@ export const ItemForm = ({ addItemProp }) => {
       <input 
         type="text"
         placeholder="Image URL"
-        value={imagepath}
+        value={Imagepath}
         onChange={(event) => {
-          setimagepath(event.target.value);
+          setImagepath(event.target.value);
         }}
       />
       </div>
    
 
       <div className="Btn" >
-      <input type="button" value="Add" onClick={addItem} />
+      <input type="button" value="Add" onClick={addItemProp} />
       </div>
     </div>
 };
 
-export default ItemForm;
+const mapStateToProps = state => ({
+  auth: state.auth,
+  errors: state.errors
+});
+
+export default connect(mapStateToProps,{saveProduct})(ItemForm);
 
 // import classnames from 'classnames';
 // import { saveProduct } from '../../redux/actions/authActions';
@@ -279,8 +286,8 @@ export default ItemForm;
 //                         className="input-control"
 //                         placeholder="Url to image"
 //                         id="imagepath"
-//                         value={imagepath}
-//                         onChange={this.onChangeAddItem}
+                        // value={imagepath}
+                        // onChange={this.onChangeAddItem}
 //                         error={errors.imagepath}
 //                         className={classnames('', {
 //                           invalid: errors.imagepath
@@ -318,6 +325,8 @@ export default ItemForm;
 // });
 // // export default AddProduct;
 // export default connect(mapStateToProps, { saveProduct })(withRouter(AddProduct));
+
+
 
 
 

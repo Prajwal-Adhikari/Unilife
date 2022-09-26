@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 import setAuthToken from '../../utils/setAuthToken';
 import jwt_decode from 'jwt-decode';
 import { GET_ERRORS, SET_CURRENT_USER, USER_LOADING } from './types'; // Register User
@@ -16,16 +17,30 @@ export const registerUser = (userData, history) => dispatch => {
     );
 }; 
 
-export const saveProduct = (userData)=>dispatch=>{
+export const saveProduct = (userData,history)=>dispatch=>{
   axios
     .post('/api/users/additems',userData)
-    .then(res=>alert("added item sucessfully"))
+    .then(res=>history.push('/dashboard'))
     .catch(err=>dispatch({
       type:GET_ERRORS,
       payload:err.response.data
     })
   );
 };
+
+export const verifyLogiUser = userData => dispatch => {
+  axios
+    .get('/api/users/login',userData)
+    .then(res=>{
+      console.log("running from authActions get request")
+    })
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+}
 
 // Login - get user token
 export const loginUser = userData => dispatch => {
