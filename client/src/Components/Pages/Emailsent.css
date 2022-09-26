@@ -5,20 +5,22 @@
     justify-content: center;
     align-items: center;
     height: 50vh;
-    max-width: 900px;
+    max-width: 700px;
    
     background-color:  rgba(93, 93, 116, 1) 50%;
    
     border: 1px solid #dfdfdf;
-    padding: 100px;
+   
     border-radius: 5px;
     position: relative;
 }
 
 h1{
+  padding: 30px;
    color:white
 }
 p{
+
     color: white;
     font-weight: 100;
 }
@@ -35,4 +37,5 @@ body {
     rgba(30, 54, 59, 1) 0%,
     rgba(93, 93, 116, 1) 100%
   );
+  padding: 200px;
 }
