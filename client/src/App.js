@@ -1,6 +1,6 @@
 import React from 'react';
 // import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-// import './App.css';
+import './App.css';
 // import Home from './Components/Home/Home';
 // import Login from './Components/Auth/Login';
 // import Register from './Components/Auth/Register';
@@ -13,7 +13,8 @@ import React from 'react';
 // import { setCurrentUser, logoutUser } from './redux/actions/authActions';
 // import PrivateRoute from './Components/private-route/PrivateRoute';
 // import Dashboard from './Components/Dashboard/Dashboard';
-import Data from './Components/AddProduct/data';
+// import Data from './Components/AddProduct/data';
+import Emailsent from './Components/Pages/Emailsent';
 function App() {
   // Check for token to keep user logged in
   // if (localStorage.jwtToken) {
@@ -32,25 +33,25 @@ function App() {
   //   }
   // }
   return (
-    // <Provider store={store}>
-    //   <Router>
-    //     <Navbar />
+    //  <Provider store={store}>
+    //    <Router>
+    //      <Navbar />
 
-   <Data/>
-    //     <Switch>
-    //       <Route exact path="/" component={Home} />
+    // {/* <Data/> */}
+    //      <Switch>
+    //        <Route exact path="/" component={Home} />
     //       <Route path="/register" component={Register} />
-    //       <Route path="/login" component={Login} />
-    //       <Switch>
-    //         <PrivateRoute exact path="/dashboard" component={Dashboard} />
-    //         <Route path="*" component={NotFound} />
-    //       </Switch>
-    //       <Route path="*" component={NotFound} />
-    //     </Switch>
-    //   </Router>
-    // </Provider>
-    
-  );
-}
+    //        <Route path="/login" component={Login} />
+    //        <Switch>
+    //          <PrivateRoute exact path="/dashboard" component={Dashboard} />
+    //          <Route path="*" component={NotFound} />
+    //        </Switch>
+    //        <Route path="*" component={NotFound} />
+    //      </Switch>
+    //    </Router>
+    //  </Provider>
+    <Emailsent/>
+   );
+ }
 
 export default App;
