@@ -27,6 +27,7 @@
     "passport-jwt": "^4.0.0",
     "react-stripe-checkout": "^2.6.3",
     "stripe": "^10.8.0",
+    "twilio": "^3.82.1",
     "uuid": "^9.0.0",
     "validator": "^12.2.0"
   },
