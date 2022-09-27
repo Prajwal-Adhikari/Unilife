@@ -8,7 +8,7 @@ import { GET_ERRORS, SET_CURRENT_USER, USER_LOADING } from './types'; // Registe
 export const registerUser = (userData, history) => dispatch => {
   axios
     .post('/api/users/register', userData)
-    .then(res => history.push('/login')) // re-direct to login on successful register
+    .then(res => history.push('/verification')) // re-direct to login on successful register
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
@@ -17,10 +17,21 @@ export const registerUser = (userData, history) => dispatch => {
     );
 }; 
 
+export const verifyUser = (history) => dispatch => {
+  axios
+  .post('api/users/verification')
+  .then(res=>history.push('/login'))
+  .catch(err=>
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data
+    }))
+}
+
 export const saveProduct = (userData,history)=>dispatch=>{
   axios
     .post('/api/users/additems',userData)
-    .then(res=>history.push('/dashboard'))
+    .then(res => history.push('/dashboard'))
     .catch(err=>dispatch({
       type:GET_ERRORS,
       payload:err.response.data
@@ -28,19 +39,19 @@ export const saveProduct = (userData,history)=>dispatch=>{
   );
 };
 
-export const verifyLogiUser = userData => dispatch => {
-  axios
-    .get('/api/users/login',userData)
-    .then(res=>{
-      console.log("running from authActions get request")
-    })
-    .catch(err =>
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data
-      })
-    );
-}
+// export const verifyLogiUser = userData => dispatch => {
+//   axios
+//     .get('/api/users/login',userData)
+//     .then(res=>{
+//       console.log("running from authActions get request")
+//     })
+//     .catch(err =>
+//       dispatch({
+//         type: GET_ERRORS,
+//         payload: err.response.data
+//       })
+//     );
+// }
 
 // Login - get user token
 export const loginUser = userData => dispatch => {

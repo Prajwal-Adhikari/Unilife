@@ -13,8 +13,44 @@ const User = require('../../models/User');
  
 //For email-verification 
 const mailgun = require("mailgun-js");
+const { validateRequest } = require('twilio');
 const DOMAIN = config.get("MAILGUN_DOMAIN"); 
 const mg = mailgun({apiKey: config.get('MAILGUN_APIKEY'), domain: DOMAIN});
+
+// const sendOTPVerificationEmail = async(email,res) => {
+   
+// }
+
+Router.post('/verification',(req,res)=>{
+    const _otp=req.body.verifyUser;
+    const newUser = new User({
+        name,
+        email,
+        password,
+        verified
+    });
+    if(_otp==="9999")
+    {
+
+         //Hash password before saving in database
+            bcrypt.genSalt(10, (err, salt) => {
+                bcrypt.hash(newUser.password, salt, (err, hash) => {
+                    if (err) throw err;
+                    newUser.password = hash;
+                    newUser.save()
+                        .then(user => res.json(user))
+                        .catch(err => console.log(err));
+                });
+            });
+
+            return res.redirect('/login');
+    }
+    else{
+        console.log(_otp);
+    }
+    
+})
+
 
 //Post Router api/users/register
 Router.post('/register', (req, res) => {
@@ -32,35 +68,80 @@ Router.post('/register', (req, res) => {
     const {
         name,
         email,
-        password
-       } = req.body;    
+        password,
+        verified
+       } = req.body;   
 
-        const token = jwt.sign({name,email,password},config.get("JWT_ACC_ACTIVATE"),{expiresIn : '10m'});
+    User.findOne(
+        {
+            email:email
+        })
+    .then(user => {
+        if (user) {
+            return res.status(400).json({
+                email: "Email already exists"
+            });
+        } else {
+            const newUser = new User({
+                name,
+                email,
+                password,
+                verified
+            });
 
-        const data = {
-        from: 'admin@unilife.com.np',
-        to: req.body.email,
-        subject: 'Account Activation',
-        html : `
-            <h2> Please Click on the given link to activate your account.</h2>
-            <a href="${config.get("CLIENT_URL")}/login/${token}"><p>${config.get("CLIENT_URL")}/login/${token}</p></a>
-        `
-        }; 
-        mg.messages().send(data, function (error, body) {
-            if(error){
-                return res.json({
-                    message : error.message
-                });
+            if(!verified)
+            {
+                console.log("verified chaina hai");
+                try{
+                    const otp = `${Math.floor(1000 + Math.random()*9000)}`;
+            
+                    //mail options
+                    const data = {
+                        from: 'admin@unilife.com.np',
+                        to: req.body.email,
+                        subject: 'Account verification',
+                        html : `
+                            <h2> Below is the activation key for your new Unilife account.</h2>
+                            <p>Hello and welcome to unilife, We hope for your joyful and pleasant experience here in unilife. Below is the OTP for your new account please don't share it with any one.</p>
+                            <p align="center"><h2>${otp}</h2></p>
+                        `
+                        }; 
+                        mg.messages().send(data, function (error, body) {
+                            if(error){
+                                return res.json({
+                                    message : error.message
+                                });
+                            }
+                            console.log(body);
+                            return res.json({message : "OTP has been sent to your email, please check it out !!!"})
+                        });
+                }catch(error){
+                    return res.json({
+                        message : error.message
+                    });
+                }
             }
-            console.log(body);
-            return res.json({message : "Email has been sent, kindly activate your account"})
-        });
+
+            else{
+            //Hash password before saving in database
+            // bcrypt.genSalt(10, (err, salt) => {
+            //     bcrypt.hash(newUser.password, salt, (err, hash) => {
+            //         if (err) throw err;
+            //         newUser.password = hash;
+            //         newUser.save()
+            //             .then(user => res.json(user)
+            //                 //res.redirect('/users/login')
+            //             )
+            //             .catch(err => console.log(err));
+            //     });
+            // });
+            }
+        }
+    });
 });
 
-
 //Post Router api/users/login
-Router.post('/login/:token', (req, res) => {
-    console.log("inside post");
+Router.post('/login', (req, res) => {
     //Login Validation
     const {
         errors,
@@ -71,64 +152,6 @@ Router.post('/login/:token', (req, res) => {
     if (!isValid) {
         return res.status(400).json(errors);
     }
-
-    console.log(req.params.token);
-
-    const {token} = req.params;
-    if(token) {
-        jwt.verify(token, config.get("JWT_ACC_ACTIVATE"),function(err,decodedToken){
-            if(err){
-                return res.status(400).json({error:"Incorrect or expired link"});
-            }
-            const {name,email,password} = decodedToken;
-            User.findOne({
-                email: email
-            })
-            .then(user => {
-                if (user) {
-                    return res.status(400).json({
-                        email: "Email already exists"
-                    });
-                } else {
-                    const newUser = new User({
-                        name: name,
-                        email: email,
-                        password: password
-                    });
-    
-                    //Hash password before saving in database
-                    bcrypt.genSalt(10, (err, salt) => {
-                        bcrypt.hash(newUser.password, salt, (err, hash) => {
-                            if (err) throw err;
-                            newUser.password = hash;
-                            newUser.save()
-                                .then(user => 
-                                    {
-                                        const payload = {
-                                            id: user.id,
-                                            name: user.name
-                                        };
-                    
-                                        //Sign Token
-                                        jwt.sign(payload, config.get('secretOrKey'), {
-                                            expiresIn: 63113852 //2 years in seconds    
-                                        }, (err, token) => {
-                                            res.json({
-                                                success: true,
-                                                token: "Bearer" + token
-                                            });
-                                        });
-                                        res.json(user)
-                                        res.redirect('/users/dashboard')
-                                    }
-                                )
-                                .catch(err => console.log(err));
-                        });
-                    });
-                }
-            });
-        });
-    }       
 
     const email = req.body.email;
     const password = req.body.password;
@@ -170,58 +193,9 @@ Router.post('/login/:token', (req, res) => {
                     });
                 }
             });
-    }); 
-
-    
+    });
 });
 
-
-//AccountActivation
-Router.get('/login/:token',(req,res) => {
-    console.log("inside get");
-    const {token} = req.params.body;
-    if(token) {
-        jwt.verify(token, config.get("JWT_ACC_ACTIVATE"),function(err,decodedToken){
-            if(err){
-                return res.status(400).json({error:"Incorrect or expired link"});
-            }
-            const {name,email,password} = decodedToken;
-            User.findOne({
-                email: email
-            })
-            .then(user => {
-                if (user) {
-                    return res.status(400).json({
-                        email: "Email already exists"
-                    });
-                } else {
-                    const newUser = new User({
-                        name: name,
-                        email: email,
-                        password: password
-                    });
-    
-                    //Hash password before saving in database
-                    bcrypt.genSalt(10, (err, salt) => {
-                        bcrypt.hash(newUser.password, salt, (err, hash) => {
-                            if (err) throw err;
-                            newUser.password = hash;
-                            newUser.save()
-                                .then(user => 
-                                    {
-                                        res.json(user)
-                                        res.redirect('/users/dashboard')
-                                    }
-                                )
-                                .catch(err => console.log(err));
-                        });
-                    });
-                }
-            });
-        });
-    }
-}
-);
 
 module.exports = Router;
 

@@ -12,7 +12,6 @@ class Register extends Component {
     this.state = {
       name: '',
       email: '',
-      phn:'',
       password: '',
       password2: '',
       errors: {}
@@ -40,7 +39,6 @@ class Register extends Component {
     const newUser = {
       name: this.state.name,
       email: this.state.email,
-      phn : this.state.phn,
       password: this.state.password,
       password2: this.state.password2
     };
@@ -48,7 +46,7 @@ class Register extends Component {
   };
 
   render() {
-    const { errors, name, password, password2, email,phn } = this.state;
+    const { errors, name, password, password2, email } = this.state;
     return (
       <section className="register">
         <div className="container">
@@ -101,25 +99,6 @@ class Register extends Component {
                       />{' '}
                       <br />
                       <span className="text-danger">{errors.email}</span>
-                    </div>
-                  </div>
-                  <div class="form-row">
-                    <div class="form-group col-md-12">
-                      <label htmlFor="PhoneNumber">Phone Number</label> <br />
-                      <input
-                        type="text"
-                        className="input-control"
-                        placeholder="Enter mobile number"
-                        id="phn"
-                        value={phn}
-                        onChange={this.onChangeRegister}
-                        error={errors.phn}
-                        className={classnames('', {
-                          invalid: errors.email
-                        })}
-                      />{' '}
-                      <br />
-                      <span className="text-danger">{errors.phn}</span>
                     </div>
                   </div>
                   <div class="form-row">
