@@ -1,0 +1,41 @@
+
+.container {
+    display: flex ;
+    flex-direction:column;
+    justify-content: center;
+    align-items: center;
+    height: 50vh;
+    max-width: 700px;
+   
+    background-color:  rgba(93, 93, 116, 1) 50%;
+   
+    border: 1px solid #dfdfdf;
+   
+    border-radius: 5px;
+    position: relative;
+}
+
+h1{
+  padding: 30px;
+   color:white
+}
+p{
+
+    color: white;
+    font-weight: 100;
+}
+Button{
+    background-color:rgb(192, 191, 211);
+    color: black;
+    border-radius: 10px;
+}
+body {
+  background: rgb(2, 0, 36);
+  background: radial-gradient(
+    circle,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(30, 54, 59, 1) 0%,
+    rgba(93, 93, 116, 1) 100%
+  );
+  padding: 200px;
+}
