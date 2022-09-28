@@ -30,7 +30,7 @@ class Dashboard extends Component {
                   className="btn btn-lg btn-warning mt-5">
                   Logout
                 </button>
-                <Link to="/payment" className="btn btn-large text-success">
+                <Link to="/create-checkout-session" className="btn btn-large text-success">
                       Checkout for payment
                 </Link>
               </div>

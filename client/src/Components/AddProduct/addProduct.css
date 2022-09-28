@@ -1,4 +1,30 @@
-.Data{
+.container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.btn{
+  border: 2px solid black;
+  background-color: white;
+  color: black;
+  padding: 10px 28px;
+  font-size: 14px;
+}
+
+.additem{
+  font:5px;
+}
+
+.h1{
+  padding: 20px;
+  color:white;
+}
+
+.confirm{
+  align-self: right;
+}
+/* .Data{
     padding-top:300px;
     padding-left: 600px;
 }
@@ -88,7 +114,7 @@ input{
    border: 50px solid black;
    border: none;
    border-radius: 7px;
-}
+} */
   
   
   @keyframes App-logo-spin {

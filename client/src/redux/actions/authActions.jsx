@@ -39,20 +39,6 @@ export const saveProduct = (userData,history)=>dispatch=>{
   );
 };
 
-// export const verifyLogiUser = userData => dispatch => {
-//   axios
-//     .get('/api/users/login',userData)
-//     .then(res=>{
-//       console.log("running from authActions get request")
-//     })
-//     .catch(err =>
-//       dispatch({
-//         type: GET_ERRORS,
-//         payload: err.response.data
-//       })
-//     );
-// }
-
 // Login - get user token
 export const loginUser = userData => dispatch => {
   axios

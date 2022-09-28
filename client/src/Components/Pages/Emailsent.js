@@ -40,36 +40,6 @@ class Emailsent extends Component{
     {     
         const {errors,otp} = this.state; 
     return(  
-                // <div className="container_email">
-                //       <h1>Account Confirmation</h1>
-                //  <div className="email">
-                //      <p> An OTP has been sent to your email for verification. Please input the OTP below and verify your unilife account.</p>
-                //   </div>
-                //   <div class="check">
-                //       <p>Check your email and come back to proceed!</p>
-                //   <form action="" method="post">
-                //   <input type="text" id="_verifyUser" name="foo"></input>
-                //   <button name="verify" value="verifyotp" onClick={this.props.verifyUser(_verifyUser,this.props.history)}>Verify</button>
-                //   </form>
-                //   </div>
-                // </div>
-
-
-                // <div className="container_email">
-                //       <h1>Account Confirmation</h1>
-                //  <div className="email">
-                //      <p> An OTP has been sent to your email for verification. Please input the OTP below and verify your unilife account.</p>
-                //   </div>
-                //   <div class="check">
-                //       <p>Check your email and come back to proceed!</p>
-                //   <form onSubmit={this.verifySubmit}>
-                //   <input type="text" id="otp" name="foo"  defaultValue={otp}
-                //   onChange={this.onChangeVerify} error={errors.otp}/>
-                //   <button name="verify" value="verifyotp" onClick={this.verifySubmit}>Verify</button>
-                //   </form>
-                //   </div>
-                // </div>
-
                 <div className="container_email">
                     <h1>Account Confirmation</h1>
                 <form noValidate onSubmit={this.verifySubmit}>

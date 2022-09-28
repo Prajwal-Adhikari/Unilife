@@ -6,16 +6,31 @@ const config = require('config');
 const app = express();
 app.use(express.json());
 
+const validateAddProductInput = require('../../validation/addProduct');
 const Product = require('../../models/product');
 
 Router.post('/additems',(req,res)=>{
+
+    //Form Validation
+    //Destructuring Values
+    const {
+        errors,
+        isValid
+    } = validateAddProductInput(req.body);
+
+    //Check Validation
+    if (!isValid) {
+        return res.status(400).json(errors);
+    }
+
+    console.log("Backend ma ayipugyo");
     const newProducts = new Product({
-        imagepath : req.body.Imagepath,
-        title : req.body.Name,
-        productby : req.body.Productby,
-        description : req.body.Description,
-        price : req.body.Price,
-        category : req.body.Category,
+        imagepath : req.body.imagepath,
+        title : req.body.title,
+        productby : req.body.productby,
+        description : req.body.description,
+        price : req.body.price,
+        category : req.body.category,
     });
     newProducts.save()
     .then(res.send(req.body))
