@@ -11,38 +11,25 @@ export const ItemForm = ({ addItemProp }) => {
   const [Category, setCategory] = useState("");
 
 
-//  const addItem = () => { 
-//     const addItemProp = ({
-//       // id: (new Date).getTime(),
-//       Name,
-//       Price,
-//       Description, 
-//       Productby,
-//       Category,
-//       Imagepath,
-//     });
-//     setName('');
-//     setPrice('');
-//     setDescription('');
-//     setProductby('');
-//     setCategory('');
-//     setImagepath('');
-//   } 
+ const addItem = () => { 
+    const addItemProp = ({
+      // id: (new Date).getTime(),
+      Name,
+      Price,
+      Description, 
+      Productby,
+      Category,
+      Imagepath,
+    });
+    setName('');
+    setPrice('');
+    setDescription('');
+    setProductby('');
+    setCategory('');
+    setImagepath('');
+    console.log(Productby);
+  } 
    
-  addItem = e => {                  //registerSubmit -> addItem
-        e.preventDefault();
-        const newProducts = {
-          title:this.state.title,
-          productby :this.state.productby,
-          description:this.state.description,
-          imagepath:this.state.imagepath,
-          category:this.state.category,
-          price:this.state.price
-        }
-          this.props.saveProduct(newProducts,this.props.history);
-    }
-
-
 
   return <div className="Data ">
       <h1>Add Item</h1>
