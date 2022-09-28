@@ -17,36 +17,85 @@ const { validateRequest } = require('twilio');
 const DOMAIN = config.get("MAILGUN_DOMAIN"); 
 const mg = mailgun({apiKey: config.get('MAILGUN_APIKEY'), domain: DOMAIN});
 
-// const sendOTPVerificationEmail = async(email,res) => {
-   
-// }
+
+let newUserToken = 0;
+let forVerification = 0 ;
+const OTPgenerator = function(mode){
+  //mode 0 : for generating otp, 1: for checking otp and reseting the function
+  if(!mode)
+  {
+    let otp=Math.floor(Math.random()*10);
+    for(let i=0;i<5;i++){
+        const foo = Math.floor(Math.random()*10);
+        if(foo%2==0){
+            const alphabet = "abcdefghijklmnopqrstuvwxyz"
+            otp = otp+alphabet[Math.floor(Math.random() * alphabet.length)].toUpperCase();
+        }
+        else{
+            const forNumber = Math.floor(Math.random()*10);
+            otp=otp+forNumber.toString();
+        }
+    }
+    forVerification=otp;
+    return otp;
+  }
+
+  if(mode){
+    const temp =  forVerification;
+    forVerification = 0;
+    return temp;
+  }
+
+}
 
 Router.post('/verification',(req,res)=>{
-    const _otp=req.body.verifyUser;
-    const newUser = new User({
-        name,
-        email,
-        password,
-        verified
-    });
-    if(_otp==="9999")
+    const _otp = req.body.otp;
+    if(_otp===OTPgenerator(1))
     {
+        const token = newUserToken;
+        newUserToken = 0;
+        if(token){
+            jwt.verify(token,config.get("JWT_ACC_ACTIVATE"),function(err,decodedToken){
+                if(err){
+                    return res.status(400).json({error:"Incorrect or expired"});
+                }
+                const {name,email,password} = decodedToken;
+                User.findOne({
+                    email:email
+                })
+                .then(user=>{
+                    if(user){
+                        return res.status(400).json({
+                            email : "Email already exists"
+                        });
+                    }else{
+                        const newUser = new User({
+                            name,
+                            email,
+                            password,
+                            verified:true
+                        });
 
-         //Hash password before saving in database
-            bcrypt.genSalt(10, (err, salt) => {
-                bcrypt.hash(newUser.password, salt, (err, hash) => {
-                    if (err) throw err;
-                    newUser.password = hash;
-                    newUser.save()
-                        .then(user => res.json(user))
-                        .catch(err => console.log(err));
+                        //Hash password before saving in database
+                        bcrypt.genSalt(10, (err, salt) => {
+                            bcrypt.hash(newUser.password, salt, (err, hash) => {
+                                if (err) throw err;
+                                newUser.password = hash;
+                                newUser.save()
+                                    .then(user => res.json(user)
+                                        //res.redirect('/users/login')
+                                    )
+                                    .catch(err => console.log(err));
+                            });
+                        });
+                    }
                 });
             });
-
-            return res.redirect('/login');
+        }
+        
     }
     else{
-        console.log(_otp);
+        console.log("wrong OTP");
     }
     
 })
@@ -82,19 +131,10 @@ Router.post('/register', (req, res) => {
                 email: "Email already exists"
             });
         } else {
-            const newUser = new User({
-                name,
-                email,
-                password,
-                verified
-            });
-
+            newUserToken = jwt.sign({name,email,password,verified},config.get("JWT_ACC_ACTIVATE"),{expiresIn:'10m'});
             if(!verified)
             {
-                console.log("verified chaina hai");
                 try{
-                    const otp = `${Math.floor(1000 + Math.random()*9000)}`;
-            
                     //mail options
                     const data = {
                         from: 'admin@unilife.com.np',
@@ -103,7 +143,7 @@ Router.post('/register', (req, res) => {
                         html : `
                             <h2> Below is the activation key for your new Unilife account.</h2>
                             <p>Hello and welcome to unilife, We hope for your joyful and pleasant experience here in unilife. Below is the OTP for your new account please don't share it with any one.</p>
-                            <p align="center"><h2>${otp}</h2></p>
+                            <p align="center"><h2>${OTPgenerator(0)}</h2></p>
                         `
                         }; 
                         mg.messages().send(data, function (error, body) {
@@ -120,21 +160,6 @@ Router.post('/register', (req, res) => {
                         message : error.message
                     });
                 }
-            }
-
-            else{
-            //Hash password before saving in database
-            // bcrypt.genSalt(10, (err, salt) => {
-            //     bcrypt.hash(newUser.password, salt, (err, hash) => {
-            //         if (err) throw err;
-            //         newUser.password = hash;
-            //         newUser.save()
-            //             .then(user => res.json(user)
-            //                 //res.redirect('/users/login')
-            //             )
-            //             .catch(err => console.log(err));
-            //     });
-            // });
             }
         }
     });

@@ -17,9 +17,9 @@ export const registerUser = (userData, history) => dispatch => {
     );
 }; 
 
-export const verifyUser = (history) => dispatch => {
+export const verifyUser = (otp,history) => dispatch => {
   axios
-  .post('api/users/verification')
+  .post('api/users/verification',otp)
   .then(res=>history.push('/login'))
   .catch(err=>
     dispatch({
