@@ -23,7 +23,6 @@ Router.post('/additems',(req,res)=>{
         return res.status(400).json(errors);
     }
 
-    console.log("Backend ma ayipugyo");
     const newProducts = new Product({
         imagepath : req.body.imagepath,
         title : req.body.title,
