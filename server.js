@@ -2,9 +2,11 @@ const express = require("express");
 const mongoose = require("mongoose");
 const passport = require("passport");
 const usersRouter = require("./routes/api/users");
-const AddProduct = require("./routes/api/addItem")
+const AddProduct = require("./routes/api/addItem");
+const Payment = require("./routes/api/payment");
 const config = require('config');
 const app = express();
+const cors = require("cors");
 // Body parser middleware
 app.use(
     express.urlencoded({
@@ -29,9 +31,13 @@ app.use(passport.initialize());
 // Passport config
 require("./config/passport")(passport);
 
+app.use(express.json());
+app.use(cors());
+
 // Routes
 app.use("/api/users", usersRouter);
 app.use("/api/users", AddProduct);
+app.use("/api/users", Payment);
 /* //Serve static assets if in production
 if (process.env.NODE_ENV = "production") {
     app.use(express.static('client/build'));

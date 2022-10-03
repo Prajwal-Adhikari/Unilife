@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../redux/actions/authActions';
 import './Dashboard.css';
+
 
 class Dashboard extends Component {
   onLogoutClick = e => {
@@ -30,9 +30,39 @@ class Dashboard extends Component {
                   className="btn btn-lg btn-warning mt-5">
                   Logout
                 </button>
-                <Link to="/create-checkout-session" className="btn btn-large text-success">
+                {/* <Link
+                    to="/"
+                    className="btn btn-lg btn-outline-none border-3 btn-login"
+                  >
+                    checkout to payment
+                  </Link> */}
+                <button  className="checkoutTOpayment" onClick={()=>{
+                  fetch('http://localhost:5000/api/users/create-checkout-session',{
+                    method:"POST",
+                    headers:{
+                      "Content-Type" : "application/json"
+                    },
+                     body:JSON.stringify({
+                      items: [
+                        { id :1,quantity :2},
+                        { id: 2,quantity:1},
+                      ],
+                    }),
+                  })
+                  .then(res=> {
+                    if(res.ok) return res.json()
+                    return res.json().then(json=>Promise.reject(json))
+                  })
+                  .then(({ url }) => {
+                    window.location = url
+                  })
+                  .catch(e=>{
+                    console.error(e.error)
+                  })
+                 }}
+                  >
                       Checkout for payment
-                </Link>
+                </button>
               </div>
             </div>
           </div>

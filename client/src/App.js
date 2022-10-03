@@ -6,7 +6,7 @@ import Login from './Components/Auth/Login';
 import Register from './Components/Auth/Register';
 import Navbar from './Components/Navbar/Navbar';
 import AddProduct from './Components/AddProduct/addProduct';
-// import ItemForm from './Components/AddProduct/addProduct';
+// import Payment from './Components/Payment/payment';
 import Emailsent from './Components/Pages/Emailsent';
 import NotFound from './Components/NotFound/NotFound';
 import { Provider } from 'react-redux';
@@ -19,6 +19,8 @@ import Dashboard from './Components/Dashboard/Dashboard';
 
 
 //private routes are used to protect pages from aunthorized users
+
+
 
 function App() {
   // Check for token to keep user logged in
@@ -49,6 +51,7 @@ function App() {
           <Switch>
             <PrivateRoute exact path="/dashboard" component={Dashboard} />  
             <PrivateRoute exact path="/additems" component={AddProduct}/>
+            {/* <PrivateRoute exact path="/payment" component={Payment}/> */}
             <Route path="*" component={NotFound} />
           </Switch>
           <Route path="*" component={NotFound} />
