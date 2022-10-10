@@ -13,8 +13,8 @@ import './App.css';
 // import { setCurrentUser, logoutUser } from './redux/actions/authActions';
 // import PrivateRoute from './Components/private-route/PrivateRoute';
 // import Dashboard from './Components/Dashboard/Dashboard';
-// import Data from './Components/AddProduct/data';
-import Emailsent from './Components/Pages/Emailsent';
+import Data from './Components/AddProduct/data';
+// import Emailsent from './Components/Pages/Emailsent';
 function App() {
   // Check for token to keep user logged in
   // if (localStorage.jwtToken) {
@@ -37,7 +37,7 @@ function App() {
     //    <Router>
     //      <Navbar />
 
-    // {/* <Data/> */}
+     <Data/> 
     //      <Switch>
     //        <Route exact path="/" component={Home} />
     //       <Route path="/register" component={Register} />
@@ -50,7 +50,7 @@ function App() {
     //      </Switch>
     //    </Router>
     //  </Provider>
-    <Emailsent/>
+    // <Emailsent/>
    );
  }
 
