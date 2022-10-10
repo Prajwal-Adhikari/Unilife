@@ -12,7 +12,7 @@ export const ItemForm = ({ addItemProp }) => {
 
   const addItem = _=>{ 
     addItemProp({
-      id: (new Date).getTime(),
+      id: (new Date()).getTime(),
       Name,
       Price,
       description,
