@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 const usersRouter = require("./routes/api/users");
 const AddProduct = require("./routes/api/addItem");
+const AddHostel = require("./routes/api/addhostel");
 const SearchProduct = require("./routes/api/searchproduct");
 const Payment = require("./routes/api/payment");
 const config = require('config');
@@ -38,6 +39,7 @@ app.use(cors());
 // Routes
 app.use("/api/users", usersRouter);
 app.use("/api/users", AddProduct);
+app.use("/api/users",AddHostel);
 app.use("/api", SearchProduct);
 app.use("/api/users", Payment);
 /* //Serve static assets if in production

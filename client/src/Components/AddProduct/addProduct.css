@@ -24,104 +24,11 @@
 .confirm{
   align-self: right;
 }
-/* .Data{
-    padding-top:300px;
-    padding-left: 600px;
-}
-.title {
-    padding-top: 100px;
-    font-weight: bold;
-    font-size: 1.2rem;
-    margin-bottom: 1em;
-}
-.price{
-  padding: 10px 300px 10px;
-  border-spacing: 100cm;
-   border: 50px solid black;
-   border: none;
-   border-radius: 7px;
-}
-.description{
-    padding: 10px 300px 10px;
-    border-spacing: 100cm;
-     border: 50px solid black;
-     border: none;
-     border-radius: 7px;
-}
-.name{
-    padding: 10px 300px 10px;
-    border-spacing: 100cm;
-     border: 50px solid black;
-     border: none;
-     border-radius: 7px;
-}
-.Product{
-    padding: 10px 300px 10px;
-    border-spacing: 100cm;
-     border: 50px solid black;
-     border: none;
-     border-radius: 7px;
-}
-.category{
-    padding: 10px 300px 10px;
-    border-spacing: 100cm;
-     border: 50px solid black;
-     border: none;
-     border-radius: 7px;
-}
-
-
-input{
-    padding: 10px 300px 10px;
-   border-spacing: 100cm;
-    border: 50px solid black;
-    border: none;
-    border-radius: 7px;
-  
-}
-.Name{
-  padding: 10px 30px 10px;
-  border-spacing: 100cm;
-   border: 50px solid black;
-   border: none;
-   border-radius: 7px;
-}
-
-.App {
-    text-align: center;
-    background-color: blanchedalmond;
-    padding-bottom: 590px;
-    background-image: url("https://www.google.com/url?sa=i&url=https%3A%2F%2Funsplash.com%2Fbackgrounds%2Fapps%2Fwebsite&psig=AOvVaw2_hIXGQsz484KPMwmiTdvf&ust=1663839043519000&source=images&cd=vfe&ved=0CAwQjRxqFwoTCIDu9NDJpfoCFQAAAAAdAAAAABAE");
-    
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
   }
-
- .Btn{
-  background-color: none;
-  border: none;
-  color: black;
-  padding: 15px 32px;
-  
-  
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-   
- }
-
-.Image{
-  padding: 10px 300px 10px;
-  border-spacing: 100cm;
-   border: 50px solid black;
-   border: none;
-   border-radius: 7px;
-} */
-  
-  
-  @keyframes App-logo-spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
+  to {
+    transform: rotate(360deg);
   }
+}

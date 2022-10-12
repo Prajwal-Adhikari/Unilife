@@ -16,6 +16,8 @@ class Login extends Component {
       errors: {}
     };
   }
+
+  
   componentDidMount() {
     // If logged in and user navigates to Login page, should redirect them to dashboard
     if (this.props.auth.isAuthenticated) {
@@ -37,6 +39,7 @@ class Login extends Component {
     this.setState({ [e.target.id]: e.target.value });
   };
   loginSubmit = e => {
+
     e.preventDefault();
     const userData = {
       email: this.state.email,

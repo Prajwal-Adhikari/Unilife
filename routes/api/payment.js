@@ -12,7 +12,6 @@ const storeItems = new Map([
 
 router.post("/create-checkout-session",async(req,res) => {
     try{
-        console.log("Backend running");
         const session = await stripe.checkout.sessions.create({
             payment_method_types:["card"],
             mode : "payment",
@@ -75,7 +74,7 @@ router.post("/create-checkout-session",async(req,res) => {
                 }
             }),
             success_url : `${config.get("CLIENT_URL")}/dashboard`,
-            cancel_url : `${config.get("CLIENT_URL")}/additems`,
+            cancel_url : `${config.get("CLIENT_URL")}/dashboard`,
         })
         res.json({url:session.url})
     }catch(e) {
@@ -84,97 +83,3 @@ router.post("/create-checkout-session",async(req,res) => {
 })
 
 module.exports = router;
-
-
-// const express = require("express")
-// const app = express()
-// const config = require('config');
-// const cors = require("cors")
-// app.use(express.json())
-// app.use(
-//   cors({
-//     Origin: "http://localhost:3000",
-//   })
-// )
-
-// const stripe = require("stripe")(config.get("STRIPE_PRIVATE_KEY"));
-
-// const storeItems = new Map([
-//   [1, { priceInCents: 20000, name: "Bed Table" }],
-//   [2, { priceInCents: 30000, name: "Table" }],
-// ]);
-
-// app.post("/create-checkout-session", async (req, res) => {
-//   try {
-//     const session = await stripe.checkout.sessions.create({  //making a api call to stripe to create a checkout session
-//       payment_method_types: ["card"],
-//       mode: "payment",
-//       shipping_address_collection : {
-//         allowed_countries : ['NP'],
-//       },
-//       shipping_options : [
-//         {
-//           shipping_rate_data : {
-//             type : 'fixed_amount',
-//             fixed_amount : {
-//               amount : 0,
-//               currency : 'usd',
-//             },
-//             display_name : 'Free shipping',
-//             delivery_estimate : {
-//               minimum : {
-//                 unit : 'day',
-//                 value : 3,
-//               },
-//               maximum : {
-//                 unit : 'day',
-//                 value : 5,
-//               },
-//             },
-//           },
-//         },
-//         {
-//           shipping_rate_data : {
-//             type : 'fixed_amount',
-//             fixed_amount : {
-//               amount : 1500,
-//               currency : 'usd',
-//             },
-//             display_name : 'Next day air',
-//             delivery_estimate :{
-//               minimum : {
-//                 unit : 'day',
-//                 value : 1
-//               },
-//               maximum :
-//               {
-//                 unit : 'day',
-//                 value : 1,
-//               },
-//             },
-//           },
-//         },
-//       ],
-//       line_items: req.body.items.map(item => {
-//         const storeItem = storeItems.get(item.id)
-//         return {
-//           price_data: {
-//             currency: "usd",
-//             product_data: {
-//               name: storeItem.name,
-//             },
-//             unit_amount: storeItem.priceInCents,
-//           },
-//           quantity: item.quantity,
-//         }
-//       }),
-//       success_url: `${config.get("CLIENT_URL")}/dashboard`,
-//       cancel_url: `${process.get("CLIENT_URL")}/dashboard`,
-//     })
-//     res.json({ url: session.url })
-//   } catch (e) {
-//     res.status(500).json({ error: e.message })
-//   }
-// })
-
-// app.listen(4000);

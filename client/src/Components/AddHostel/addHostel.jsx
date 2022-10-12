@@ -1,17 +1,19 @@
 import React, { Component } from 'react';
-import './addProduct.css';
+import './addHostel.css';
 import { withRouter } from 'react-router-dom';
-import { saveProduct } from '../../redux/actions/authActions';
+import { saveHostel } from '../../redux/actions/authActions';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
 
 
-class AddProduct extends Component{
+class AddHostel extends Component{
   constructor() {
     super();
     this.state = {
       title : '',
-      productby: '',
+      ownedby: '',
+      latitude : '',
+      longitude : '',
       description : '',
       imagepath : '',
       category :'',
@@ -28,40 +30,42 @@ class AddProduct extends Component{
     }
   }
 
-  onChangeAddItem = e => {          //onChangeRegister -> onChangeAddItem
+  onChangeAddItem = e => {          
     this.setState({ [e.target.id]: e.target.value });
   };
 
-  addItem = e => {                  //registerSubmit -> addItem
+  addItem = e => {                  
     e.preventDefault();
-    const newProducts = {
+    const newHostel = {
       title:this.state.title,
-      productby :this.state.productby,
+      ownedby :this.state.ownedby,
+      latitude : this.state.latitude,
+      longitude : this.state.longitude,
       description:this.state.description,
       imagepath:this.state.imagepath,
       category:this.state.category,
       price:this.state.price
     }
-      this.props.saveProduct(newProducts,this.props.history);
+      this.props.saveHostel(newHostel,this.props.history);
   };
 
   
   render() {
-    const { errors, description, price, productby, title,category,imagepath } = this.state;
+    const { errors, description, price, ownedby,latitude,longitude, title,category,imagepath } = this.state;
     return (
         <div className="container">
           <div className="row">
             <div className="col-lg-6">
               <div className="addproduct-title">
-                <h1>Add Product</h1>
+                <h1>Add Your Hostel</h1>
                 <form noValidate onSubmit={this.addItem}>
                   <div class="form-row">
                     <div class="form-group col-md-12">
-                      <label htmlFor="title">Product</label> <br />
+                      <label htmlFor="title">Hostel</label> <br />
                       <input
                         type="text"
                         className="input-control"
-                        placeholder="Enter Product Name"
+                        placeholder="Enter Hostel Name"
                         id="title"
                         value={title}
                         onChange={this.onChangeAddItem}
@@ -76,21 +80,21 @@ class AddProduct extends Component{
                   </div>
                   <div class="form-row">
                     <div class="form-group col-md-12">
-                      <label htmlFor="productby">ProductBy</label> <br />
+                      <label htmlFor="productby">OwnedBy</label> <br />
                       <input
                         type="text"
                         className="input-control"
-                        placeholder="Product By"
-                        id="productby"
-                        value={productby}
+                        placeholder="Owned By"
+                        id="ownedby"
+                        value={ownedby}
                         onChange={this.onChangeAddItem}
-                        error={errors.productby}
+                        error={errors.ownedby}
                         className={classnames('', {
-                          invalid: errors.productby
+                          invalid: errors.ownedby
                         })}
                       />{' '}
                       <br />
-                      <span className="text-danger">{errors.productby}</span>
+                      <span className="text-danger">{errors.ownedby}</span>
                     </div>
                   </div>
                   <div class="form-row">
@@ -114,7 +118,47 @@ class AddProduct extends Component{
                   </div>
                   <div class="form-row">
                     <div class="form-group col-md-12">
-                      <label htmlFor="price">Price in USD</label>
+                      <label htmlFor="price">Latitude</label>
+                      <br />
+                      <input
+                        type="text"
+                        className="input-control"
+                        placeholder="Latitude"
+                        id="latitude"
+                        value={latitude}
+                        onChange={this.onChangeAddItem}
+                        error={errors.latitude}
+                        className={classnames('', {
+                          invalid: errors.latitude
+                        })}
+                      />{' '}
+                      <br />
+                      <span className="text-danger">{errors.latitude}</span>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-12">
+                      <label htmlFor="price">Longitude</label>
+                      <br />
+                      <input
+                        type="text"
+                        className="input-control"
+                        placeholder="Longitude"
+                        id="longitude"
+                        value={longitude}
+                        onChange={this.onChangeAddItem}
+                        error={errors.longitude}
+                        className={classnames('', {
+                          invalid: errors.longitude
+                        })}
+                      />{' '}
+                      <br />
+                      <span className="text-danger">{errors.longitude}</span>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-12">
+                      <label htmlFor="price">Price in USD ( Monthly )</label>
                       <br />
                       <input
                         type="number"
@@ -175,10 +219,10 @@ class AddProduct extends Component{
                   <div class="form-row">  
                     <div class="form-group col-md-12">
                       <p><input type="checkbox" id="onlyChoice" name="confirm" value="confirming" required="required"
-                      onChange="document.getElementById('addProduct').disabled=!this.checked"/>
-                      By clicking this you agree to the terms and conditions of Unilife and will be found guilty for any misbehaves caused by your product.</p>
+                      onChange="document.getElementById('addProduct').disabled=!this.checked;"
+                      />By clicking this you agree to the terms and conditions of Unilife and will be found guilty for any misbehaves caused by your product.</p>
                       <button type="submit" id="addProduct" className="btn additem">
-                        Add Product
+                        Add Hostel
                       </button>
                     </div>
                   </div>
@@ -196,7 +240,7 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 // export default AddProduct;
-export default connect(mapStateToProps, {saveProduct})(withRouter(AddProduct));
+export default connect(mapStateToProps, {saveHostel})(withRouter(AddHostel));
 
 
 
