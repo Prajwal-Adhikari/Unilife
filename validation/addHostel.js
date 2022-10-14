@@ -7,8 +7,9 @@ module.exports = validateAddHostelInput = data => {
     data.title = !isEmpty(data.title) ? data.title : "";
     data.ownedby = !isEmpty(data.ownedby) ? data.ownedby : "";
     data.price = !isEmpty(data.price) ? data.price : "";
-    data.latitude = !isEmpty(data.latitude) ? data.latitude : "";
-    data.longitude = !isEmpty(data.longitude) ? data.longitude : "";
+    data.country = !isEmpty(data.country) ? data.country : "";
+    data.city = !isEmpty(data.city) ? data.city : "";
+    data.address = !isEmpty(data.address) ? data.address : "";
     data.imagepath = !isEmpty(data.imagepath) ? data.imagepath : "";
     data.category = !isEmpty(data.category) ? data.category : "";
     data.description = !isEmpty(data.description) ? data.description : "";
@@ -23,14 +24,19 @@ module.exports = validateAddHostelInput = data => {
         errors.ownedby = "Ownedby field is required";
     }
 
-    //latitude checks
-    if (validator.isEmpty(data.latitude)) {
-        errors.latitude = "Latitude field is required";
+    //country checks
+    if (validator.isEmpty(data.country)) {
+        errors.country = "Country field is required";
     }
 
-    //longitude checks
-    if (validator.isEmpty(data.longitude)) {
-        errors.longitude = "Longitude field is required";
+    //city checks
+    if (validator.isEmpty(data.city)) {
+        errors.city = "City field is required";
+    }
+
+    //Address checks
+    if(validator.isEpty(data.address)) {
+        errors.address = "Address field is required";
     }
 
     //Price Checks

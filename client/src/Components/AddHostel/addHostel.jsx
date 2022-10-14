@@ -12,8 +12,9 @@ class AddHostel extends Component{
     this.state = {
       title : '',
       ownedby: '',
-      latitude : '',
-      longitude : '',
+      country : '',
+      city : '',
+      address : '',
       description : '',
       imagepath : '',
       category :'',
@@ -39,8 +40,9 @@ class AddHostel extends Component{
     const newHostel = {
       title:this.state.title,
       ownedby :this.state.ownedby,
-      latitude : this.state.latitude,
-      longitude : this.state.longitude,
+      country : this.state.country,
+      city : this.state.city,
+      address :  this.state.address,
       description:this.state.description,
       imagepath:this.state.imagepath,
       category:this.state.category,
@@ -49,9 +51,9 @@ class AddHostel extends Component{
       this.props.saveHostel(newHostel,this.props.history);
   };
 
-  
+
   render() {
-    const { errors, description, price, ownedby,latitude,longitude, title,category,imagepath } = this.state;
+    const { errors,description,price,ownedby,country,city,address,title,category,imagepath } = this.state;
     return (
         <div className="container">
           <div className="row">
@@ -118,42 +120,62 @@ class AddHostel extends Component{
                   </div>
                   <div class="form-row">
                     <div class="form-group col-md-12">
-                      <label htmlFor="price">Latitude</label>
+                      <label htmlFor="price">Country</label>
                       <br />
                       <input
                         type="text"
                         className="input-control"
-                        placeholder="Latitude"
-                        id="latitude"
-                        value={latitude}
+                        placeholder="Country"
+                        id="country"
+                        value={country}
                         onChange={this.onChangeAddItem}
-                        error={errors.latitude}
+                        error={errors.country}
                         className={classnames('', {
-                          invalid: errors.latitude
+                          invalid: errors.country
                         })}
                       />{' '}
                       <br />
-                      <span className="text-danger">{errors.latitude}</span>
+                      <span className="text-danger">{errors.country}</span>
                     </div>
                   </div>
                   <div class="form-row">
                     <div class="form-group col-md-12">
-                      <label htmlFor="price">Longitude</label>
+                      <label htmlFor="price">City</label>
                       <br />
                       <input
                         type="text"
                         className="input-control"
-                        placeholder="Longitude"
-                        id="longitude"
-                        value={longitude}
+                        placeholder="City"
+                        id="city"
+                        value={city}
                         onChange={this.onChangeAddItem}
-                        error={errors.longitude}
+                        error={errors.city}
                         className={classnames('', {
-                          invalid: errors.longitude
+                          invalid: errors.city
                         })}
                       />{' '}
                       <br />
-                      <span className="text-danger">{errors.longitude}</span>
+                      <span className="text-danger">{errors.city}</span>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-12">
+                      <label htmlFor="price">Address</label>
+                      <br />
+                      <input
+                        type="text"
+                        className="input-control"
+                        placeholder="Address"
+                        id="address"
+                        value={address}
+                        onChange={this.onChangeAddItem}
+                        error={errors.address}
+                        className={classnames('', {
+                          invalid: errors.address
+                        })}
+                      />{' '}
+                      <br />
+                      <span className="text-danger">{errors.address}</span>
                     </div>
                   </div>
                   <div class="form-row">
