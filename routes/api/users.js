@@ -13,7 +13,6 @@ const User = require('../../models/User');
  
 //For email-verification 
 const mailgun = require("mailgun-js");
-const { validateRequest } = require('twilio');
 const DOMAIN = config.get("MAILGUN_DOMAIN"); 
 const mg = mailgun({apiKey: config.get('MAILGUN_APIKEY'), domain: DOMAIN});
 
@@ -183,8 +182,8 @@ Router.post('/login', (req, res) => {
 
     //Find User By Email
     User.findOne({
-        email:email
-    }).then(user => {
+        email:req.body.email
+    }).then(user => {           //.collation({locale:'en',strength:1})
         //Check if Your Exists
         if (!user) {
             return res.status(404).json({

@@ -204,7 +204,7 @@ class AddHostel extends Component{
                       <input
                         type="text"
                         className="input-control"
-                        placeholder="Description about product"
+                        placeholder="Boys or Girls"
                         id="category"
                         value={category}
                         onChange={this.onChangeAddItem}

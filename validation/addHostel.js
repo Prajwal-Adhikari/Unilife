@@ -35,7 +35,7 @@ module.exports = validateAddHostelInput = data => {
     }
 
     //Address checks
-    if(validator.isEpty(data.address)) {
+    if(validator.isEmpty(data.address)) {
         errors.address = "Address field is required";
     }
 
