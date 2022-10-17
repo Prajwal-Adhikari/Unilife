@@ -55,8 +55,8 @@ class AddHostel extends Component{
   render() {
     const { errors,description,price,ownedby,country,city,address,title,category,imagepath } = this.state;
     return (
-        <div className="container">
-          <div className="row">
+        <div className="_container">
+          <div className="_row">
             <div className="col-lg-6">
               <div className="addproduct-title">
                 <h1>Add Your Hostel</h1>

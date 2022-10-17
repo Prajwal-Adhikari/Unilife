@@ -49,8 +49,8 @@ class AddProduct extends Component{
   render() {
     const { errors, description, price, productby, title,category,imagepath } = this.state;
     return (
-        <div className="container">
-          <div className="row">
+        <div className="containerProduct">
+          <div className="_row">
             <div className="col-lg-6">
               <div className="addproduct-title">
                 <h1>Add Product</h1>
