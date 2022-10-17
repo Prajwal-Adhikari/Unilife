@@ -13,6 +13,8 @@ const User = require('../../models/User');
  
 //For email-verification 
 const mailgun = require("mailgun-js");
+const { CustomerProfilesEntityAssignmentsContext } = require('twilio/lib/rest/trusthub/v1/customerProfiles/customerProfilesEntityAssignments');
+const { QueryCursor } = require('mongoose');
 const DOMAIN = config.get("MAILGUN_DOMAIN"); 
 const mg = mailgun({apiKey: config.get('MAILGUN_APIKEY'), domain: DOMAIN});
 
@@ -165,60 +167,122 @@ Router.post('/register', (req, res) => {
 });
 
 //Post Router api/users/login
+// Router.post('/login', (req, res) => {
+//     //Login Validation
+//     const {
+//         errors,
+//         isValid
+//     } = validateLoginInput(req.body);
+
+//     //Check Validation
+//     if (!isValid) {
+//         return res.status(400).json(errors);
+//     }
+
+//     const email = req.body.email;
+//     const password = req.body.password;
+
+//     //Find User By Email
+//     User.findOne({
+//         email:req.body.email
+//     }).then(user => {           //.collation({locale:'en',strength:1})
+//         //Check if Your Exists
+//         if (!user) {
+//             return res.status(404).json({
+//                 emailNotFound: "Email is not registered"
+//             });
+//         }
+
+//         //Match Password
+//         bcrypt.compare(password, user.password)
+//             .then(isMatch => {
+//                 if (isMatch) {
+//                     //User Matched
+//                     //Create JWT Payload
+//                     const payload = {
+//                         id: user.id,
+//                         name: user.name
+//                     };
+
+//                     //Sign Token
+//                     jwt.sign(payload, config.get('secretOrKey'), {
+//                         expiresIn: 63113852 //2 years in seconds    
+//                     }, (err, token) => {
+//                         res.json({
+//                             success: true,
+//                             token: "Bearer" + token
+//                         });
+//                     });
+//                 } else {
+//                     return res.status(400).json({
+//                         passwordIncorrect: "Password incorrect"
+//                     });
+//                 }
+//             });
+//     });
+// });
+
+
+//Post Router api/users/login
 Router.post('/login', (req, res) => {
     //Login Validation
-    const {
-        errors,
-        isValid
-    } = validateLoginInput(req.body);
+    // const {
+    //     errors,
+    //     isValid
+    // } = validateLoginInput(req.body);
 
-    //Check Validation
-    if (!isValid) {
-        return res.status(400).json(errors);
-    }
+    // //Check Validation
+    // if (!isValid) {
+    //     return res.status(400).json(errors);
+    // }
 
-    const email = req.body.email;
-    const password = req.body.password;
+    // const email = req.body.email;
+    // const password = req.body.password;
+
 
     //Find User By Email
-    User.findOne({
-        email:req.body.email
-    }).then(user => {           //.collation({locale:'en',strength:1})
+    User.find({
+        name : req.body.name
+    },{name:1})
+    .then(user=>{           //.collation({locale:'en',strength:1})
         //Check if Your Exists
-        if (!user) {
-            return res.status(404).json({
-                emailNotFound: "Email is not registered"
-            });
-        }
+        // if (!user) {
+        //     return res.status(404).json({
+        //         emailNotFound: "Email is not registered"
+        //     });
+        // }
+        console.log(user);
+        
 
         //Match Password
-        bcrypt.compare(password, user.password)
-            .then(isMatch => {
-                if (isMatch) {
-                    //User Matched
-                    //Create JWT Payload
-                    const payload = {
-                        id: user.id,
-                        name: user.name
-                    };
+        // bcrypt.compare(password, user.password)
+        //     .then(isMatch => {
+        //         if (isMatch) {
+        //             //User Matched
+        //             //Create JWT Payload
+        //             const payload = {
+        //                 id: user.id,
+        //                 name: user.name
+        //             };
 
-                    //Sign Token
-                    jwt.sign(payload, config.get('secretOrKey'), {
-                        expiresIn: 63113852 //2 years in seconds    
-                    }, (err, token) => {
-                        res.json({
-                            success: true,
-                            token: "Bearer" + token
-                        });
-                    });
-                } else {
-                    return res.status(400).json({
-                        passwordIncorrect: "Password incorrect"
-                    });
-                }
-            });
+        //             //Sign Token
+        //             jwt.sign(payload, config.get('secretOrKey'), {
+        //                 expiresIn: 63113852 //2 years in seconds    
+        //             }, (err, token) => {
+        //                 res.json({
+        //                     success: true,
+        //                     token: "Bearer" + token
+        //                 });
+        //             });
+        //         } else {
+        //             return res.status(400).json({
+        //                 passwordIncorrect: "Password incorrect"
+        //             });
+        //         }
+        //     });
     });
 });
+
 
 
 module.exports = Router;

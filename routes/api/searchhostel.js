@@ -18,6 +18,12 @@ router.post('/searchhostel',(req,res)=>{
         return res.status(400).json(errors);
     }
 
+    Hostel.findById("6349912ef78fd417574888bd").then(user=>{
+        console.log(user);
+    }).catch((err)=>{
+        console.log(err);
+    }
+    )
     
 });
 

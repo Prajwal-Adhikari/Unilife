@@ -3,12 +3,20 @@ const router = express.Router();
 const config = require('config');
 const Stripe = require("stripe");
 const stripe= Stripe(config.get("STRIPE_PRIVATE_KEY"));
-
+const Product = require('../../models/product');
 
 const storeItems = new Map([
     [1, { priceInCents : 20000, name : "Bed Table"}],
     [2, { priceInCents : 30000, name : "Table "}],
 ])
+
+// const storeItems = new Map(
+//     Product.findById({
+//         _id : req.body.id;
+//     },{description:0}).then(user=>{
+//         return user;
+//     })
+// )
 
 router.post("/create-checkout-session",async(req,res) => {
     try{
@@ -81,5 +89,9 @@ router.post("/create-checkout-session",async(req,res) => {
         res.status(500).json({error:e.message})
     }
 })
+
+
+
+
 
 module.exports = router;
