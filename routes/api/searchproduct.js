@@ -1,8 +1,8 @@
-const Router = require("express").Router();
+const router = require("express").Router();
 const Product = require("../../models/product");
 //const products = require("../../config/products.json");
 
-Router.get("/products", async(req, res) => {
+router.get("/products", async(req, res) => {
     try{
         const page = parseInt(req.query.page) - 1 || 0;
         const limit = parseInt(req.query.limit) || 5;
@@ -71,4 +71,4 @@ Router.get("/products", async(req, res) => {
 //     .then((docs) => console.log(docs))
 //     .catch((err) => console.log(err))
 
-module.exports = Router;
+module.exports = router;

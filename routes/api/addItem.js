@@ -1,5 +1,5 @@
 const express = require('express');
-const Router = express.Router();
+const router = express.Router();
 const jwt = require('jsonwebtoken');
 const config = require('config');
 
@@ -9,7 +9,7 @@ app.use(express.json());
 const validateAddProductInput = require('../../validation/addProduct');
 const Product = require('../../models/product');
 
-Router.post('/additems',(req,res)=>{
+router.post('/additems',(req,res)=>{
 
     //Form Validation
     //Destructuring Values
@@ -36,4 +36,4 @@ Router.post('/additems',(req,res)=>{
     .catch(err=>console.log(err));
 });
 
-module.exports = Router;
+module.exports = router;
