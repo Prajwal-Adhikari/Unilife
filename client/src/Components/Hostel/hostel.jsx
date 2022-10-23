@@ -165,7 +165,7 @@ class Hostel extends Component{
                               <div className = "col-10 col-md mt-5">
                             <div className = "card p-2">
                                 <div class = "d-flex align-items-center">
-                                    <div class = "image"> <img src={curElem.imagepath} alt="" class="rounded" width="155"/> </div>
+                                    <div class = "image"> <img src={curElem.imagepath} alt="" class="rounded" height="150" width="150"/> </div>
                                     <div class="ml-3 w-100">
                                         <h4 class = "mb-0 mt-0 textLeft" onClick={  
                                            ()=> this.openTab(curElem)

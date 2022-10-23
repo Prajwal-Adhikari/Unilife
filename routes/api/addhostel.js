@@ -31,6 +31,7 @@ router.post('/addhostel',(req,res)=>{
         city : req.body.city,
         address :  req.body.address,
         description : req.body.description,
+        contact: req.body.contact,
         price : req.body.price,
         category : req.body.category,
     });

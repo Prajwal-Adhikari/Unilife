@@ -16,6 +16,7 @@ class AddHostel extends Component{
       city : '',
       address : '',
       description : '',
+      contact : '',
       imagepath : '',
       category :'',
       price : '',
@@ -45,6 +46,7 @@ class AddHostel extends Component{
       address :  this.state.address,
       description:this.state.description,
       imagepath:this.state.imagepath,
+      contact:this.state.contact,
       category:this.state.category,
       price:this.state.price
     }
@@ -53,7 +55,7 @@ class AddHostel extends Component{
 
 
   render() {
-    const { errors,description,price,ownedby,country,city,address,title,category,imagepath } = this.state;
+    const { errors,description,price,ownedby,country,city,contact,address,title,category,imagepath } = this.state;
     return (
         <div className="_container">
           <div className="_row">
@@ -176,6 +178,26 @@ class AddHostel extends Component{
                       />{' '}
                       <br />
                       <span className="text-danger">{errors.address}</span>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-12">
+                      <label htmlFor="price">Contact Number</label>
+                      <br />
+                      <input
+                        type="number"
+                        className="input-control"
+                        placeholder="contact"
+                        id="contact"
+                        value={contact}
+                        onChange={this.onChangeAddItem}
+                        error={errors.contact}
+                        className={classnames('', {
+                          invalid: errors.contact
+                        })}
+                      />{' '}
+                      <br />
+                      <span className="text-danger">{errors.contact}</span>
                     </div>
                   </div>
                   <div class="form-row">

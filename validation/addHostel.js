@@ -11,6 +11,7 @@ module.exports = validateAddHostelInput = data => {
     data.city = !isEmpty(data.city) ? data.city : "";
     data.address = !isEmpty(data.address) ? data.address : "";
     data.imagepath = !isEmpty(data.imagepath) ? data.imagepath : "";
+    data.contact = !isEmpty(data.contact) ? data.contact : "";
     data.category = !isEmpty(data.category) ? data.category : "";
     data.description = !isEmpty(data.description) ? data.description : "";
 
@@ -32,6 +33,11 @@ module.exports = validateAddHostelInput = data => {
     //city checks
     if (validator.isEmpty(data.city)) {
         errors.city = "City field is required";
+    }
+
+    //contact checks
+    if (validator.isEmpty(data.contact)) {
+        errors.contact = "Contact field is required";
     }
 
     //Address checks

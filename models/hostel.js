@@ -8,6 +8,7 @@ var hostelSchema = new schema ({
     country : {type: String, required:true},
     city : {type: String, required:true},
     address : {type:String,required:true},
+    contact : {type:Number,required:true},
     description : {type: String, required:true},
     price : {type: Number, required:true},
     category : {type: String, required:true},
