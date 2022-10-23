@@ -5,6 +5,8 @@ import classnames from 'classnames';
 import {connect} from 'react-redux';
 import { withRouter } from "react-router-dom";
 
+let response = [];
+
 class Hostel extends Component{
     constructor (){
         super();
@@ -40,7 +42,7 @@ class Hostel extends Component{
 
       getHostels = async ()=> {
         console.log("getHostel function is called");
-        const response = await fetch('http://localhost:5000/api/users/hostel',{
+        response = await fetch('http://localhost:5000/api/users/hostel',{
             method : "POST",
             headers:{
                 "Content-Type" : "application/json"
@@ -58,32 +60,18 @@ class Hostel extends Component{
               .then((data)=>{
                 return data;
               })
-              // .then(({ url }) => {
-              //   window.location = url
-              // })
               .catch(e=>{
                 console.error(e.error)
               })
-
-        // .then((response)=> {response.json()})
-        // .then((data)=>{
-        //   console.log("inside data");
-        //   console.log(data);
-        // })
-        // .catch(e=>{
-        //   console.error(e.error);
-        // })
-
-        console.log("From outside of data");
-        console.log(response);
     }
 
     render (){
         const {errors,country,city,category} = this.state;
-        return(
+          try{
+            return(
             <section className="Hosteldashboard">
             <div className="left_container">
-                <h2>Yo che left section</h2>
+                <h2>Details about hostel</h2>
                 <div>
                     <form noValidate onSubmit={this.addOption}>
                     <div class="form-row">
@@ -148,48 +136,40 @@ class Hostel extends Component{
 
             
             <div className="right_container">
-                <h2 >List of Available Hostels</h2>
+                <h2 >List of Hostels</h2>
                 <div className="container-fluid mt-5">
                     <div className = "row text-center">
-                        <div className = "col-10 col-md mt-5">
+                        {
+                          response.map((curElem)=>{
+                            return(
+                              <div className = "col-10 col-md mt-5">
                             <div className = "card p-2">
                                 <div class = "d-flex align-items-center">
-                                    <div class = "image"> <img src="" alt="" class="rounded" width="155"/> </div>
+                                    <div class = "image"> <img src={curElem.imagepath} alt="" class="rounded" width="155"/> </div>
                                     <div class="ml-3 w-100">
-                                        <h4 class = "mb-0 mt-0 textLeft">Prashant Shrestha</h4> <span className = "textLeft">Web Developer</span>
+                                        <h4 class = "mb-0 mt-0 textLeft">{curElem.title}</h4> <span className = "textLeft">{curElem.address},{curElem.city},{curElem.country}</span>
                                         <div class="p-2 mt-2 bg-primary d-flex justify-content-between rounded text-white stats">
-                                            <div class="d-flex flex-column"> <span class="articles">Articles</span><span class="number1">38</span></div>
-                                            <div class="d-flex flex-column"> <span class="followers">Followers</span><span class="number1">980</span></div>
-                                            <div class="d-flex flex-column"> <span class="rating">Rating</span><span class="number1">8.9</span></div>
+                                            <div class="d-flex flex-column"> <span class="category">Category</span><span class="number1">{curElem.category}</span></div>
+                                            <div class="d-flex flex-column"> <span class="price">Price</span><span class="number2">{curElem.price}</span></div>
+                                            <div class="d-flex flex-column"> <span class="ownedby">Owned by</span><span class="number3">{curElem.ownedby}</span></div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-
-                        <div className = "col-10 col-md mt-5">
-                            <div className = "card p-2">
-                                <div class = "d-flex align-items-center">
-                                    <div class = "image"> <img src=""  alt="" class="rounded" width="155"/> </div>
-                                    <div class="ml-3 w-100">
-                                        <h4 class = "mb-0 mt-0 textLeft">Prashant Shrestha</h4> <span className = "textLeft">Web Developer</span>
-                                        <div class="p-2 mt-2 bg-primary d-flex justify-content-between rounded text-white stats">
-                                            <div class="d-flex flex-column"> <span class="articles">Articles</span><span class="number1">38</span></div>
-                                            <div class="d-flex flex-column"> <span class="followers">Followers</span><span class="number1">980</span></div>
-                                            <div class="d-flex flex-column"> <span class="rating">Rating</span><span class="number1">8.9</span></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
+                            )
+                          })
+                        }
                     </div>
                 </div>
-            </div>
-                
+            </div>  
             </section>
-        )
+            )
+          } catch (error) {
+            alert("Fill all the details in the detail section");
+            console.log(error);
+            window.location.reload();
+          }
     }
 }
 

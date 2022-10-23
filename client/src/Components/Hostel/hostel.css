@@ -24,6 +24,9 @@ h2{
     border-radius : 30px;
     background-color: #fff;
     margin:auto;
+    display: flex; /* adding flex */
+    justify-content: space-around; /* Positioning them with spaces */
+    flex-wrap: wrap; /* Wrapping Elements when page is small */
 }
 
 .image{
@@ -36,7 +39,7 @@ h2{
     color : #000 !important;
 }
 
-.articles{
+.category{
     font-size : 10px;
     color : #a1aab9;
 }
@@ -45,7 +48,7 @@ h2{
     font-weight: 500;
 }
 
-.followers {
+.price {
     font-size :10px;
     color:#a1aab9;
 }
@@ -54,7 +57,7 @@ h2{
     font-weight: 500;
 }
 
-.rating{
+.ownedby{
     font-size : 10px;
     color : #a1aab9
 }

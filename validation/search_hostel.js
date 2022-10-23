@@ -1,7 +1,7 @@
 const validator = require('validator');
 const isEmpty = require('is-empty');
 
-module.exports = validateAddHostelInput = data => {
+module.exports = validateSearchHostelInput = data => {
     let errors = {};
     //Convert empty fields to an empty string so we can use validator functions
     data.country = !isEmpty(data.country) ? data.country : "";
