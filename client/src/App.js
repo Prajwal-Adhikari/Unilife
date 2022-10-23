@@ -7,6 +7,7 @@ import Register from './Components/Auth/Register';
 import Navbar from './Components/Navbar/Navbar';
 import AddProduct from './Components/AddProduct/addProduct';
 // import Payment from './Components/Payment/payment';
+import Hostel from './Components/Hostel/hostel';
 import AddHostel from './Components/AddHostel/addHostel'
 import Emailsent from './Components/Pages/Emailsent';
 import NotFound from './Components/NotFound/NotFound';
@@ -109,6 +110,7 @@ function App() {
              <PrivateRoute exact path="/dashboard" component={Dashboard} />
              <PrivateRoute exact path="/additems" component={AddProduct}/>
              <PrivateRoute exact path="/addhostel" component={AddHostel}/>
+             <PrivateRoute exact path="/hostel" component={Hostel}/>
              <Route path="*" component={NotFound} />
            </Switch>
            <Route path="*" component={NotFound} />

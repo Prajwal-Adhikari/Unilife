@@ -28,7 +28,7 @@ export const verifyUser = (otp,history) => dispatch => {
       type: GET_ERRORS,
       payload: err.response.data
     }))
-}
+};
 
 export const saveProduct = (userData,history)=>dispatch=>{
   axios
@@ -41,11 +41,22 @@ export const saveProduct = (userData,history)=>dispatch=>{
   );
 };
 
+export const saveOptions = (userData,history)=>dispatch=>{
+  axios
+    .post('/api/users/hostel',userData)
+    .then(res => history.push('/hostel'))
+    .catch(err=>dispatch({
+      type:GET_ERRORS,
+      payload:err.response.data
+    })
+  );
+};
+
 
 export const saveHostel = (userData,history)=>dispatch=>{
   axios
     .post('/api/users/addhostel',userData)
-    .then(res => history.push('/dashboard'))
+    .then(res=>history.push('/dashboard'))
     .catch(err=>dispatch({
       type:GET_ERRORS,
       payload:err.response.data

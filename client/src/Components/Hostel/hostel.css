@@ -1,0 +1,64 @@
+.left_container{
+    width: 25%; 
+    float: left;
+    padding: 20px;
+}   
+
+.right_container{
+    background-color: #b3e5fc;
+    font-family : "Raleway", sans-serif;
+    width:75%;
+    height :max-content;
+    float: right;
+    padding: 20px;
+    border: 3px solid rgb(53, 27, 115);
+}
+h2{
+    text-align: center;
+    margin:20px 0;
+}
+
+.card{
+    width:450px;
+    border:none;
+    border-radius : 30px;
+    background-color: #fff;
+    margin:auto;
+}
+
+.image{
+    min-width:155px;
+    margin-right:20px;
+}
+
+.stats{
+    background : #f2f5f8 !important;
+    color : #000 !important;
+}
+
+.articles{
+    font-size : 10px;
+    color : #a1aab9;
+}
+
+.number1 {
+    font-weight: 500;
+}
+
+.followers {
+    font-size :10px;
+    color:#a1aab9;
+}
+
+.number2 {
+    font-weight: 500;
+}
+
+.rating{
+    font-size : 10px;
+    color : #a1aab9
+}
+
+.number3 {
+    font-weight : 500 px;
+}
