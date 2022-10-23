@@ -41,7 +41,7 @@ app.use(cors());
 app.use("/api/users", usersRouter);
 app.use("/api/users", AddProduct);
 app.use("/api/users",AddHostel);
-app.use("/api", SearchProduct);
+app.use("/api/users", SearchProduct);
 app.use("/api/users",SearchHostel);
 app.use("/api/users", Payment);
 /* //Serve static assets if in production

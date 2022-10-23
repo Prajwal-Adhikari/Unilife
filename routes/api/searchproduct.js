@@ -2,7 +2,7 @@ const router = require("express").Router();
 const Product = require("../../models/product");
 //const products = require("../../config/products.json");
 
-router.get("/products", async(req, res) => {
+router.post("/products", async(req, res) => {
     try{
         const page = parseInt(req.query.page) - 1 || 0;
         const limit = parseInt(req.query.limit) || 5;
@@ -10,11 +10,17 @@ router.get("/products", async(req, res) => {
         let sort = req.query.sort || "price";
         let category = req.query.category || "All";
 
+        // const categoryOptions = [
+        //     "Furniture",
+        //     "Education",
+        //     "Utensil",
+        //     "Others"
+        // ]
+
         const categoryOptions = [
-            "Furniture",
-            "Education",
-            "Utensil",
-            "Others"
+           // req.body.category,
+            //req.body.productby,
+            req.body.title,
         ]
 
         category === "All"
@@ -37,21 +43,21 @@ router.get("/products", async(req, res) => {
             .skip(page * limit)
             .limit(limit);
 
-        const total = await Product.countDocuments({
-            category: {$in: [...category]},
-            title: { $regex: search, $options: "i"},
-        });
+        //const total = await Product.countDocuments({
+        //     category: {$in: [...category]},
+        //     title: { $regex: search, $options: "i"},
+        // });
 
-        const response = {
-            error: false,
-            total,
-            page: page + 1,
-            limit,
-            categories: categoryOptions,
-            products,
-        }
+        // const response = {
+        //     error: false,
+        //     total,
+        //     page: page + 1,
+        //     limit,
+        //     categories: categoryOptions,
+        //     products,
+        // }
 
-        res.status(200).json(response);
+        res.status(200).json(products);
     } catch (err) {
         console.log(err);
         res.status(500).json({error: true, message:"Internal Server Error"});

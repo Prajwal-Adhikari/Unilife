@@ -4,8 +4,16 @@ import { saveOptions } from "../../redux/actions/authActions";
 import classnames from 'classnames';
 import {connect} from 'react-redux';
 import { withRouter } from "react-router-dom";
+import {generatePath} from 'react-router-dom';
+import {Redirect} from 'react-router-dom'
 
+// let clicked = false;
+// let newPageId = '';
 let response = [];
+// if(clicked){
+//   clicked=false;
+//   history.push(generatePath('/hostel:id',{id:newPageId}));
+// }
 
 class Hostel extends Component{
     constructor (){
@@ -39,6 +47,18 @@ class Hostel extends Component{
         }
           this.props.saveOptions(newOption,this.props.history);
       };
+
+      openTab = (element) => {
+        console.log("inside openTab");
+        const item = localStorage.setItem("selectedHostel",JSON.stringify(element));
+        console.log(item);
+        this.props.history.push(generatePath(`/hostel/${element._id}`))
+        //this.props.history.push(generatePath('/hostel:id'),{id:element._id})
+       //this.props.history.push(generatePath('/dashboard'));
+        //return <Redirect to={`/hostel/${element._id}`}/>
+        //return <Redirect to={`/dashboard`}/>
+
+      }
 
       getHostels = async ()=> {
         console.log("getHostel function is called");
@@ -147,7 +167,10 @@ class Hostel extends Component{
                                 <div class = "d-flex align-items-center">
                                     <div class = "image"> <img src={curElem.imagepath} alt="" class="rounded" width="155"/> </div>
                                     <div class="ml-3 w-100">
-                                        <h4 class = "mb-0 mt-0 textLeft">{curElem.title}</h4> <span className = "textLeft">{curElem.address},{curElem.city},{curElem.country}</span>
+                                        <h4 class = "mb-0 mt-0 textLeft" onClick={  
+                                           ()=> this.openTab(curElem)
+                                          }>{curElem.title}</h4> {/*onClick={openTab(curElem._id)} */}
+                                        <span className = "textLeft">{curElem.address},{curElem.city},{curElem.country}</span>
                                         <div class="p-2 mt-2 bg-primary d-flex justify-content-between rounded text-white stats">
                                             <div class="d-flex flex-column"> <span class="category">Category</span><span class="number1">{curElem.category}</span></div>
                                             <div class="d-flex flex-column"> <span class="price">Price</span><span class="number2">{curElem.price}</span></div>

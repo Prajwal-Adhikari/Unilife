@@ -65,3 +65,9 @@ h2{
 .number3 {
     font-weight : 500 px;
 }
+
+
+.card:hover{
+    transform: translate(-10px, -10px);
+    transform: scale(1.2,1.2); 
+  }
