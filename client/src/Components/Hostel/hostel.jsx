@@ -5,48 +5,6 @@ import classnames from 'classnames';
 import {connect} from 'react-redux';
 import { withRouter } from "react-router-dom";
 
-
-// getHostels = async () => {
-//     console.log("getHostel function is called");
-//     const response = await fetch('http://localhost:5000/api/users/hostel',{
-//         method : "POST",
-//         headers:{
-//             "Content-Type" : "application/json"
-//           },
-//     })
-    // .then(res=> {
-    //   if(res.ok) return res.json()
-    //   return res.json().then(json=>Promise.reject(json))
-    // })
-    // .then((data)=>{
-    //   console.log(data);
-    //   return data;
-    // })
-    // .then(({ url }) => {
-    //   window.location = url
-    // })
-    // .catch(e=>{
-    //   console.error(e.error)
-    // })
-
-
-//     .then((response)=> {
-//       response.json();
-//     })
-//     .then((data)=>{
-//       console.log("inside data");
-//       console.log(data);
-//       return data;
-//     })
-//     .catch(e=>{
-//       console.error(e.error);
-//     })
-//     console.log("outside from function");
-//     // console.log(response);
-//    //console.log(response);
-// }
-
-
 class Hostel extends Component{
     constructor (){
         super();
@@ -87,14 +45,17 @@ class Hostel extends Component{
             headers:{
                 "Content-Type" : "application/json"
               },
-              body : JSON.stringify([]),
+              body : JSON.stringify({
+                country : this.state.country,
+                city : this.state.city,
+                category : this.state.category,
+              }),
         })
           .then(res=> {
                 if(res.ok) return res.json()
                 return res.json().then(json=>Promise.reject(json))
               })
               .then((data)=>{
-                console.log(data);
                 return data;
               })
               // .then(({ url }) => {
@@ -116,10 +77,6 @@ class Hostel extends Component{
         console.log("From outside of data");
         console.log(response);
     }
-
-    componentDidMount(){
-        this.getHostels();
-    } 
 
     render (){
         const {errors,country,city,category} = this.state;
@@ -240,5 +197,5 @@ const mapStateToProps = state => ({
     auth: state.auth,
     errors: state.errors
   });
-//export default Hostel;
+
 export default connect(mapStateToProps, {saveOptions})(withRouter(Hostel));

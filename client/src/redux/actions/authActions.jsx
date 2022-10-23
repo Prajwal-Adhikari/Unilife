@@ -52,6 +52,25 @@ export const saveOptions = (userData,history)=>dispatch=>{
   );
 };
 
+// export const saveOptions = (userData,history)=>dispatch=>{
+//   Promise.all([
+//       axios.get('/api/users/hostel'),
+//       axios.post('/api/users/hostel',userData)
+//   ]).then(
+//     //res => history.push('/hostel')
+//     (response)=>{
+//       response.json();
+//       history.push('/hostel')
+//     }
+//   )
+//   .then((res)=>{
+//     return res;
+//   })
+//   .catch(err=>dispatch({
+//     type:GET_ERRORS,
+//     payload:err.response.data
+//   }));
+// };
 
 export const saveHostel = (userData,history)=>dispatch=>{
   axios
