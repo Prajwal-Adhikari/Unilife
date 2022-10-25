@@ -5,6 +5,7 @@ import Home from './Components/Home/Home';
 import Login from './Components/Auth/Login';
 import Register from './Components/Auth/Register';
 import Navbar from './Components/Navbar/Navbar';
+import Footer from './Components/Footer/Footer';
 import AddProduct from './Components/AddProduct/addProduct';
 // import Payment from './Components/Payment/payment';
 import Hostel from './Components/Hostel/hostel';
@@ -119,6 +120,7 @@ function App() {
            </Switch>
            <Route path="*" component={NotFound} />
          </Switch>
+         <Footer />
        </Router>
      </Provider>
    );

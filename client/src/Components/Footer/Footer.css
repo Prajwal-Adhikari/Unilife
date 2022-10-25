@@ -1,0 +1,28 @@
+._Container{
+    border: 1px;
+    padding:14rem 0 9rem 0;
+    background-color: rgb(6, 6, 67);
+    bottom:0;
+    padding:5rem 10rem;
+    color:white;
+}
+
+.h3{
+    margin-bottom:2.4rem;
+}
+
+.p{
+    color:white;
+}
+
+.footer-social --icons{
+    display: flex;
+    gap :2rem;
+}
+
+.icons{
+    color:aliceblue;
+    font-size:2rem;
+    position: relative;
+    cursor:pointer;
+}

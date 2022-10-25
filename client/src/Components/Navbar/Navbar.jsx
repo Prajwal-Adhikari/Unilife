@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import './Navbar.css';
+
 // import {useContext} from 'react';
 // import { UserContext } from "../../App";
 
@@ -32,6 +33,42 @@ class Navbar extends Component {
                 </li> */}
                 <li class="nav-item">
                   <Link
+                    className="nav-link btn btn-links button-outline-none"
+                    to="/addhostel"
+                  >
+                    Add Hostel
+                  </Link>
+                </li>
+
+                <li class="nav-item"> 
+                  <Link
+                    className="nav-link btn btn-links button-outline-none"
+                    to="/additems"
+                  >
+                    Add Product
+                  </Link>
+                </li>
+
+                <li class="nav-item">
+                  <Link
+                    className="nav-link btn btn-links button-outline-none"
+                    to="/login"
+                  >
+                    Search Hostel
+                  </Link>
+                </li>
+
+                <li class="nav-item">
+                  <Link
+                    className="nav-link btn btn-links button-outline-none"
+                    to="/login"
+                  >
+                    Search Product
+                  </Link>
+                </li>
+
+                <li class="nav-item">
+                  <Link
                     className="nav-link btn btn-login button-outline-none"
                     to="/login"
                   >
@@ -45,6 +82,7 @@ class Navbar extends Component {
                   >
                     Signup
                   </Link>
+
                 </li>
               </ul>
             </div>
@@ -53,6 +91,8 @@ class Navbar extends Component {
       );
   }
 }
+
+
 
 // const Navbar = () => {
 //   const {state,dispatch} = useContext(UserContext);

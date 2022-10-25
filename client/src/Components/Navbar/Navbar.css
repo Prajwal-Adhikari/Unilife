@@ -2,25 +2,26 @@ nav {
     background: rgb(187, 187, 187,0.2) !important;
     font-family: var(--OK);
     height: 13vh;
+    nav-left: 0px;
 }
 
 
 .navbar-brand {
     font-weight: 900;
-    letter-spacing: 2px;
-    font-size: 36px;
-    
+    letter-spacing: 1px;
 }
 
 .nav-item .btn {
     margin: 0px 25px;
     padding: 5px 25px !important;
     border-radius: 3px;
+    font-size: 15px;
 }
 
 .btn-login {
     background-color: #fff;
     color: #000000 !important;
+    float:right;
 }
 
 .btn-login:hover{
@@ -30,17 +31,27 @@ nav {
 .btn-register {
     background-color:#ffffff;
     color: #000000 !important;
+    float:right;
 }
 
 .btn-register:hover {
     background-color: #000000 ;
     color: #ffffff !important;
 }
+.btn-links {
+    background-color:#ffffff;
+    color: #000000 !important;
+    float:left;
+}
 
-
+.btn-links:hover {
+    background-color: #06b6c0 ;
+    color: #000000 !important;
+}
 
 .logo{
-    color: rgb(153, 145, 145);
+    color: rgb(8, 171, 117);
+    font-size: 60px;
 }
 .logo:hover{
     color: rgb(233, 159, 0);

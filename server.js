@@ -46,6 +46,7 @@ app.use("/api/users", SearchProduct);
 app.use("/api/users",SearchHostel);
 app.use("/api/users", Payment);
 app.use("/api/users",Mainpage);
+
 /* //Serve static assets if in production
 if (process.env.NODE_ENV = "production") {
     app.use(express.static('client/build'));
