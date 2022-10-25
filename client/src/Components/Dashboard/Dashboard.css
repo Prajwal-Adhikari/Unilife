@@ -1,10 +1,10 @@
 /** =================banner====================*/
-.dashboard {
+/*.dashboard {
     background-image: url('https://images.pexels.com/photos/2740956/pexels-photo-2740956.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 100vh;
+    height: 877;
     width: 100%;
     color: #ffffff !important;
     position: relative;
@@ -34,4 +34,26 @@
 }
 .dashboard .content h1, .dashboard .content h3 {
     font-weight: bolder;
+} */
+
+.mainImage{
+    height : 700px;
+    margin-right: 0;
+}
+
+.mainimg{
+    height:700px;
+    width:100%;
+    bottom:0;
+    object-fit: cover;
+}
+
+.ownedby{
+    font-size : 10px;
+    color : #a1aab9
+}
+
+.productby{
+    font-size : 10px;
+    color : #a1aab9
 }

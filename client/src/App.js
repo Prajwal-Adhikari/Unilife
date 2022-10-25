@@ -103,7 +103,7 @@ function App() {
        <Router>
          <Navbar />
          <Switch>
-           <Route exact path="/" component={Home} />
+           <Route exact path="/" component={Dashboard} />
           <Route path="/register" component={Register} />
           <Route exact path="/verification" component={Emailsent}/>
            <Route path="/login" component={Login} />

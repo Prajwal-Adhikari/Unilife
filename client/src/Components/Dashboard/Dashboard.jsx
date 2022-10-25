@@ -1,84 +1,91 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { logoutUser } from '../../redux/actions/authActions';
+import React from 'react';
 import './Dashboard.css';
+import Axios from 'axios';
+import { useState,useEffect } from 'react';
 
+function Dashboard(){
 
-class Dashboard extends Component {
-  onLogoutClick = e => {
-    e.preventDefault();
-    this.props.logoutUser();
+  const [myData, setMyData] = useState([]);
+  const [isError, setIsError] =  useState("");
+
+  const getApiData = async() => {
+    try{
+      const res = await Axios.get("http://localhost:5000/api/users/dashboard")
+      setMyData(res.data);
+    }
+    catch(error){
+      setIsError(error.message);
+    }
   };
 
-  render() {
-    const { user } = this.props.auth;
-    return (
-      <section className="dashboard">
-        <div className="container">
-          <div className="row">
-            <div className="col-12">
-              <div className="content">
-                <h1>
-                  H! <b>{user.name.split(' ')[0]} </b>
-                </h1>
-                <h3>
-                  You are Successfully logged into Unilife
-                </h3>
-                <button
-                  onClick={this.onLogoutClick}
-                  className="btn btn-lg btn-warning mt-5">
-                  Logout
-                </button>
-                {/* <Link
-                    to="/"
-                    className="btn btn-lg btn-outline-none border-3 btn-login"
-                  >
-                    checkout to payment
-                  </Link> */}
-                <button  className="checkoutTOpayment" onClick={()=>{
-                  fetch('http://localhost:5000/api/users/create-checkout-session',{
-                    method:"POST",
-                    headers:{
-                      "Content-Type" : "application/json"
-                    },
-                     body:JSON.stringify({
-                      items: [
-                        { id :1,quantity :2},
-                        { id: 2,quantity:1},
-                      ],
-                    }),
-                  })
-                  .then(res=> {
-                    if(res.ok) return res.json()
-                    return res.json().then(json=>Promise.reject(json))
-                  })
-                  .then(({ url }) => {
-                    window.location = url
-                  })
-                  .catch(e=>{
-                    console.error(e.error)
-                  })
-                 }}
-                  >
-                      Checkout for payment
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-    );
-  }
-}
+  useEffect(()=>{
+    getApiData();
+  },[]);
 
-Dashboard.propTypes = {
-  logoutUser: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired
+  return(
+    <>
+    <div class="mainImage">
+      <img class="mainimg" src="https://english.onlinekhabar.com/wp-content/uploads/2018/06/Wander-Thirst-2.jpg" alt="Unilife">
+      </img>
+      </div>
+    {isError !== "" && <h2>{isError}</h2>}
+
+    <div className = "grid">
+    <div className="container-fluid mt-5">
+    <div className = "row text-center">
+      {
+        myData.map((item)=>{
+        const {_id,title,imagepath,country,city,address,category,price,ownedby,productby} = item;
+        if(typeof(productby)!=="undefined"){
+          return(
+            <div key={_id} className = "col-md mt-5">
+              <div className = "card p-2">
+                <div class = "d-flex align-items-center">
+                  <div class = "image"> <img src={imagepath} alt="" class="rounded" height="150" width="150"/> </div>
+                    <div class="ml-3 w-100">
+                      <h4 class = "mb-0 mt-0 textLeft" onClick={  
+                      ()=> this.openTab(item)
+                      }>{title}</h4> 
+                      <span className = "textLeft">{category}</span>
+                      <div class="p-2 mt-2 bg-primary d-flex justify-content-between rounded text-white stats">
+                        <div class="d-flex flex-column"> <span class="price">Price</span><span class="number2">{price}</span></div>
+                        <div class="d-flex flex-column"> <span class="productby">Product by</span><span class="number3">{productby}</span></div>
+                       </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          );
+        }
+        else{
+          return(
+            <div key={_id} className = "col-md mt-5">
+              <div className = "card p-2">
+                <div class = "d-flex align-items-center">
+                  <div class = "image"> <img src={imagepath} alt="" class="rounded" height="150" width="150"/> </div>
+                    <div class="ml-3 w-100">
+                      <h4 class = "mb-0 mt-0 textLeft" onClick={  
+                      ()=> this.openTab(item)
+                      }>{title}</h4> 
+                      <span className = "textLeft">{address},{city},{country}</span>
+                      <div class="p-2 mt-2 bg-primary d-flex justify-content-between rounded text-white stats">
+                        <div class="d-flex flex-column"> <span class="category">Category</span><span class="number1">{category}</span></div>
+                        <div class="d-flex flex-column"> <span class="price">Price</span><span class="number2">{price}</span></div>
+                        <div class="d-flex flex-column"> <span class="ownedby">Owned by</span><span class="number3">{ownedby}</span></div>
+                       </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          );
+        }
+      })}
+    </div>
+    </div>
+    </div>
+    </>
+  )
 };
 
-const mapStateToProps = state => ({
-  auth: state.auth
-});
+export default Dashboard;
 
-export default connect(mapStateToProps, { logoutUser })(Dashboard);
