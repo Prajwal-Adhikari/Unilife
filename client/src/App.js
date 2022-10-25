@@ -10,6 +10,7 @@ import AddProduct from './Components/AddProduct/addProduct';
 import Hostel from './Components/Hostel/hostel';
 import AddHostel from './Components/AddHostel/addHostel'
 import viewHostel from './Components/viewHostel/viewHostel';
+import viewProduct from './Components/viewProduct/viewProduct';
 import Emailsent from './Components/Pages/Emailsent';
 import NotFound from './Components/NotFound/NotFound';
 import { Provider } from 'react-redux';
@@ -113,6 +114,7 @@ function App() {
              <PrivateRoute exact path="/addhostel" component={AddHostel}/>
              <PrivateRoute exact path="/hostel" component={Hostel}/>
              <PrivateRoute exact path="/hostel/:id" component={viewHostel}/>
+             <PrivateRoute exact path="/product/:id" component={viewProduct}/>
              <Route path="*" component={NotFound} />
            </Switch>
            <Route path="*" component={NotFound} />

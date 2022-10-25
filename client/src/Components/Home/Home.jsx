@@ -20,13 +20,13 @@ class Home extends Component {
                 
                 <div className="buttons">
                   <Link
-                    to="/login"
+                    to="/login" target="_blank"
                     className="btn btn-lg btn-outline-none border-3 btn-login"
                   >
                     Login
                   </Link>
                   <Link
-                    to="/register"
+                    to="/register" target="_blank"
                     className="btn btn-lg btn-outline-none border-3 btn-register"
                   >
                     Signup

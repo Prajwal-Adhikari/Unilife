@@ -5,15 +5,8 @@ import classnames from 'classnames';
 import {connect} from 'react-redux';
 import { withRouter } from "react-router-dom";
 import {generatePath} from 'react-router-dom';
-import {Redirect} from 'react-router-dom'
 
-// let clicked = false;
-// let newPageId = '';
 let response = [];
-// if(clicked){
-//   clicked=false;
-//   history.push(generatePath('/hostel:id',{id:newPageId}));
-// }
 
 class Hostel extends Component{
     constructor (){
@@ -52,12 +45,8 @@ class Hostel extends Component{
         console.log("inside openTab");
         const item = localStorage.setItem("selectedHostel",JSON.stringify(element));
         console.log(item);
-        this.props.history.push(generatePath(`/hostel/${element._id}`))
-        //this.props.history.push(generatePath('/hostel:id'),{id:element._id})
-       //this.props.history.push(generatePath('/dashboard'));
-        //return <Redirect to={`/hostel/${element._id}`}/>
-        //return <Redirect to={`/dashboard`}/>
-
+        window.open(`/hostel/${element._id}`,'_blank');
+        //this.props.history.push(generatePath(`/hostel/${element._id}`))
       }
 
       getHostels = async ()=> {
@@ -162,7 +151,7 @@ class Hostel extends Component{
                         {
                           response.map((curElem)=>{
                             return(
-                              <div className = "col-10 col-md mt-5">
+                              <div  key={curElem.id} className = "col-10 col-md mt-5">
                             <div className = "card p-2">
                                 <div class = "d-flex align-items-center">
                                     <div class = "image"> <img src={curElem.imagepath} alt="" class="rounded" height="150" width="150"/> </div>

@@ -8,11 +8,11 @@ router.get('/dashboard',async (req,res)=>{
     try{
         let result = []; 
         const hostel = await Hostel.aggregate(
-                [{$sample:{size:2}}]
+                [{$sample:{size:6}}]
             )
 
         const product = await Product.aggregate(
-                [{$sample:{size:2}}]
+                [{$sample:{size:6}}]
             )
             res.status(200).json(result.concat(hostel,product));
 
