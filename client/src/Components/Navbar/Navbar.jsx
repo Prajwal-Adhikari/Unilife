@@ -52,7 +52,7 @@ class Navbar extends Component {
                 <li class="nav-item">
                   <Link
                     className="nav-link btn btn-links button-outline-none"
-                    to="/login"
+                    to="/hostel"
                   >
                     Search Hostel
                   </Link>
@@ -61,7 +61,7 @@ class Navbar extends Component {
                 <li class="nav-item">
                   <Link
                     className="nav-link btn btn-links button-outline-none"
-                    to="/login"
+                    to="/product"
                   >
                     Search Product
                   </Link>

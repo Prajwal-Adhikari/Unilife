@@ -2,7 +2,8 @@ import React from 'react';
 import './Dashboard.css';
 import Axios from 'axios';
 import { useState,useEffect } from 'react';
-import { generatePath, Redirect } from 'react-router-dom';
+import {FaCartArrowDown, FaCheck} from "react-icons/fa"
+import jwt_decode from 'jwt-decode';
 
 // openHostelTab =  (element) => {
 //     console.log("inside openTab");
@@ -41,6 +42,39 @@ function Dashboard(){
     getApiData();
   },[]);
 
+  const token = jwt_decode(localStorage.getItem('jwtToken'));
+
+  const cartclicked = async (itemid) => {
+      const response = await fetch('http://localhost:5000/api/users/add-to-cart',{
+        method : "POST",
+        headers:{
+            "Content-Type" : "application/json"
+          },
+          body : JSON.stringify({
+            itemId : itemid,
+            quantity : 1,
+            id : token.id,
+          }),
+    })
+      .then(res=> {
+            if(res.ok) return res.json()
+            return res.json().then(json=>Promise.reject(json))
+          })
+          .then((data)=>{
+            return data;
+          })
+          .catch(e=>{
+            console.error(e.error)
+          })
+    console.log(response);
+    if(response===true){
+      window.alert("Item added to Cart");
+    }
+    else{
+      window.alert("Error 402 : Can not add item to card");
+    }
+  }
+
   return(
     <>
     <div class="mainImage">
@@ -54,7 +88,7 @@ function Dashboard(){
     <div className = "row text-center">
       {
         myData.map((item)=>{
-        const {_id,title,imagepath,country,city,address,category,price,ownedby,productby} = item;
+        const {_id,title,rating,imagepath,country,city,address,category,price,productby} = item;
         if(typeof(productby)!=="undefined"){
           return(
             <div key={_id} className = "col-md mt-5">
@@ -69,8 +103,12 @@ function Dashboard(){
                       <div class="p-2 mt-2 bg-primary d-flex justify-content-between rounded text-white stats">
                         <div class="d-flex flex-column"> <span class="price">Price</span><span class="number2">{price}</span></div>
                         <div class="d-flex flex-column"> <span class="productby">Product by</span><span class="number3">{productby}</span></div>
-                       </div>
-                    </div>
+                        <FaCartArrowDown class="cart-icon" onClick={()=>{
+                          cartclicked(_id)
+                        }
+                        }/>
+                      </div>
+                      </div>
                   </div>
                 </div>
               </div>
@@ -90,7 +128,7 @@ function Dashboard(){
                       <div class="p-2 mt-2 bg-primary d-flex justify-content-between rounded text-white stats">
                         <div class="d-flex flex-column"> <span class="category">Category</span><span class="number1">{category}</span></div>
                         <div class="d-flex flex-column"> <span class="price">Price</span><span class="number2">{price}</span></div>
-                        <div class="d-flex flex-column"> <span class="ownedby">Owned by</span><span class="number3">{ownedby}</span></div>
+                        <div class="d-flex flex-column"> <span class="rating">Rating</span><span class="number3">{rating}/5</span></div>
                        </div>
                     </div>
                   </div>

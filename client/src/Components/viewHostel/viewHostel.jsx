@@ -10,12 +10,13 @@ class viewHostel extends Component{
         localStorage.removeItem('selectedHostel');
         return(
             <div>
-                <h1>What is going on</h1>
+                <h1>Details about Hostel</h1>
                 <h2>{this.state.card.title}</h2>
                 <img src={this.state.card.imagepath}
                 alt={this.state.card.title}
                 className = "img-fluid img-thumbnail rounded indvCard bg-dark"
                 />
+                <h3>Rating : {this.state.card.rating}</h3>
             </div>
         )
     }

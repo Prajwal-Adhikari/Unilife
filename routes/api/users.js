@@ -94,7 +94,8 @@ router.post('/verification',(req,res)=>{
         
     }
     else{
-        console.log("wrong OTP");
+        alert("Wrong OTP");
+        //console.log("wrong OTP");
     }
     
 })

@@ -7,8 +7,8 @@ class Footer extends Component{
     render(){
         return(
             <section>
-                <footer>
-                    <div className="_Container grid grid-three-column">
+                <footer id="footer">
+                    <div className="Footer_Container grid grid-three-column">
                         <div className="footer-about">
                             <h3>Unilife</h3>
                             <p>Make your University life easier here with us. Search,find and complete your end goal. Add your product and sell them easily.</p>

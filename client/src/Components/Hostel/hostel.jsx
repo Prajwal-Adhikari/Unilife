@@ -78,7 +78,7 @@ class Hostel extends Component{
         const {errors,country,city,category} = this.state;
           try{
             return(
-            <section className="Hosteldashboard">
+            <section className="hostelDashboard">
             <div className="left_container">
                 <h2>Details about hostel</h2>
                 <div>
@@ -163,7 +163,7 @@ class Hostel extends Component{
                                         <div class="p-2 mt-2 bg-primary d-flex justify-content-between rounded text-white stats">
                                             <div class="d-flex flex-column"> <span class="category">Category</span><span class="number1">{curElem.category}</span></div>
                                             <div class="d-flex flex-column"> <span class="price">Price</span><span class="number2">{curElem.price}</span></div>
-                                            <div class="d-flex flex-column"> <span class="ownedby">Owned by</span><span class="number3">{curElem.ownedby}</span></div>
+                                            <div class="d-flex flex-column"> <span class="rating">Rating</span><span class="number3">{curElem.rating}/5</span></div>
                                         </div>
                                     </div>
                                 </div>
