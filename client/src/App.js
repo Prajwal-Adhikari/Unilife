@@ -9,6 +9,7 @@ import Footer from './Components/Footer/Footer';
 import AddProduct from './Components/AddProduct/addProduct';
 // import Payment from './Components/Payment/payment';
 import Hostel from './Components/Hostel/hostel';
+import Product from './Components/Product/product';
 import AddHostel from './Components/AddHostel/addHostel'
 import viewHostel from './Components/viewHostel/viewHostel';
 import viewProduct from './Components/viewProduct/viewProduct';
@@ -114,6 +115,7 @@ function App() {
              <PrivateRoute exact path="/additems" component={AddProduct}/>
              <PrivateRoute exact path="/addhostel" component={AddHostel}/>
              <PrivateRoute exact path="/hostel" component={Hostel}/>
+             <PrivateRoute exact path="/product" component={Product}/>
              <PrivateRoute exact path="/hostel/:id" component={viewHostel}/>
              <PrivateRoute exact path="/product/:id" component={viewProduct}/>
              <Route path="*" component={NotFound} />
