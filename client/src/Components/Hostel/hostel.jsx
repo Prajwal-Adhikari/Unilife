@@ -4,7 +4,6 @@ import { saveOptions } from "../../redux/actions/authActions";
 import classnames from 'classnames';
 import {connect} from 'react-redux';
 import { withRouter } from "react-router-dom";
-import {generatePath} from 'react-router-dom';
 
 let response = [];
 

@@ -44,16 +44,20 @@ function Dashboard(){
 
   const token = jwt_decode(localStorage.getItem('jwtToken'));
 
-  const cartclicked = async (itemid) => {
+  const cartclicked = async (item) => {
       const response = await fetch('http://localhost:5000/api/users/add-to-cart',{
         method : "POST",
         headers:{
             "Content-Type" : "application/json"
           },
           body : JSON.stringify({
-            itemId : itemid,
+            itemId : item._id,
             quantity : 1,
             id : token.id,
+            imagepath : item.imagepath,
+            title : item.title,
+            price : item.price,
+            productby : item.productby
           }),
     })
       .then(res=> {
@@ -104,7 +108,7 @@ function Dashboard(){
                         <div class="d-flex flex-column"> <span class="price">Price</span><span class="number2">{price}</span></div>
                         <div class="d-flex flex-column"> <span class="productby">Product by</span><span class="number3">{productby}</span></div>
                         <FaCartArrowDown class="cart-icon" onClick={()=>{
-                          cartclicked(_id)
+                          cartclicked(item)
                         }
                         }/>
                       </div>
