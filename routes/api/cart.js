@@ -66,8 +66,6 @@ router.post('/remove-from-cart',(req,res)=>{
 });
 
 router.post('/load-cart',(req,res)=>{
-    console.log("Inside load cart");
-    console.log(req.body.id);
     try{
         Cart.find({ 
             id:req.body.id
@@ -83,16 +81,3 @@ router.post('/load-cart',(req,res)=>{
 });
 
 module.exports = router;
-
-// console.log("After cart.find")
-//             info.map((curElem)=>{
-//                 Product.findOne({
-//                     _id : curElem.itemId 
-//                    }).then((data)=>{
-//                    console.log("Inside product.find")
-//                    console.log(data)
-//                    res.status(200).json(data);
-//                }).catch((err)=>{
-//                    res.status(500).json(err);
-//                })
-//             })

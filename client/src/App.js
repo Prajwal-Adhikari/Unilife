@@ -11,6 +11,7 @@ import AddProduct from './Components/AddProduct/addProduct';
 import Hostel from './Components/Hostel/hostel';
 import AddHostel from './Components/AddHostel/addHostel';
 import Cart from './Components/Cart/cart'
+import Product from './Components/Product/product';
 import viewHostel from './Components/viewHostel/viewHostel';
 import viewProduct from './Components/viewProduct/viewProduct';
 import Emailsent from './Components/Pages/Emailsent';
@@ -116,6 +117,7 @@ function App() {
              <PrivateRoute exact path="/addhostel" component={AddHostel}/>
              <PrivateRoute exact path="/hostel" component={Hostel}/>
              <PrivateRoute exact path="/cart" component={Cart}/>
+             <PrivateRoute exact path="/product" component={Product}/>
              <PrivateRoute exact path="/hostel/:id" component={viewHostel}/>
              <PrivateRoute exact path="/product/:id" component={viewProduct}/>
              <Route path="*" component={NotFound} />
