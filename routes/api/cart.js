@@ -4,7 +4,6 @@ const router = express.Router();
 const Cart = require('../../models/cart');
 
 router.post('/add-to-cart',(req,res)=>{
-    console.log("backend called");
     Cart.findOne({
         id : req.body.id,
         itemId : req.body.itemId
@@ -39,7 +38,6 @@ router.post('/add-to-cart',(req,res)=>{
 
 
 router.post('/remove-from-cart',(req,res)=>{
-    console.log("In remove from cart");
     try{
         Cart.deleteOne({ 
             _id:req.body._id

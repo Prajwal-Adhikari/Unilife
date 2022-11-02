@@ -10,6 +10,29 @@ const Cart = () => {
     const [price,setPrice] = useState();
     const [isLoading,setisLoading] = useState(true);
 
+
+  //   let Checkout = async()=>{
+  //     fetch("http://localhost:5000/api/users/create-checkout-session", {
+  //   method: "POST",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  //   body: JSON.stringify({
+  //     items: fetch_data,
+  //   }),
+  // })
+  //   .then(res => {
+  //     if (res.ok) return res.json()
+  //     return res.json().then(json => Promise.reject(json))
+  //   })
+  //   .then(({ url }) => {
+  //     window.location = url
+  //   })
+  //   .catch(e => {
+  //     console.error(e.error)
+  //   })
+  //   }
+
     //to load data from backend  
     let fetchData = async () => {
         fetch_data = await fetch('http://localhost:5000/api/users/load-cart',{
@@ -76,8 +99,16 @@ const Cart = () => {
                 break;
             }
         } 
-        fetch_data[ind].quantity += _quantity ; 
-        if(fetch_data[ind].quantity === 0 ) handleRemove(item);
+        //item found
+        if(ind!==-1){
+          fetch_data[ind].quantity += _quantity ; 
+          console.log("inside quantity change : "  + fetch_data[ind].quantity);
+          if(fetch_data[ind].quantity === 0 ) handleRemove(item);
+        }
+        //item not found
+        else{
+          window.alert("Could not delete the item from cart");
+        }
     }
 
     useEffect(()=>{
@@ -101,14 +132,15 @@ const Cart = () => {
                             <p>{item.title}</p>
                         </div>
                         <div>
-                            <button onClick={()=>{handleChange(item,1)
-                                                    handlePrice();
+                            <button onClick={()=>{
+                              handleChange(item,1);
+                              handlePrice();
                                     }}>+</button>
                             <button>{item.quantity}</button>
                             <button onClick={()=>{
-                                handleChange(item,-1)
+                                handleChange(item,0);
                                 handlePrice();
-                                }}>-</button>
+                              }}>-</button>
                         </div>
                         <div>
                             <span>{item.price}</span>
@@ -120,10 +152,37 @@ const Cart = () => {
                     </div>
                   ))  
                 }
+                
                 <div clasName="total">
                     <span>Total Price</span>
                     <span>Rs - {price}</span>
                 </div>
+
+                <div className="checkout_button">
+                          <button  className="checkoutTOpayment" onClick={()=>{
+                                fetch('http://localhost:5000/api/users/create-checkout-session',{
+                                  method:"POST",
+                                  headers:{
+                                    "Content-Type" : "application/json"
+                                  },
+                                  body:JSON.stringify({
+                                    items: fetch_data,
+                                  }),
+                                })
+                                .then(res=> {
+                                  if(res.ok) return res.json()
+                                  return res.json().then(json=>Promise.reject(json))
+                                })
+                                .then(({ url }) => {
+                                  window.location = url
+                                })
+                                .catch(e=>{
+                                  console.error(e.error)
+                                })
+                            }}>
+                            Checkout
+                        </button>
+                        </div>
             </section>
         )
     }

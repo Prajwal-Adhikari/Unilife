@@ -5,10 +5,10 @@ const Stripe = require("stripe");
 const stripe= Stripe(config.get("STRIPE_PRIVATE_KEY"));
 const Product = require('../../models/product');
 
-const storeItems = new Map([
-    [1, { priceInCents : 20000, name : "Bed Table"}],
-    [2, { priceInCents : 30000, name : "Table "}],
-])
+// const storeItems = new Map([
+//     [1, { priceInCents : 20000, name : "Bed Table"}],
+//     [2, { priceInCents : 30000, name : "Table "}],
+// ])
 
 // const storeItems = new Map(
 //     Product.findById({
@@ -20,6 +20,7 @@ const storeItems = new Map([
 
 router.post("/create-checkout-session",async(req,res) => {
     try{
+        console.log(req.body.items);
         const session = await stripe.checkout.sessions.create({
             payment_method_types:["card"],
             mode : "payment",
@@ -69,14 +70,15 @@ router.post("/create-checkout-session",async(req,res) => {
                 },
             ],
             line_items :  req.body.items.map(item => {
-                const storeItem = storeItems.get(item.id)
+                const storeItem = item;
+                console.log(storeItem)
                 return {
                     price_data : {
                         currency : "usd",
                         product_data : {
-                            name : storeItem.name,
+                            name : storeItem.title,
                         },
-                        unit_amount : storeItem.priceInCents,
+                        unit_amount : storeItem.price,
                     },
                     quantity:item.quantity,
                 }
