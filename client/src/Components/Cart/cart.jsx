@@ -68,28 +68,20 @@ const Cart = () => {
     }
 
     //handles quantity change
-    const handleChange = (item,_quantity) => {
-        let ind =-1;
-        for(let i=0;i<fetch_data.length;i++){
-            if(fetch_data[i]._id===item._id){
-                ind = i;
-                break;
-            }
-        } 
+    const handleChange = async (item,_quantity) => {
+        let ind = fetch_data.findIndex((obj)=>{
+          return obj._id===item._id
+        });
+
         //item found
         if(ind!==-1){
           //increasing the quantity
           if(_quantity!==0){
-            //console.log("recieving quantity : " + item.quantity);
-            console.log(fetch_data[ind]);
             fetch_data[ind].quantity ++ ; 
-            //console.log("After quantity change : "  + fetch_data[ind].quantity);
-            console.log(fetch_data[ind]);
           }
           //decreasing the quantity
           if(_quantity===0){
             fetch_data[ind].quantity--;
-            console.log("After quantity change : " + fetch_data[ind].quantity);
             //removing the item when quantity becomes zero
             if(fetch_data[ind].quantity === 0 ) {
               handleRemove(item);
@@ -103,9 +95,10 @@ const Cart = () => {
     }
 
     useEffect(()=>{
+      console.log("useEffect running");
         fetchData();
         handlePrice();
-    })
+    },[])
 
     if(isLoading){
         console.log("Returned Null")
@@ -126,13 +119,11 @@ const Cart = () => {
                             <button onClick={()=>{
                               handleChange(item,1);
                               handlePrice();
-                              console.log(item.quantity)
                                     }}>+</button>
                             <button>{item.quantity}</button>
                             <button onClick={()=>{
                                 handleChange(item,0);
                                 handlePrice();
-                                console.log(item.quantity)
                               }}>-</button>
                         </div>
                         <div>

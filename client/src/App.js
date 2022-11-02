@@ -7,7 +7,6 @@ import Register from './Components/Auth/Register';
 import Navbar from './Components/Navbar/Navbar';
 import Footer from './Components/Footer/Footer';
 import AddProduct from './Components/AddProduct/addProduct';
-// import Payment from './Components/Payment/payment';
 import Hostel from './Components/Hostel/hostel';
 import AddHostel from './Components/AddHostel/addHostel';
 import Cart from './Components/Cart/cart'
