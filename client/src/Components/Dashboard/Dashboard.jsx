@@ -13,7 +13,6 @@ import jwt_decode from 'jwt-decode';
 // }
 
 function Dashboard(){
-
   const [myData, setMyData] = useState([]);
   const [isError, setIsError] =  useState("");
 

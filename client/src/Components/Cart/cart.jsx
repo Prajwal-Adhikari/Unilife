@@ -10,29 +10,6 @@ const Cart = () => {
     const [price,setPrice] = useState();
     const [isLoading,setisLoading] = useState(true);
 
-
-  //   let Checkout = async()=>{
-  //     fetch("http://localhost:5000/api/users/create-checkout-session", {
-  //   method: "POST",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  //   body: JSON.stringify({
-  //     items: fetch_data,
-  //   }),
-  // })
-  //   .then(res => {
-  //     if (res.ok) return res.json()
-  //     return res.json().then(json => Promise.reject(json))
-  //   })
-  //   .then(({ url }) => {
-  //     window.location = url
-  //   })
-  //   .catch(e => {
-  //     console.error(e.error)
-  //   })
-  //   }
-
     //to load data from backend  
     let fetchData = async () => {
         fetch_data = await fetch('http://localhost:5000/api/users/load-cart',{
@@ -101,9 +78,23 @@ const Cart = () => {
         } 
         //item found
         if(ind!==-1){
-          fetch_data[ind].quantity += _quantity ; 
-          console.log("inside quantity change : "  + fetch_data[ind].quantity);
-          if(fetch_data[ind].quantity === 0 ) handleRemove(item);
+          //increasing the quantity
+          if(_quantity!==0){
+            //console.log("recieving quantity : " + item.quantity);
+            console.log(fetch_data[ind]);
+            fetch_data[ind].quantity ++ ; 
+            //console.log("After quantity change : "  + fetch_data[ind].quantity);
+            console.log(fetch_data[ind]);
+          }
+          //decreasing the quantity
+          if(_quantity===0){
+            fetch_data[ind].quantity--;
+            console.log("After quantity change : " + fetch_data[ind].quantity);
+            //removing the item when quantity becomes zero
+            if(fetch_data[ind].quantity === 0 ) {
+              handleRemove(item);
+            }
+          }
         }
         //item not found
         else{
@@ -135,11 +126,13 @@ const Cart = () => {
                             <button onClick={()=>{
                               handleChange(item,1);
                               handlePrice();
+                              console.log(item.quantity)
                                     }}>+</button>
                             <button>{item.quantity}</button>
                             <button onClick={()=>{
                                 handleChange(item,0);
                                 handlePrice();
+                                console.log(item.quantity)
                               }}>-</button>
                         </div>
                         <div>

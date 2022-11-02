@@ -5,7 +5,6 @@ class viewHostel extends Component{
         card : JSON.parse(localStorage.getItem('selectedHostel'))
     }
 
-
     render(){
         localStorage.removeItem('selectedHostel');
         return(
