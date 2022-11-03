@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { logoutUser } from '../../redux/actions/authActions';
 import { Link, Redirect } from 'react-router-dom';
 import './Navbar.css';
 
@@ -6,6 +9,13 @@ import './Navbar.css';
 // import { UserContext } from "../../App";
 
 class Navbar extends Component {
+
+  onLogoutClick = e => {
+    e.preventDefault();
+    this.props.logoutUser();
+  };
+
+
   render() {
       return (
         <nav class="navbar navbar-expand-md navbar-dark ">
@@ -75,6 +85,14 @@ class Navbar extends Component {
                     Login
                   </Link>
                 </li>
+
+                <li class="nav-item">
+                <button
+                  onClick={this.onLogoutClick}>
+                    LogOut
+                </button>
+                </li>
+
                 <li class="nav-item">
                   <Link
                     className="nav-link btn btn-register button-outline-none"
@@ -168,4 +186,14 @@ class Navbar extends Component {
 //   )
 // }
 
-export default Navbar;
+//export default Navbar;
+Navbar.propTypes = {
+  logoutUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
+};
+
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(mapStateToProps, { logoutUser })(Navbar);
