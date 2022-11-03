@@ -40,7 +40,9 @@
     height : 700px;
     margin-right: 0;
 }
-
+.container-fluid{
+    height:210vh;
+}
 .mainimg{
     height:700px;
     width:100%;
