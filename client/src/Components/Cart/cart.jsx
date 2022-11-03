@@ -1,4 +1,4 @@
-import React,{Component} from "react";
+import React from "react";
 import jwt_decode from 'jwt-decode';
 import './cart.css';
 import { useState,useEffect } from 'react';
@@ -32,6 +32,7 @@ const Cart = () => {
                 console.error(e.error)
               })
         setisLoading(false);
+        handlePrice();
     }
 
     const handleRemove = async (elems) => {
@@ -70,14 +71,19 @@ const Cart = () => {
     //handles quantity change
     const handleChange = async (item,_quantity) => {
         let ind = fetch_data.findIndex((obj)=>{
-          return obj._id===item._id
+          return obj._id===item._id;
         });
 
         //item found
         if(ind!==-1){
           //increasing the quantity
           if(_quantity!==0){
-            fetch_data[ind].quantity ++ ; 
+            if(item.quantity<item.stock){
+              fetch_data[ind].quantity ++ ;
+            } 
+            else{
+              window.alert("The maximum available qunantity from the seller for this item is " + item.stock);
+            }
           }
           //decreasing the quantity
           if(_quantity===0){

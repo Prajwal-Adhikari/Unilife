@@ -30,6 +30,7 @@ router.post('/additems',(req,res)=>{
         description : req.body.description,
         price : req.body.price,
         category : req.body.category,
+        stock:req.body.stock
     });
     newProducts.save()
     .then(res.send(req.body))

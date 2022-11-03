@@ -10,6 +10,7 @@ module.exports = validateAddProductInput = data => {
     data.imagepath = !isEmpty(data.imagepath) ? data.imagepath : "";
     data.category = !isEmpty(data.category) ? data.category : "";
     data.description = !isEmpty(data.description) ? data.description : "";
+    data.stock = !isEmpty(data.stock) ? data.stock : "";
 
     //Title Checks
     if (validator.isEmpty(data.title)) {
@@ -39,6 +40,11 @@ module.exports = validateAddProductInput = data => {
     //Imagepath Checks
     if (validator.isEmpty(data.imagepath)) {
         errors.imagepath = "Imagepath field is required";
+    }
+
+    //stock Checks
+    if (validator.isEmpty(data.stock)) {
+        errors.stock = "Stock field is required";
     }
 
     return {

@@ -16,6 +16,7 @@ class AddProduct extends Component{
       imagepath : '',
       category :'',
       price : '',
+      stock:'',
       errors: {}
     };
   }
@@ -40,14 +41,15 @@ class AddProduct extends Component{
       description:this.state.description,
       imagepath:this.state.imagepath,
       category:this.state.category,
-      price:this.state.price
+      price:this.state.price,
+      stock:this.state.stock,
     }
       this.props.saveProduct(newProducts,this.props.history);
   };
 
   
   render() {
-    const { errors, description, price, productby, title,category,imagepath } = this.state;
+    const { errors, description, price, productby, title,category,imagepath,stock } = this.state;
     return (
         <div className="containerProduct">
           <div className="_row">
@@ -168,6 +170,25 @@ class AddProduct extends Component{
                       />{' '}
                       <br />   
                       <span className="text-danger">{errors.imagepath}</span>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-12">
+                      <label htmlFor="stock">Quantity</label> <br />
+                      <input
+                        type="Number"
+                        className="input-control"
+                        placeholder="Available quantity to sell"
+                        id="stock"
+                        value={stock}
+                        onChange={this.onChangeAddItem}
+                        error={errors.stock}
+                        className={classnames('', {
+                          invalid: errors.stock
+                        })}
+                      />{' '}
+                      <br />   
+                      <span className="text-danger">{errors.stock}</span>
                     </div>
                   </div>
                   {/* <div class="confirm"> */}

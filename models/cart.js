@@ -8,7 +8,8 @@ var addToCartSchema = new schema ({
     imagepath : {type:String,required:true},
     price : {type:Number,required:true},
     productby : {type:String,required:true},
-    title:{type:String,required:true}
+    title:{type:String,required:true},
+    stock:{type:Number,required:true}
 });
 
 module.exports = mongoose.model("cart", addToCartSchema)

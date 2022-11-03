@@ -56,7 +56,8 @@ function Dashboard(){
             imagepath : item.imagepath,
             title : item.title,
             price : item.price,
-            productby : item.productby
+            productby : item.productby,
+            stock:item.stock
           }),
     })
       .then(res=> {

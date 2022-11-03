@@ -17,7 +17,8 @@ router.post('/add-to-cart',(req,res)=>{
                 price:req.body.price,
                 title:req.body.title,
                 imagepath :req.body.imagepath,
-                productby : req.body.productby
+                productby : req.body.productby,
+                stock: req.body.stock,
             });
             newCart.save();
             res.status(200).json(true);
