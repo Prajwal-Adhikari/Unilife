@@ -1,35 +1,91 @@
-.Footer_Container{
-    border: 1px;
-    padding:14rem 0 9rem 0;
-    background-color: rgb(6, 6, 67);
-    bottom:0;
-    padding:5rem 10rem;
+.container-footer{
+    display:flex;
+    background-color: black;
     color:white;
+    height:60vh;
+    width: 100vw;
+    
 }
-
-.h3{
-    margin-bottom:2.4rem;
-}
-
-.p{
-    color:white;
-}
-
-.footer-social --icons{
+.left{
+    flex:1;
     display: flex;
-    gap :2rem;
+    flex-direction: column;
+    padding:20px;  
+}
+.right{
+    flex:1;
+    padding:20px;
+}
+.center{
+    flex:1;
+    padding:20px;
+}
+.title{
+    flex:1;
+    margin-left: 80px;
+    font-weight: 900;
+}
+.ContactItem{
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+}
+.footer-logo{
+    font-size: large;
 }
 
-.icons{
-    color:aliceblue;
-    font-size:2rem;
-    position: relative;
-    cursor:pointer;
+.description{
+    margin:20px 0px;
 }
-
-.footer{
-    position: relative;
-    bottom:0;
-    width: 100%;
-    height:2.5rem;
+.socialContainer{
+    display: flex;
+}
+.socialIcon{
+    font-size: 2rem;
+    width:40px;
+    height:40px;
+    border-radius: 50%;
+    color:white;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    margin:0px 10px;   
+    transition: ease-in;
+    transition-delay: 0.2s;
+}
+.list{
+    margin:0;
+    padding:0;
+    list-style:none;
+    display:flex;
+    flex-wrap:wrap;
+}
+.listItem{
+    width:50%;
+    margin-bottom: 10px;
+    padding-top: 18px;
+}
+.contactItem{
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    padding-top: 18px;
+}
+#twitter:hover{
+   color: #1DA1F2;
+}
+#facebook:hover{
+    color: #4267B2;
+ }
+#instagram:hover{
+    color: #bc2a8d;
+  
+}
+.fa-icons{
+    margin-right: 5px;
+}
+.logo-image{
+    width: 160px;
+    height: auto;
+    
 }
