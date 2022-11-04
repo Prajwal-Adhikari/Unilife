@@ -23,20 +23,14 @@ router.post('/add-to-cart',(req,res)=>{
             newCart.save();
             res.status(200).json(true);
         }
+        //if found
         else{
-            //if already added to cart
-            Cart.updateOne({item:req.body.item,itemId:req.body.itemId},{$set: {quantity:req.body.quantity}})
-            .then((cartItem)=>{
-                res.status(200).json(true);
-            }).catch((error)=>{
-                res.status(500).json(error);          
-            })
+            res.status(200).json("exists")
         }
     }).catch((err)=>{
         res.status(500).json(err);
     })
 });
-
 
 router.post('/remove-from-cart',(req,res)=>{
     try{

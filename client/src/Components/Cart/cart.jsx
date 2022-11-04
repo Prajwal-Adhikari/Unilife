@@ -123,7 +123,7 @@ const Cart = () => {
                         </div>
                         <div>
                             <button onClick={()=>{
-                              handleChange(item,1);
+                              handleChange(item,1); 
                               handlePrice();
                                     }}>+</button>
                             <button>{item.quantity}</button>
@@ -143,7 +143,7 @@ const Cart = () => {
                   ))  
                 }
                 
-                <div clasName="total">
+                <div className="total">
                     <span>Total Price</span>
                     <span>Rs - {price}</span>
                 </div>

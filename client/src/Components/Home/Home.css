@@ -1,4 +1,4 @@
-/** =================banner====================*/
+/* * =================banner====================
 #banner {
     background-image: url('http://res.cloudinary.com/hostelling-internation/image/upload/f_auto,q_auto/v1565973406/kwunkr44mtjdrqrzz3s7.jpg');
     background-size: cover;
@@ -71,5 +71,92 @@
 
 .text-uppercase{
     color: rgb(233, 159, 0);
+}
+ */
+
+
+ /** =================banner====================*/
+/*.dashboard {
+    background-image: url('https://images.pexels.com/photos/2740956/pexels-photo-2740956.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 877;
+    width: 100%;
+    color: #ffffff !important;
+    position: relative;
+}
+
+.dashboard::after {
+    position: absolute;
+    content: '';
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background: rgba(8, 22, 53, 0.719);
+}
+
+.dashboard .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    z-index: 2;
+
+}
+.dashboard .content h1, .dashboard .content h3 {
+    font-weight: bolder;
+} */
+
+.mainImage{
+    height : 700px;
+    margin-right: 0;
+}
+.container-fluid{
+    margin-bottom: 30px;
+}
+.mainimg{
+    height:700px;
+    width:100%;
+    bottom:0;
+    object-fit:fill;
+}
+
+.ownedby{
+    font-size : 10px;
+    color : #a1aab9
+}
+
+.productby{
+    font-size : 10px;
+    color : #a1aab9
+}
+
+.cart-icon{
+    padding-top: 12px;
+    font-size :40px;
+    cursor:pointer;
+}
+
+.cart-icon:active{
+    color: blue;
+    content-visibility: hidden;
+}
+
+.image{
+    cursor: pointer;
+}
+
+.mb-0{
+    cursor: pointer;
+}
+
+.mb-0:hover{
+    text-decoration: underline;
 }
 

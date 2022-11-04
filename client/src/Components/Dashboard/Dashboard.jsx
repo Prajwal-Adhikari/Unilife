@@ -74,6 +74,9 @@ function Dashboard(){
     if(response===true){
       window.alert("Item added to Cart");
     }
+    else if(response==="exists"){
+      window.alert("Item is already in Cart");
+    }
     else{
       window.alert("Error 402 : Can not add item to card");
     }
@@ -98,7 +101,9 @@ function Dashboard(){
             <div key={_id} className = "col-md mt-5">
               <div className = "card p-2">
                 <div class = "d-flex align-items-center">
-                  <div class = "image"> <img src={imagepath} alt="" class="rounded" height="150" width="150"/> </div>
+                  <div class = "image" onClick={  
+                      () => openProductTab(item)
+                      }> <img src={imagepath} alt="" class="rounded" height="150" width="150"/> </div>
                     <div class="ml-3 w-100">
                       <h4 class = "mb-0 mt-0 textLeft" onClick={  
                       () => openProductTab(item)
@@ -123,9 +128,11 @@ function Dashboard(){
             <div key={_id} className = "col-md mt-5">
               <div className = "card p-2">
                 <div class = "d-flex align-items-center">
-                  <div class = "image"> <img src={imagepath} alt="" class="rounded" height="150" width="150"/> </div>
+                  <div class = "image"   onClick={() => {
+                        openHostelTab(item);
+                      }}> <img src={imagepath} alt="" class="rounded" height="150" width="150"/> </div>
                     <div class="ml-3 w-100">
-                      <h4 class = "mb-0 mt-0 textLeft" onClick={ () =>  {
+                      <h4 class = "mb-0 mt-0 textLeft" onClick={() => {
                         openHostelTab(item);
                       }}>{title}</h4> 
                       <span className = "textLeft">{address},{city},{country}</span>

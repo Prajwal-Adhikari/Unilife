@@ -2,7 +2,6 @@ const express = require('express');
 const router = express.Router();
 const config = require('config');
 const Stripe = require("stripe");
-const Cart=require('../../models/cart');
 const stripe= Stripe(config.get("STRIPE_PRIVATE_KEY"));
 
 router.post("/create-checkout-session",async(req,res) => {
@@ -70,15 +69,10 @@ router.post("/create-checkout-session",async(req,res) => {
             success_url : `${config.get("CLIENT_URL")}/dashboard`,
             cancel_url : `${config.get("CLIENT_URL")}/dashboard`,
         })
-        res.json({url:session.url})
-        res.json({url:session.url})
+       res.json({url:session.url})
     }catch(e) {
         res.status(500).json({error:e.message})
     }
 })
-
-
-
-
 
 module.exports = router;

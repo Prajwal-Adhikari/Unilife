@@ -71,3 +71,14 @@
     content-visibility: hidden;
 }
 
+.image{
+    cursor: pointer;
+}
+
+.mb-0{
+    cursor: pointer;
+}
+
+.mb-0:hover{
+    text-decoration: underline;
+}
