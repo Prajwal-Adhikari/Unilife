@@ -1,0 +1,25 @@
+.view_container{
+    display: flex;
+    height: 100vh;
+    
+}
+
+.left{
+ 
+    /* background-color: red; */
+}
+.right{
+    margin-top: 10vh;
+    /* background-color: yellow; */
+
+}
+
+
+.hostel-image{
+    margin: 10vh;
+    width: 75%;
+    height: auto;
+    border-radius: 8px;
+    filter: drop-shadow(15px 10px 4px #c3c3e7);
+    border: 2px solid grey;
+}

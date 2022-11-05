@@ -261,10 +261,20 @@ class AddHostel extends Component{
                   {/* <div class="confirm"> */}
                   {/* </div> */}
                   <div class="form-row">  
+
+                  
                     <div class="form-group col-md-12">
-                      <p><input type="checkbox" id="onlyChoice" name="confirm" value="confirming" required="required"
+                      <div className="checkbox-container">
+                      <div className="checkbox"><input type="checkbox" id="onlyChoice" name="confirm" value="confirming" required="required"
                       onChange="document.getElementById('addProduct').disabled=!this.checked;"
-                      />By clicking this you agree to the terms and conditions of Unilife and will be found guilty for any misbehaves caused by your product.</p>
+                      />
+                      </div>
+                      <div className="notice">
+                      By clicking this you agree to the terms and conditions of Unilife and will be found guilty for any misbehaves caused by your product.
+                      </div>
+
+
+                      </div>
                       <button type="submit" id="addProduct" className="btn additem">
                         Add Hostel
                       </button>
@@ -285,7 +295,6 @@ const mapStateToProps = state => ({
 });
 // export default AddProduct;
 export default connect(mapStateToProps, {saveHostel})(withRouter(AddHostel));
-
 
 
 

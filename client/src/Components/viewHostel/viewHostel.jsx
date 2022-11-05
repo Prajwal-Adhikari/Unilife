@@ -1,7 +1,8 @@
 import React, { Component } from "react";
+import "./viewHostel.css";
 
 class viewHostel extends Component{
-    state = {
+    state = {   
         card : JSON.parse(localStorage.getItem('selectedHostel'))
     }
 
@@ -9,14 +10,23 @@ class viewHostel extends Component{
         localStorage.removeItem('selectedHostel');
         return(
             <div>
-                <h1>Details about Hostel</h1>
-                <h2>{this.state.card.title}</h2>
-                <img src={this.state.card.imagepath}
-                alt={this.state.card.title}
-                className = "img-fluid img-thumbnail rounded indvCard bg-dark"
-                />
-                <h3>Rating : {this.state.card.rating}</h3>
+                <div className="view_container">
+                <div className="left">
+                    <img src={this.state.card.imagepath}
+                    alt={this.state.card.title}
+                    className = "hostel-image"
+                    />      
+                </div>
+                <div className="right">
+                    <h1 id="details">Details about {this.state.card.title}</h1>
+                  
+                    
+                    <h3>Rating : {this.state.card.rating}</h3>
+                </div>
+                </div>
             </div>
+               
+   
         )
     }
 }

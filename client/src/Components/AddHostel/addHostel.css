@@ -1,56 +1,27 @@
-
 ._container{
-  background-color: rgb(88, 75, 56);
-  background: radial-gradient(
-  circle,
-  rgb(96, 93, 152) 0%,
-  rgb(215, 187, 187) 0%,
-  rgba(93, 93, 116, 1) 100%
-);}
-._row{
-display: flex ;
-flex-direction:column;
-justify-content:center;
-align-items: center;
-border-radius: 10px; 
- position: relative;
+  background: url('https://images.unsplash.com/photo-1501183638710-841dd1904471?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80');
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 180vh;
+}
+
+#onlyChoice{
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.addproduct-title{
+  margin: 15px;
 }
 
 
-input::placeholder {
-font-weight: bold;
-opacity: .5;
-color: rgb(13, 13, 13);
-border-radius: 7px;
-}
-
-.h1{
-color:black;
-  padding:10px;
-}
-
-.btn-additem{
-  background:radial-gradient(
-    circle,
-    rgb(96, 93, 152) 0%,
-    
-   
-  ); 
-  color: black;
-  position: relative;
-  display: flex ;
-    margin: 100px;
-  border-radius: 10px;
-
-border:none;
-margin-right:auto;
+.checkbox-container{
+  display: flex;
+  margin: 10px;
 }
 
 
-input{
-  padding-left: 50px ;
-  border: 1px solid rgb(98, 95, 95);
-  
-  border-radius: 8px;
-
+#addProduct{
+  margin-top: 15px;
 }
