@@ -32,6 +32,7 @@ router.post('/addhostel',(req,res)=>{
         contact: req.body.contact,
         price : req.body.price,
         category : req.body.category,
+        availability:req.body.availability
     });
     newHostels.save()
     .then(res.send(req.body))

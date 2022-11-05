@@ -20,6 +20,7 @@ class AddHostel extends Component{
       imagepath : '',
       category :'',
       price : '',
+      availability:'',
       errors: {}
     };
   }
@@ -32,7 +33,7 @@ class AddHostel extends Component{
     }
   }
 
-  onChangeAddItem = e => {          
+  onChangeAddItem = e => {        
     this.setState({ [e.target.id]: e.target.value });
   };
 
@@ -48,14 +49,15 @@ class AddHostel extends Component{
       imagepath:this.state.imagepath,
       contact:this.state.contact,
       category:this.state.category,
-      price:this.state.price
+      price:this.state.price,
+      availability:this.state.availability
     }
       this.props.saveHostel(newHostel,this.props.history);
   };
 
 
   render() {
-    const { errors,description,price,ownedby,country,city,contact,address,title,category,imagepath } = this.state;
+    const { errors,description,price,ownedby,country,city,contact,address,title,category,imagepath,availability } = this.state;
     return (
         <div className="_container">
           <div className="_row">
@@ -220,25 +222,23 @@ class AddHostel extends Component{
                       <span className="text-danger">{errors.price}</span>
                     </div>
                   </div>
+
                   <div class="form-row">
                     <div class="form-group col-md-12">
-                      <label htmlFor="category">Category</label> <br />
-                      <input
-                        type="text"
-                        className="input-control"
-                        placeholder="Boys or Girls"
-                        id="category"
-                        value={category}
-                        onChange={this.onChangeAddItem}
-                        error={errors.category}
-                        className={classnames('', {
-                          invalid: errors.category
-                        })}
-                      />{' '}
-                      <br />   
-                      <span className="text-danger">{errors.category}</span>
+                    <label htmlFor="availability">Availability</label> <br/>
+                      <label><input type="radio" id="availability" name="myCheckbox" value="Yes" onClick={this.onChangeAddItem}/>Yes</label>
+                      <label><input type="radio" id="availability" name="myCheckbox" value="No" onClick={this.onChangeAddItem}/>No</label>
                     </div>
                   </div>
+
+                  <div class="form-row">
+                    <div class="form-group col-md-12">
+                    <label htmlFor="availability">Category</label> <br/>
+                      <label><input type="radio" id="category" name="myCheckbox" value="Boys" onClick={this.onChangeAddItem}/>Boys</label>
+                      <label><input type="radio" id="category" name="myCheckbox" value="Girls" onClick={this.onChangeAddItem}/>Girls</label>
+                    </div>
+                  </div>
+
                   <div class="form-row">
                     <div class="form-group col-md-12">
                       <label htmlFor="imagepath">Image URL</label> <br />
