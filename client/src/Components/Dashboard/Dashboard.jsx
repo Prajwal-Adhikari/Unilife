@@ -126,7 +126,7 @@ function Dashboard(){
         else{
           return(
             <div key={_id} className = "col-md mt-5">
-              <div className = "card p-2">
+              <div className = "card p-2">  
                 <div class = "d-flex align-items-center">
                   <div class = "image"   onClick={() => {
                         openHostelTab(item);
