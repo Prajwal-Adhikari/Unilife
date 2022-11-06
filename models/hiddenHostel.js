@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var schema = mongoose.Schema;
 
 var hostelSchema = new schema ({
-    id:{type:String,required:true},
+    id:{type:String},
     imagepath : {type : String, required : true},
     ownedby : {type : String, required:true},
     title : {type: String, required:true},
