@@ -1,0 +1,32 @@
+.profile_main{
+    height: 140vh;
+    
+}
+.profile_info {
+ 
+    height: 300px;
+    font-size: 40px;
+    font-weight: bold;
+    border-radius: 15px;
+    margin: 15px;
+    background: rgb(239, 248, 248);
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-radius: 20px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+}	
+.profile_activity{
+
+    height: 60%;
+    font-size: 40px;
+    font-weight: bold;
+    border-radius: 15px;
+    margin: 15px;
+    background: rgb(239, 248, 248);
+    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+    backdrop-filter: blur( 4px );
+    -webkit-backdrop-filter: blur( 4px );
+    border-radius: 20px;
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+}
