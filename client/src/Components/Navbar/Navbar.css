@@ -1,4 +1,4 @@
-nav {
+/* nav {
     background: #FFFFFF !important;
     font-family: var(--OK);
     height: 10vh;
@@ -80,4 +80,151 @@ nav {
     transition:ease-in-out;
     transition-delay: 0.15s;
 }
+ */
+html {
+  overflow-x: initial !important;
+}
 
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #FFFFFF;
+    padding: 1rem 6rem;
+    min-height: auto;
+}
+
+.menu-links ul {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+
+.menu-links ul li {
+    list-style-type: none;
+    padding: 0 2vw;
+    margin-bottom: 0px;
+    position: relative;
+}
+
+a {
+    color: #000000;
+    font-size: large;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #000000;
+}
+
+.link:not(:nth-child(n+5)) {
+    text-decoration: none;
+    color: #000000;
+    letter-spacing: 0.1em;
+    outline: none;
+    display: block;
+    position: relative;
+    font-size: 18px;
+}
+
+.link:not(:nth-child(n+5)):hover {
+    text-decoration: none;
+    color: #000000;
+}
+
+.link:not(:nth-child(n+5)):after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #FF9F1C;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+.link:not(:nth-child(n+5)):hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+} 
+
+#sign-up {
+    padding-top: 4em;
+    /* background-color: #FF9F1C; */
+    align-items: center;
+    border: 2px solid #FF9F1C;
+    border-radius: 0.6rem;
+    padding-top: 0;
+}
+
+#sign-up:hover {
+    background-color: #FF9F1C;
+}
+
+#log-in:hover {
+    background-color: #2EC4B6;
+    color: #FFFFFF;
+    border: 2px solid #2EC4B6;
+    border-radius: 0.6rem;
+}
+
+#log-in:hover a {
+    color: #FFFFFF;
+}
+
+.dropdown {
+    display: none;
+    border: none;
+    background-color: #FFFFFF;
+}
+
+.dropdown:hover {
+    color: #FF9F1C;
+}
+
+@media screen and (max-width: 800px) {
+    #sign-up {
+        border: none;
+        border-radius: 0;
+    }
+
+    #log-in:hover {
+        border-radius: 0;
+    }
+
+    .dropdown {
+        margin-right: 0;
+        margin-left: auto;
+        display: block;
+        float: right;
+    }
+
+    .menu-links ul {
+        display: none;
+    }
+
+    .menu-links.expanded ul {
+        margin-top: 1.5rem;
+        display: block;
+        position: fixed;
+        z-index: 1;
+        top: 60px;
+        left: 0;
+        flex-direction: column;
+        width: 100%;
+        background-color: #FFFFFF;
+        border-top: 1px solid black;
+        border-bottom: 1px solid black;
+    }
+
+    .menu-links.expanded ul li {
+        padding-bottom: 0.5rem;
+    }
+
+    li:hover {
+        background-color: #FF9F1C;
+    }
+}
