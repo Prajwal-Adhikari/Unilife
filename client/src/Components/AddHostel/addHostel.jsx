@@ -4,7 +4,9 @@ import { withRouter } from 'react-router-dom';
 import { saveHostel } from '../../redux/actions/authActions';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
+import jwt_decode from 'jwt-decode';
 
+const token = jwt_decode(localStorage.getItem('jwtToken'));
 
 class AddHostel extends Component{
   constructor() {
@@ -37,11 +39,13 @@ class AddHostel extends Component{
     this.setState({ [e.target.id]: e.target.value });
   };
 
+
   addItem = e => {                  
     e.preventDefault();
     const newHostel = {
       title:this.state.title,
       ownedby :this.state.ownedby,
+      ownerid:token.id,
       country : this.state.country,
       city : this.state.city,
       address :  this.state.address,

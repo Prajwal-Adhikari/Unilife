@@ -26,6 +26,7 @@ router.post('/additems',(req,res)=>{
     const newProducts = new Product({
         imagepath : req.body.imagepath,
         title : req.body.title,
+        ownerid : req.body.ownerid,
         productby : req.body.productby,
         description : req.body.description,
         price : req.body.price,

@@ -7,7 +7,8 @@ const AddHostel = require("./routes/api/addhostel");
 const SearchProduct = require("./routes/api/searchproduct");
 const SearchHostel = require("./routes/api/searchhostel");
 const Mainpage = require("./routes/api/mainPage");
-const Cart = require("./routes/api/cart")
+const Profile = require("./routes/api/profile");
+const Cart = require("./routes/api/cart");
 const Payment = require("./routes/api/payment");
 const config = require('config');
 const app = express();
@@ -48,6 +49,7 @@ app.use("/api/users",SearchHostel);
 app.use("/api/users", Payment);
 app.use("/api/users",Mainpage);
 app.use("/api/users",Cart);
+app.use("/api/users",Profile);
 
 /* //Serve static assets if in production
 if (process.env.NODE_ENV = "production") {

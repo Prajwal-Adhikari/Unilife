@@ -4,7 +4,9 @@ import { withRouter } from 'react-router-dom';
 import { saveProduct } from '../../redux/actions/authActions';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
+import jwt_decode from 'jwt-decode';
 
+const token = jwt_decode(localStorage.getItem('jwtToken'));
 
 class AddProduct extends Component{
   constructor() {
@@ -36,6 +38,7 @@ class AddProduct extends Component{
     e.preventDefault();
     const newProducts = {
       title:this.state.title,
+      ownerid:token.id,
       productby :this.state.productby,
       description:this.state.description,
       imagepath:this.state.imagepath,
