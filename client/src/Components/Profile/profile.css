@@ -1,32 +1,108 @@
-.profile_main{
-    height: 140vh;
-    
-}
-.profile_info {
- 
-    height: 300px;
-    font-size: 40px;
-    font-weight: bold;
-    border-radius: 15px;
-    margin: 15px;
-    background: rgb(239, 248, 248);
-    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+body {
     backdrop-filter: blur( 4px );
     -webkit-backdrop-filter: blur( 4px );
-    border-radius: 20px;
+    border-radius: 10px;
     border: 1px solid rgba( 255, 255, 255, 0.18 );
-}	
-.profile_activity{
+}
 
-    height: 60%;
-    font-size: 40px;
-    font-weight: bold;
-    border-radius: 15px;
-    margin: 15px;
-    background: rgb(239, 248, 248);
-    box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-    backdrop-filter: blur( 4px );
-    -webkit-backdrop-filter: blur( 4px );
-    border-radius: 20px;
-    border: 1px solid rgba( 255, 255, 255, 0.18 );
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #FF9F1C
 }
+
+.profile-button {
+    box-shadow: none;
+    border: none
+}
+
+.profile-button:hover {
+    background: #d3d60f
+}
+
+
+
+.profile-button:active {
+    background: #FF9F1C;
+    box-shadow: none
+}
+
+.back:hover {
+    color: #FF9F1C;
+    cursor: pointer
+}
+
+.labels {
+    font-size: 11px
+}
+
+.add-experience:hover {
+    background: #FF9F1C;
+    color: #fff;
+    cursor: pointer;
+    border: solid 1px #FF9F1C;
+}
+
+#corner{
+    border-radius: 35px;
+    box-shadow: 0 8px 8px -4px #FFBF69;
+
+
+
+
+position:relative;
+-webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+   -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+        box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+
+.corner:before, .corner:after
+{
+content:"";
+position:absolute;
+z-index:-1;
+-webkit-box-shadow:0 0 20px rgba(0,0,0,0.8);
+-moz-box-shadow:0 0 20px rgba(0,0,0,0.8);
+box-shadow:0 0 20px rgba(0,0,0,0.8);
+top:0;
+bottom:0;
+left:10px;
+right:10px;
+-moz-border-radius:100px / 10px;
+border-radius:100px / 10px;
+}
+.corner:after
+{
+right:10px;
+left:auto;
+-webkit-transform:skew(8deg) rotate(3deg);
+   -moz-transform:skew(8deg) rotate(3deg);
+    -ms-transform:skew(8deg) rotate(3deg);
+     -o-transform:skew(8deg) rotate(3deg);
+        transform:skew(8deg) rotate(3deg);
+}
+
+/*==================================================
+* Effect 8
+* ===============================================*/
+.effect8
+{
+position:relative;
+-webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+   -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+        box-shadow:0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+}
+
+
+#save_button{
+    padding: 5px;
+    border: 2px solid rgb(55, 56, 61);
+    border-radius: 7px;
+    background-color: #CBF3F0;
+    font-weight: 500;
+}
+
+#save_button:hover{
+    background-color: #FF9F1C;
+}
+
