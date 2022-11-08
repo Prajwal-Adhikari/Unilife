@@ -167,6 +167,7 @@ router.post('/load-cart',(req,res)=>{
     }
 });
 
+//to add in hiddenProduct collection
 router.post('/hiddenProduct',(req,res)=>{
     const obj = new hiddenProduct({
         imagepath : req.body.imagepath,
