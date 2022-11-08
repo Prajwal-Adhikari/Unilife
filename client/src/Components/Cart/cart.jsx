@@ -2,6 +2,7 @@ import React from "react";
 import jwt_decode from 'jwt-decode';
 import './cart.css';
 import { useState,useEffect } from 'react';
+import { saveHostel } from "../../redux/actions/authActions";
 
 const token = jwt_decode(localStorage.getItem('jwtToken'));
 let fetch_data=[];
@@ -66,6 +67,30 @@ const Cart = () => {
         let ans = 0;
         fetch_data.map((item)=>(ans+=item.price*item.quantity));
         setPrice(ans);
+    }
+
+    //save changes when going through payment
+    const saveCart = async() => {
+      console.log("save cart")
+      await fetch('http://localhost:5000/api/users/save-cart',{
+            method : "POST",
+            headers:{
+                "Content-Type" : "application/json"
+              },
+              body : JSON.stringify({
+                items:fetch_data
+              }),
+        })
+          .then(res=> {
+                if(res.ok) return res.json()
+                return res.json().then(json=>Promise.reject(json))
+              })
+              .then((data)=>{
+                return data;
+              })
+              .catch(e=>{
+                console.error(e.error)
+              })
     }
 
     //handles quantity change
@@ -150,7 +175,8 @@ const Cart = () => {
 
                 <div className="checkout_button">
                           <button  className="checkoutTOpayment" onClick={()=>{
-                                fetch('http://localhost:5000/api/users/create-checkout-session',{
+                            saveCart();
+                             fetch('http://localhost:5000/api/users/create-checkout-session',{
                                   method:"POST",
                                   headers:{
                                     "Content-Type" : "application/json"

@@ -4,6 +4,7 @@ var Schema = mongoose.Schema;
 var productSchema = new Schema ({
     imagepath : {type : String, required : true},
     ownerid:{type:String,required:true},
+    itemId : {type:String},
     productby : {type : String, required:true},
     title : {type: String, required:true},
     description : {type: String, required:true},
