@@ -42,7 +42,7 @@ function Dashboard(){
   },[]);
 
   const token = jwt_decode(localStorage.getItem('jwtToken'));
-
+  console.log(token);
   const cartclicked = async (item) => {
       const response = await fetch('http://localhost:5000/api/users/add-to-cart',{
         method : "POST",
