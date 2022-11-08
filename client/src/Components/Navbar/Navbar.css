@@ -1,88 +1,10 @@
-/* nav {
-    background: #FFFFFF !important;
-    font-family: var(--OK);
-    height: 10vh;
-    nav-left: 0px;
-}
-
-
-.navbar-brand {
-    font-weight: 900;
-    letter-spacing: 1px;
-}
-
-.nav-item .btn {
-    margin: 0px 0px;
-    padding: 5px 25px !important;
-    border: none;
-    background-color: #FFFFFF;
-    color: #000000!important;
-    width: 11vw;
-    font-size: 15px;
-}
-
-.btn-links {
-    display: inline-block;
-    position: relative;
-    color: #0087ca;
-}
-
-.btn-links:after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    transform: scaleX(0);
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: #FF9F1C;
-    transform-origin: bottom right;
-    transition: transform 0.25s ease-out;
-}
-
-.btn-links:hover:after {
-    transform: scaleX(1);
-    transform-origin: bottom left;
-}
-
-.btn-login {
-    width: 8em !important;
-    margin-left: 6rem !important;
-    background-color: #fff;
-    color: #000000 !important;
-    float:right;
-}
-
-.btn-login:hover{
-    background-color: #FF9F1C;
-}
-
-.btn-register {
-    width: 8em !important;
-    background-color:#ffffff;
-    color: #000000 !important;
-    float:right;
-}
-
-.btn-register:hover {
-    background-color: #000000 ;
-    color: #ffffff !important;
-}
-
-.logo{
-    margin-left: -80%;
-    margin-top: 1rem;
-    color: #FF9F1C;
-    font-size: 60px;
-}
-.logo:hover{
-    color: #FFBF69;
-    transition:ease-in-out;
-    transition-delay: 0.15s;
-}
- */
 html {
   overflow-x: initial !important;
+}
+
+h1 {
+    font-weight: 700;
+    color: #FF9F1C;
 }
 
 nav {
@@ -172,6 +94,22 @@ a:hover {
 }
 
 #log-in:hover a {
+    color: #FFFFFF;
+}
+
+.loggedIn:not(:last-child) {
+    display: none;
+}
+
+.log-out {
+    padding: 0.1rem 0.3rem;
+    color: #000000;
+    /* border: 3px solid black; */
+    border-radius: 1rem;
+}
+
+.log-out:hover {
+    background-color: #000000;
     color: #FFFFFF;
 }
 
