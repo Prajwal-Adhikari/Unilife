@@ -78,7 +78,9 @@ class Profile extends Component {
                                 <div class="row mt-3">
                                     <div class="col-md-6"><label class="labels">Country</label>{fetch_data.country}</div>
                                 </div>
-                                <div class="mt-5 text-center"><button id='save_button' type="button">Update Profile</button></div>
+                                <div class="mt-5 text-center"><button id='save_button' type="button" onClick={()=>{
+                                    window.location.href = '/updateprofile';
+                                }}>Update Profile</button></div>
                             </div>
                         </div>
                         <div class="col-md-4">

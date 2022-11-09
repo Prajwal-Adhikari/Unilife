@@ -7,6 +7,7 @@ import Register from './Components/Auth/Register';
 import Navbar from './Components/Navbar/Navbar';
 import Footer from './Components/Footer/Footer';
 import Profile from './Components/Profile/profile';
+import updateProfile from './Components/updateProfile/updateProfile';
 import AddProduct from './Components/AddProduct/addProduct';
 import Hostel from './Components/Hostel/hostel';
 import AddHostel from './Components/AddHostel/addHostel';
@@ -120,6 +121,7 @@ function App() {
              <PrivateRoute exact path="/cart" component={Cart}/>
              <PrivateRoute exact path="/product" component={Product}/>
              <PrivateRoute exact path="/profile" component={Profile}/>
+             <PrivateRoute exact path="/updateprofile" component={updateProfile}/>
              <PrivateRoute exact path="/checkedOut" component={CheckedOut}/>
              <PrivateRoute exact path="/hostel/:id" component={viewHostel}/>
              <PrivateRoute exact path="/product/:id" component={viewProduct}/>

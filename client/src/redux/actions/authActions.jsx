@@ -71,6 +71,18 @@ export const saveHostel = (userData,history)=>dispatch=>{
   );
 };
 
+//update profile
+export const saveProfile = (userData,history)=>dispatch=>{
+  axios
+    .post('/api/users/updateprofile',userData)
+    .then(res=>history.push('/profile'))
+    .catch(err=>dispatch({
+      type:GET_ERRORS,
+      payload:err.response.data
+    })
+  );
+};
+
 // Login - get user token
 export const loginUser = userData => dispatch => {
   axios
