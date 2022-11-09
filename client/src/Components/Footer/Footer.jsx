@@ -48,7 +48,7 @@ class Footer extends Component{
 
 
                 </div>
-                <div className="right">
+                <div className="footer_right">
                    <div className="title">CONTACTS</div>
                     <div className="contactItem">
                      <FaMapMarkerAlt className="fa-icons"/> 28 Kilo, Banepa-4, Dhulikhel</div>

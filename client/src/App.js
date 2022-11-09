@@ -2,6 +2,7 @@ import React, { useReducer } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import './App.css';
 import Home from './Components/Home/Home';
+import About from './Components/AboutUs/About';
 import Login from './Components/Auth/Login';
 import Register from './Components/Auth/Register';
 import Navbar from './Components/Navbar/Navbar';
@@ -112,6 +113,7 @@ function App() {
           <Route path="/register" component={Register} />
           <Route exact path="/verification" component={Emailsent}/>
            <Route path="/login" component={Login} />
+           <Route path="/about" component={About} />
            <Switch>
              <PrivateRoute exact path="/dashboard" component={Dashboard} />
              <PrivateRoute exact path="/additems" component={AddProduct}/>
