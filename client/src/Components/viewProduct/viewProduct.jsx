@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import jwt_decode from 'jwt-decode';
 import {FaCartArrowDown} from "react-icons/fa"
+import './viewProduct.css';
 
 class viewProduct extends Component{
     state = {
@@ -42,20 +43,56 @@ class viewProduct extends Component{
     render(){
         localStorage.removeItem('selectedProduct');
         return(
-            <div>
-                <h1>See Your Product </h1>
-                <h2>{this.state.card.title}</h2>
-                <img src={this.state.card.imagepath}
-                alt={this.state.card.title}
-                className = "img-fluid img-thumbnail rounded indvCard bg-dark"
-                />
-                <div class="cart-div">
-                    <FaCartArrowDown class="cart-icon" onClick={()=>{
-                        this.cartclicked(this.state.card._id)
-                    }
-                    }/>
-                </div>
-            </div>
+            // <div>
+            //     <h1>See Your Product </h1>
+            //     <h2>{this.state.card.title}</h2>
+            //     <img src={this.state.card.imagepath}
+            //     alt={this.state.card.title}
+            //     className = "img-fluid img-thumbnail rounded indvCard bg-dark"
+            //     />
+            //     <div class="cart-div">
+            //         <FaCartArrowDown class="cart-icon" onClick={()=>{
+            //             this.cartclicked(this.state.card._id)
+            //         }
+            //         }/>
+            //     </div>
+            // </div>
+			<div className=''>
+				<div className='header'>
+					<h1>Product details</h1>
+				</div>
+				<div className='main-section'>
+					<div classname='product-image'>
+						<img
+							src={this.state.card.imagepath}
+							alt={this.state.card.title}
+							className='thumbnail'
+						/>
+					</div>
+					<div className='product-details'>
+						<h3>{this.state.card.title}</h3>
+						<div className='price-rate'>
+							Rs. {this.state.card.price}
+						</div>
+						<div className='description'>
+							{this.state.card.description}
+						</div>
+						<div className='button-options'>
+							<button
+								className = 'buy-now'
+							>
+								Buy Now	
+							</button>
+							<button
+								className = 'add-to-cart'
+								// onClick = {() => this.cartclicked(this.state.card._id)}
+							>
+								Add to Cart	
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
         )
     }
 }

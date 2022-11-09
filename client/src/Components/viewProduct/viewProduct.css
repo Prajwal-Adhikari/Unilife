@@ -1,0 +1,56 @@
+.main-section {
+	margin: 2rem auto;
+	display: flex;
+	justify-content: center;
+	gap: 2rem;
+}
+
+.header {
+	display: flex;
+	justify-content: center;
+}
+
+.header > h1 {
+	color: #000000;
+}
+
+.thumbnail {
+	height: 330px;
+	width: 330px;
+	box-shadow: rgba(255, 159, 28, 0.4) -5px 5px, rgba(255, 159, 28, 0.3) -10px 10px, rgba(255, 159, 28, 0.2) -15px 15px, rgba(255, 159, 28, 0.1) -20px 20px, rgba(255, 159, 28, 0.05) -25px 25px;
+}
+
+.price-rate {
+	font-size: 32px;
+	font-weight: bolder;
+	color: #FF9F1C;
+}
+
+.button-options {
+	display: flex;
+	gap: 1rem;
+}
+
+.buy-now {
+	padding: 0.6rem 2rem;
+	border: none;
+	background-color: rgba(46, 196, 182, 0.8);
+}
+
+.buy-now:hover {
+	padding: 0.6rem 2rem;
+	border: none;
+	background-color: rgba(46, 196, 182, 1);
+}
+
+.add-to-cart {
+	padding: 0.6rem 2rem;
+	border: none;
+	background-color: rgba(255, 159, 28, 0.8);
+}
+
+.add-to-cart:hover {
+	padding: 0.6rem 2rem;
+	border: none;
+	background-color: rgba(255, 159, 28, 1);
+}
