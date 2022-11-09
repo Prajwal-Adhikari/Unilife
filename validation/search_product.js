@@ -5,7 +5,7 @@ module.exports = validateSearchProductInput = data => {
     let errors = {};
     //Convert empty fields to an empty string so we can use validator functions
     data.title = !isEmpty(data.title) ? data.title : "";
-    data.price = !isEmpty(data.price) ? data.price : 0;
+    // data.price = !isEmpty(data.price) ? data.price : 0;
     data.category = !isEmpty(data.category) ? data.category : "";
 
     //Title checks
@@ -14,9 +14,9 @@ module.exports = validateSearchProductInput = data => {
     }
 
     //Price checks
-    if (validator.isEmpty(data.price)) {
-        errors.price = "Price is required";
-    }
+    // if (validator.isEmpty(data.price)) {
+    //     errors.price = "Price is required";
+    // }
 
     //Category Checks
     if (validator.isEmpty(data.category)) {

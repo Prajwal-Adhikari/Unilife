@@ -6,11 +6,18 @@ const validateSearchProductInput = require('../../validation/search_product');
 const Product = require('../../models/product');
 
 router.post('/product', async (req, res) => {
-    try {
+	let priceSort;
+	try {
         const {
             errors,
             isValid
         } = validateSearchProductInput(req.body);
+
+		if(req.body.price == "High to Low") {
+			priceSort = -1;
+		} else if(req.body.price == "Low to High") {
+			priceSort = 1;
+		}
 
         //Check Validation
         if (!isValid) {
@@ -19,9 +26,9 @@ router.post('/product', async (req, res) => {
 
         let product = await Product.find({
             title: { $regex: req.body.title, $options: "i" },
-            price: {  $gte: req.body.price },
+            // price: {  $gte: req.body.price },
             category: { $regex: req.body.category, $options: "i" },
-        })
+        }).sort({price: priceSort})
 
         res.status(200).json(product);
     } catch (err) {

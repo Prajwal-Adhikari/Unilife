@@ -1,0 +1,137 @@
+/* .productDashboard{ */
+/*     position:relative; */
+/*     min-height: 100vh; */
+/* } */
+
+/* .left_container{ */
+/*     width: 25%; */ 
+/*     float: left; */
+/*     padding: 20px; */
+/* } */   
+
+/* .right_container{ */
+/*     background-color: #b3e5fc; */
+/*     font-family : "Raleway", sans-serif; */
+/*     width:75%; */
+/*     height :max-content; */
+/*     float: right; */
+/*     padding: 20px; */
+/*     border: 3px solid rgb(53, 27, 115); */
+/* } */
+
+/* h2{ */
+/*     text-align: center; */
+/*     margin:20px 0; */
+/* } */
+
+/* .card{ */
+/*     width:450px; */
+/*     border:none; */
+/*     border-radius : 30px; */
+/*     background-color: #fff; */
+/*     margin:auto; */
+/*     display: flex; */
+/*     justify-content: space-around; */
+/*     flex-wrap: wrap; */
+/* } */
+
+/* .image{ */
+/*     min-width:155px; */
+/*     margin-right:20px; */
+/* } */
+
+/* .stats{ */
+/*     background : #f2f5f8 !important; */
+/*     color : #000 !important; */
+/* } */
+
+/* .category{ */
+/*     font-size : 10px; */
+/*     color : #a1aab9; */
+/* } */
+
+/* .number1 { */
+/*     font-weight: 500; */
+/* } */
+
+/* .price { */
+/*     font-size :10px; */
+/*     color:#a1aab9; */
+/* } */
+
+/* .number2 { */
+/*     font-weight: 500; */
+/* } */
+
+/* .rating{ */
+/*     font-size : 10px; */
+/*     color : #a1aab9 */
+/* } */
+
+/* .number3 { */
+/*     font-weight : 500 px; */
+/* } */
+
+
+/* .card:hover{ */
+/*     transform: translate(-10px, -10px); */
+/*     transform: scale(1.2,1.2); */ 
+/* } */
+
+.searchForm {
+	height: 3rem;
+	background-color: #000000;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 0.2rem;
+}
+
+.category-list {
+	height: 85%;
+	width: 6rem;
+	border: none;
+	border-radius: 0.4rem;
+	background-color: #2EC4B6;
+	color: #000000;
+	font-size: 14px;
+}
+
+#title {
+	padding: 0 1rem; 
+	border: none;
+	border-radius: 0.3rem;
+	width: 50%;
+	height: 85%;
+	color: #000000;
+}
+
+#price {
+	padding: 0 1rem;
+	border: none;
+	border-radius: 0.3rem;
+	width: 12rem;
+	height: 85%;
+}
+
+.submit-button {
+	padding: 0 1rem;
+	background-color: #2EC4B6;
+	border: none;
+	border-radius: 0.4rem;
+	height: 85%;
+}
+
+.bottom-container {
+	min-height: 90vh;
+}
+
+.product-card {
+	width: 50vw;
+	margin-left: 20rem;
+	margin-right: 20rem;
+}
+
+.product-card:hover {
+	box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
