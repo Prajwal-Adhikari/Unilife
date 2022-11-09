@@ -9,7 +9,7 @@ const validateRegisterInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
 
 // Load User model
-const User = require('../../models/User');
+const User = require('../../models/User');  
  
 //For email-verification 
 const mailgun = require("mailgun-js");
@@ -221,6 +221,56 @@ router.post('/login', (req, res) => {
     });
 });
 
+//to load data in profile
+router.post('/profile',(req,res)=>{
+    const userid = req.body.id;
+    User.findOne({_id:userid})
+    .then((data)=>res.status(200).json(data))
+    .catch((e)=>res.status(500).json(e))
+});
+
+//update profile details
+router.post('/updateprofile',async (req,res)=>{
+    let info = {
+        email:req.body.email,
+        country:req.body.country,
+        name:req.body.name,
+        gender:req.body.gender,
+        contact:req.body.contact,
+        password:req.body.password
+    };
+    //let info = req.body.values;
+    info.password = await bcrypt.hash(info.password,10);    
+    await User.updateOne({_id:req.body.id},{$set:
+                {    
+                     email:info.email,
+                     name:info.name,
+                     gender:info.gender,
+                     contact:info.contact,
+                     country:info.country,
+                     password:info.password
+                }
+             }).then((data)=>{
+                 res.status(200).json(true)
+             })
+             .catch((e)=>{
+                 res.status(500).json(false)
+             })
+
+    // const salt = bcrypt.genSalt(10);
+    // const hash = bcrypt.hashSync(info.password,salt);
+    // console.log(hash);
+
+    // var salt = bcrypt.genSaltSync(10);
+    // var hash = bcrypt.hashSync("B4c0/\/", salt);
+
+       // console.log(newPassword);
+      // myPromise.then(()=>{
+        
+      // })
+        
+
+})
 
 module.exports = router;
 
