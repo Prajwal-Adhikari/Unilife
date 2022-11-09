@@ -37,13 +37,13 @@ class Footer extends Component{
                     <div className="title">USEFUL LINKS</div>
                         <div className="list">
                       
-                            <div className="listItem">Home</div>
-                            <div className="listItem">About Us</div>
-                            <div className="listItem">Hostels</div>
-                            <div className="listItem">Rooms</div>
-                            <div className="listItem">Shop</div>
-                            <div className="listItem">Cart</div>
-                            <div className="listItem">Terms</div>
+                            <div className="listItem"><a href="/" style={{color:"white"}}> Home</a></div>
+                            <div className="listItem"><a href="/about" style={{color:"white"}}>About Us </a></div>
+                            <div className="listItem"><a href="/hostel" style={{color:"white"}}> Hostels</a></div>
+                            <div className="listItem"><a href="/dashboard" style={{color:"white"}}> Rooms</a></div>
+                            <div className="listItem"><a href="/dashboard" style={{color:"white"}}> Shop</a></div>
+                            <div className="listItem"><a href="/cart" style={{color:"white"}}> Cart</a></div>
+                            <div className="listItem"><a href="/terms" style={{color:"white"}}> Terms</a></div>
                         </div>
 
 

@@ -12,7 +12,7 @@ import Hostel from './Components/Hostel/hostel';
 import AddHostel from './Components/AddHostel/addHostel';
 import Cart from './Components/Cart/cart';
 import CheckedOut from './Components/CheckedOut/checkedOut';
-import Product from './Components/Product/product';
+import Product from './Components/Product/Product';
 import viewHostel from './Components/viewHostel/viewHostel';
 import viewProduct from './Components/viewProduct/viewProduct';
 import Emailsent from './Components/Pages/Emailsent';

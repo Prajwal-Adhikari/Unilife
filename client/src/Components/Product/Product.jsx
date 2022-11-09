@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
 import { generatePath } from 'react-router-dom';
 import { FaSearch } from 'react-icons/fa';
-import "./Product.css"
+import "./Product.css";
 
 let response = [];
 
