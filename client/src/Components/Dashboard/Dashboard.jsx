@@ -134,7 +134,7 @@ function Dashboard(){
                       <h4 class = "mb-0 mt-0 textLeft" onClick={() => {
                         openHostelTab(item);
                       }}>{title}</h4> 
-                      <span className = "textLeft">{address},{city},{country}</span>
+                      <span className = "textLeft">{address}, {city}</span>
                       <div class="p-2 mt-2 bg-primary d-flex justify-content-between rounded text-white stats">
                         <div class="d-flex flex-column"> <span class="category">Category</span><span class="number1">{category}</span></div>
                         <div class="d-flex flex-column"> <span class="price">Price</span><span class="number2">{price}</span></div>

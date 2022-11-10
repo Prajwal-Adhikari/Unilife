@@ -4,14 +4,9 @@ const isEmpty = require('is-empty');
 module.exports = validateSearchHostelInput = data => {
     let errors = {};
     //Convert empty fields to an empty string so we can use validator functions
-    data.country = !isEmpty(data.country) ? data.country : "";
     data.city = !isEmpty(data.city) ? data.city : "";
     data.category = !isEmpty(data.category) ? data.category : "";
 
-    //country checks
-    if (validator.isEmpty(data.country)) {
-        errors.country = "Country field is required";
-    }
 
     //city checks
     if (validator.isEmpty(data.city)) {

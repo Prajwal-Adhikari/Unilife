@@ -101,17 +101,6 @@ class updateProfile extends Component {
                     <div class="col-md-12"><label class="_labels">Country</label><input type="text" id="country" class="form-control" placeholder={fetch_data.country} value={country} onChange={this.onChange}/></div>
                     <div class="col-md-12"><label class="_labels">Gender</label><input type="text" id="gender" class="form-control" placeholder={fetch_data.gender} value={gender} onChange={this.onChange}/></div>
                     </div>
-                    {/* <div class="row mt-3">  
-                        <div class="col-md-6"><label class="_labels">Country</label><input type="text" class="form-control" placeholder={fetch_data.country} value={country} onChange={this.onChange}/></div>
-                    </div>
-                    <div class="col-md-4">
-                <div class="p-3 py-5">
-                <div class="col-md-12"><label class="_labels">Contact</label><input type="text" class="form-control" placeholder={fetch_data.contact} value={contact} onChange={this.onChange}/></div>
-   
-    <div class="col-md-12"><label class="_labels">Gender</label><input type="text" class="form-control" id="gender" placeholder={fetch_data.gender} value={gender} onChange={this.onChange}/></div>
-   
-                </div>
-                </div> */}
                     <div class="mt-5 text-center"><button id='save_button' type="button" onClick={()=>{
                       this.detailsSubmit();
                     }}>Save Changes</button></div>
@@ -125,12 +114,6 @@ class updateProfile extends Component {
    }
  }
 
-// updateProfile.propTypes = {
-//     registerUser: PropTypes.func.isRequired,
-//     auth: PropTypes.object.isRequired,
-//     errors: PropTypes.object.isRequired
-// };
-
 const mapStateToProps = state => ({
     auth: state.auth,
     errors: state.errors
@@ -138,5 +121,3 @@ const mapStateToProps = state => ({
 
 export default connect(mapStateToProps, {saveProfile})(withRouter(updateProfile));
 
-
-//export default updateProfile;

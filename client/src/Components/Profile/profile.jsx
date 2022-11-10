@@ -25,6 +25,7 @@ class Profile extends Component {
       } 
 
     fetchData = async()=>{
+      console.log("fetchData running")
         fetch_data = await fetch('http://localhost:5000/api/users/profile',{
             method : "POST",
         headers:{
@@ -44,11 +45,12 @@ class Profile extends Component {
           .catch(e=>{
             console.error(e.error)
           })
-          this.updateState();
+          //this.updateState();
     }
 
 
     listData = async()=>{
+      console.log("listData running");
       list = await fetch('http://localhost:5000/api/users/profileItems',{
           method : "POST",
       headers:{
@@ -68,6 +70,7 @@ class Profile extends Component {
         .catch(e=>{
           console.error(e.error)
         })
+        console.log(list)
         this.updateState();
   }
 
@@ -130,26 +133,18 @@ class Profile extends Component {
               <div className="listing_title">Your Activities</div>
         </div>
         <div class="parent">
-          {/* {
-            list.map((item)=>{
+          {
+            list.map((curElem)=>{ 
               return(
-                <img>{item.imagepath}</img>
+                <h2>{curElem.title}</h2>
               )
             })
-          } */}
-
-</div>
-
-
-
-
-
-
-
+          }
+        </div>
         </div>
         )
     }
   }
 }
 
-export default Profile
+export default Profile;

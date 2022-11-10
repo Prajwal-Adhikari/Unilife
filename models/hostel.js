@@ -6,7 +6,6 @@ var hostelSchema = new schema ({
     ownerid:{type:String,required:true},
     ownedby : {type : String, required:true},
     title : {type: String, required:true},
-    country : {type: String, required:true},
     city : {type: String, required:true},
     address : {type:String,required:true},
     contact : {type:String,required:true},

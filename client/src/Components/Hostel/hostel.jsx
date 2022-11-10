@@ -33,7 +33,6 @@ class Hostel extends Component{
       addOption = e => {                  
         e.preventDefault();
         const newOption = {
-          country : this.state.country,
           city : this.state.city,
           category:this.state.category,
         }
@@ -56,7 +55,6 @@ class Hostel extends Component{
                 "Content-Type" : "application/json"
               },
               body : JSON.stringify({
-                country : this.state.country,
                 city : this.state.city,
                 category : this.state.category,
               }),
@@ -82,23 +80,6 @@ class Hostel extends Component{
                 <h2>Details about hostel</h2>
                 <div>
                     <form noValidate onSubmit={this.addOption}>
-                    <div class="form-row">
-                    <label htmlFor="country">Country</label> <br />
-                      <input
-                        type="text"
-                        className="input-control"
-                        placeholder="Country name"
-                        id="country"
-                        value={country}
-                        onChange={this.onChangeAddOptions}
-                        error={errors.country}
-                        className={classnames('', {
-                          invalid: errors.country
-                        })}
-                      />{' '}
-                      <br />
-                      <span className="text-danger">{errors.country}</span>
-                    </div>
                     <div class="form-row">
                     <label htmlFor="city">City</label> <br />
                       <input
@@ -158,7 +139,7 @@ class Hostel extends Component{
                                         <h4 class = "mb-0 mt-0 textLeft" onClick={  
                                            ()=> this.openTab(curElem)
                                           }>{curElem.title}</h4> {/*onClick={openTab(curElem._id)} */}
-                                        <span className = "textLeft">{curElem.address},{curElem.city},{curElem.country}</span>
+                                        <span className = "textLeft">{curElem.address},{curElem.city}</span>
                                         <div class="p-2 mt-2 bg-primary d-flex justify-content-between rounded text-white stats">
                                             <div class="d-flex flex-column"> <span class="category">Category</span><span class="number1">{curElem.category}</span></div>
                                             <div class="d-flex flex-column"> <span class="price">Price</span><span class="number2">{curElem.price}</span></div>

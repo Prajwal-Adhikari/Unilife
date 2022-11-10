@@ -18,7 +18,6 @@ router.post('/hostel',async (req,res)=>{
         }
 
         let hostel = await Hostel.find({
-            country: {$regex: req.body.country, $options: "i"},
             city: {$regex: req.body.city, $options: "i"},
             category : {$regex: req.body.category, $options: "i"},
         })
