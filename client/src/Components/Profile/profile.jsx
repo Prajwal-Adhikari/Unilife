@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import './profile.css';
 import jwt_decode from 'jwt-decode';
 
+
 let fetch_data =[];
+let list = [];
 const token = jwt_decode(localStorage.getItem('jwtToken'));
 
 class Profile extends Component {
@@ -45,8 +47,33 @@ class Profile extends Component {
           this.updateState();
     }
 
+
+    listData = async()=>{
+      list = await fetch('http://localhost:5000/api/users/profileItems',{
+          method : "POST",
+      headers:{
+          "Content-Type" : "application/json"
+        },
+        body : JSON.stringify({
+          id : token.id
+        }),
+      })
+      .then(res=> {
+          if(res.ok) return res.json()
+          return res.json().then(json=>Promise.reject(json))
+        })
+        .then((data)=>{
+          return data;
+        })
+        .catch(e=>{
+          console.error(e.error)
+        })
+        this.updateState();
+  }
+
     componentDidMount(){
         this.fetchData();
+        this.listData();
     }
 
   render() {
@@ -56,6 +83,8 @@ class Profile extends Component {
     else{
         return(
             <div>
+              <hr></hr>
+
             <div class="container bg-white mt-5 mb-5" id='corner'>
             <div class="row">
                         <div class="col-md-3 border-right">
@@ -93,6 +122,30 @@ class Profile extends Component {
                         </div>
         </div>
         </div>
+
+<hr id='profile_break'></hr>
+
+
+        <div className='listing'>
+              <div className="listing_title">Your Activities</div>
+        </div>
+        <div class="parent">
+          {/* {
+            list.map((item)=>{
+              return(
+                <img>{item.imagepath}</img>
+              )
+            })
+          } */}
+
+</div>
+
+
+
+
+
+
+
         </div>
         )
     }
