@@ -3,7 +3,6 @@ import './updateProfile.css';
 import jwt_decode from 'jwt-decode';
 import {saveProfile} from '../../redux/actions/authActions';
 import { withRouter } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 let fetch_data =[];
@@ -59,14 +58,16 @@ class updateProfile extends Component {
       };
 
        detailsSubmit = e => {
-        e.preventDefault();
+       // e.preventDefault();
         const userData = {
-          email: this.state.email,
-          password: this.state.password,
-          country : this.state.country,
-          gender : this.state.gender,
-          contact : this.state.contact,
+          id : token.id,
+          name: `${this.state.name===""?fetch_data.name:this.state.name}`,
+          password: `${this.state.password===""?fetch_data.password:this.state.password}`,
+          country : `${this.state.country===""?fetch_data.country:this.state.country}`,
+          gender : `${this.state.gender===""?fetch_data.gender:this.state.gender}`,
+          contact : `${this.state.contact===""?fetch_data.contact:this.state.contact}`,
         };
+        console.log(userData);
         this.props.saveProfile(userData,this.props.history); // since we handle the redirect within our component, we don't need to pass in this.props.history as a parameter
       };
 
@@ -90,16 +91,15 @@ class updateProfile extends Component {
                         <h4 class="text-right">User Profile</h4>
                     </div>
                     <div class="row mt-2">
-                        <div class="col-md-12"><label class="_labels">Name</label><input type="text" class="form-control" placeholder={fetch_data.name} value={name} onChange={this.onChange}/></div>
+                        <div class="col-md-12"><label class="_labels">Name</label><input type="text" class="form-control" id="name"  placeholder={fetch_data.name} value={name} onChange={this.onChange}/></div>
    
                     </div>
                     <div class="row mt-3">
    
-                    <div class="col-md-12"><label class="_labels">Email</label><input type="email" class="form-control" placeholder={fetch_data.email} value={email} onChange={this.onChange}/></div>
-                    <div class="col-md-12"><label class="_labels">Password</label><input type="password" class="form-control" placeholder={fetch_data.password} value={password} onChange={this.onChange}/></div>
-                    <div class="col-md-12"><label class="_labels">Contact</label><input type="text" class="form-control" placeholder={fetch_data.contact} value={contact} onChange={this.onChange}/></div>
-                    <div class="col-md-12"><label class="_labels">Country</label><input type="text" class="form-control" placeholder={fetch_data.country} value={country} onChange={this.onChange}/></div>
-                    <div class="col-md-12"><label class="_labels">Gender</label><input type="text" class="form-control" placeholder={fetch_data.gender} value={gender} onChange={this.onChange}/></div>
+                    <div class="col-md-12"><label class="_labels">Password</label><input type="password" id="password"  class="form-control" placeholder={fetch_data.password} value={password} onChange={this.onChange}/></div>
+                    <div class="col-md-12"><label class="_labels">Contact</label><input type="text" id="contact" class="form-control" placeholder={fetch_data.contact} value={contact} onChange={this.onChange}/></div>
+                    <div class="col-md-12"><label class="_labels">Country</label><input type="text" id="country" class="form-control" placeholder={fetch_data.country} value={country} onChange={this.onChange}/></div>
+                    <div class="col-md-12"><label class="_labels">Gender</label><input type="text" id="gender" class="form-control" placeholder={fetch_data.gender} value={gender} onChange={this.onChange}/></div>
                     </div>
                     {/* <div class="row mt-3">  
                         <div class="col-md-6"><label class="_labels">Country</label><input type="text" class="form-control" placeholder={fetch_data.country} value={country} onChange={this.onChange}/></div>
@@ -112,7 +112,9 @@ class updateProfile extends Component {
    
                 </div>
                 </div> */}
-                    <div class="mt-5 text-center"><button id='save_button' type="button">Save Changes</button></div>
+                    <div class="mt-5 text-center"><button id='save_button' type="button" onClick={()=>{
+                      this.detailsSubmit();
+                    }}>Save Changes</button></div>
                 </div>
             </div>
     </div>
