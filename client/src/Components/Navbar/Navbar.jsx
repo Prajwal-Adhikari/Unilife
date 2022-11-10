@@ -5,7 +5,6 @@ import { logoutUser } from '../../redux/actions/authActions';
 import { Link, Redirect } from 'react-router-dom';
 import { FaBars } from 'react-icons/fa';
 import { FaUser } from 'react-icons/fa';
-import { useState } from 'react';
 import './Navbar.css';
 
 // import {useContext} from 'react';
@@ -72,7 +71,7 @@ class Navbar extends Component {
             <li className='link'><Link className='' to='/about' onClick={this.hideNav}>About Us</Link></li>
             <li className={this.props.auth ? "link loggedIn" : "link loggedOut"} id='sign-up'><Link className='' to='/register' onClick={this.hideNav}>Sign Up</Link></li>
             <li className={this.props.auth ? "link loggedIn" : "link loggedOut"} id='log-in'><Link className='' to='/login' onClick={this.hideNav}>Log In</Link></li>
-            <li className={this.state.isLoggedIn ? "link loggedIn" : "link loggedOut"} id=''><Link className='log-out' to='/' onClick={this.onLogoutClick}>Log Out</Link></li>
+            <li className={this.state.isLoggedIn ? "link loggedIn" : "link loggedOut"} id=''><Link className='log-out' to='/login' onClick={this.onLogoutClick}>Log Out</Link></li>
             <li className=''><Link className='' to='/profile' onClick={this.hideNav}><FaUser /></Link></li>
           </ul>
         </div>
@@ -81,6 +80,10 @@ class Navbar extends Component {
   }
 }
 
+Navbar.propTypes = {
+  logoutUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
+};
 
 const mapStateToProps = state => ({
   auth: state.auth
