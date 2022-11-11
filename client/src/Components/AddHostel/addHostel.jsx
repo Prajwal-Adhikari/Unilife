@@ -124,7 +124,6 @@ class AddHostel extends Component{
                       <span className="text-danger">{errors.description}</span>
                     </div>
                   </div>
-                  </div>
                   <div class="form-row">
                     <div class="form-group col-md-12">
                       <label htmlFor="price">City</label>
@@ -278,6 +277,5 @@ const mapStateToProps = state => ({
 });
 // export default AddProduct;
 export default connect(mapStateToProps, {saveHostel})(withRouter(AddHostel));
-
 
 

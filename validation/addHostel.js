@@ -7,7 +7,6 @@ module.exports = validateAddHostelInput = data => {
     data.title = !isEmpty(data.title) ? data.title : "";
     data.ownedby = !isEmpty(data.ownedby) ? data.ownedby : "";
     data.price = !isEmpty(data.price) ? data.price : "";
-    data.country = !isEmpty(data.country) ? data.country : "";
     data.city = !isEmpty(data.city) ? data.city : "";
     data.address = !isEmpty(data.address) ? data.address : "";
     data.imagepath = !isEmpty(data.imagepath) ? data.imagepath : "";
@@ -23,11 +22,6 @@ module.exports = validateAddHostelInput = data => {
     //Ownedby Checks
     if (validator.isEmpty(data.ownedby)) {
         errors.ownedby = "Ownedby field is required";
-    }
-
-    //country checks
-    if (validator.isEmpty(data.country)) {
-        errors.country = "Country field is required";
     }
 
     //city checks
