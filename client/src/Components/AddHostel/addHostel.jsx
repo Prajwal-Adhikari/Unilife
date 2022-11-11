@@ -14,7 +14,6 @@ class AddHostel extends Component{
     this.state = {
       title : '',
       ownedby: '',
-      country : '',
       city : '',
       address : '',
       description : '',
@@ -46,7 +45,6 @@ class AddHostel extends Component{
       title:this.state.title,
       ownedby :this.state.ownedby,
       ownerid:token.id,
-      country : this.state.country,
       city : this.state.city,
       address :  this.state.address,
       description:this.state.description,
@@ -61,7 +59,7 @@ class AddHostel extends Component{
 
 
   render() {
-    const { errors,description,price,ownedby,country,city,contact,address,title,category,imagepath,availability } = this.state;
+    const { errors,description,price,ownedby,city,contact,address,title,category,imagepath,availability } = this.state;
     return (
         <div className="_container">
           <div className="_row">
@@ -124,26 +122,6 @@ class AddHostel extends Component{
                       />{' '}
                       <br />   
                       <span className="text-danger">{errors.description}</span>
-                    </div>
-                  </div>
-                  <div class="form-row">
-                    <div class="form-group col-md-12">
-                      <label htmlFor="price">Country</label>
-                      <br />
-                      <input
-                        type="text"
-                        className="input-control"
-                        placeholder="Country"
-                        id="country"
-                        value={country}
-                        onChange={this.onChangeAddItem}
-                        error={errors.country}
-                        className={classnames('', {
-                          invalid: errors.country
-                        })}
-                      />{' '}
-                      <br />
-                      <span className="text-danger">{errors.country}</span>
                     </div>
                   </div>
                   <div class="form-row">
