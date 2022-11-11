@@ -1,12 +1,92 @@
 import React, { Component } from "react";
 import jwt_decode from 'jwt-decode';
-import {FaCartArrowDown} from "react-icons/fa"
 import './viewProduct.css';
+
+const token = jwt_decode(localStorage.getItem('jwtToken'));
+let userRating=0;
+
 
 class viewProduct extends Component{
     state = {
-        card : JSON.parse(localStorage.getItem('selectedProduct'))
+        card : JSON.parse(localStorage.getItem('selectedProduct')),
+        rating : 0,
+        hover : 0
     }
+
+    //loads user rating for the given product
+    UserRating = async() =>{
+      userRating = await fetch('http://localhost:5000/api/users/userrating',{
+          method : "POST",
+      headers:{
+          "Content-Type" : "application/json"
+        },
+        body : JSON.stringify({
+          id : token.id,
+          itemId : this.state.card._id,
+        }),
+      })
+      .then(res=> {
+          if(res.ok) return res.json()
+          return res.json().then(json=>Promise.reject(json))
+        })
+        .then((data)=>{
+          return data.rating;
+        })
+        .catch(e=>{
+          console.error(e.error)
+        })
+      console.log(userRating);
+  }
+
+  //saves user rating for the given item
+  saveUserRating = async(value) =>{
+      await fetch('http://localhost:5000/api/users/saveuserrating',{
+          method : "POST",
+      headers:{
+          "Content-Type" : "application/json"
+        },
+        body : JSON.stringify({
+          id : token.id,
+          itemId : this.state.card._id,
+          rating:value
+        }),
+      })
+      .then(res=> {
+          if(res.ok) return res.json()
+          return res.json().then(json=>Promise.reject(json))
+        })
+        .then((data)=>{
+          return data;
+        })
+        .catch(e=>{
+          console.error(e.error)
+        })
+  }
+
+  //updates rating of the product
+  udpateRating = async(value) =>{
+      await fetch('http://localhost:5000/api/users/updaterating',{
+          method : "POST",
+      headers:{
+          "Content-Type" : "application/json"
+        },
+        body : JSON.stringify({
+          itemId : this.state.card._id,
+          rating:value,
+          productby:this.state.card.productby
+        }),
+      })
+      .then(res=> {
+          if(res.ok) return res.json()
+          return res.json().then(json=>Promise.reject(json))
+        })
+        .then((data)=>{
+          return data;
+        })
+        .catch(e=>{
+          console.error(e.error)
+        })
+  }
 
     cartclicked = async (itemid) => {
         const token = jwt_decode(localStorage.getItem('jwtToken'));
@@ -41,7 +121,8 @@ class viewProduct extends Component{
     }
 
     render(){
-        localStorage.removeItem('selectedProduct');
+      const {rating,hover} = this.state;
+       // localStorage.removeItem('selectedProduct');
         return(
             // <div>
             //     <h1>See Your Product </h1>
@@ -90,6 +171,29 @@ class viewProduct extends Component{
 								Add to Cart	
 							</button>
 						</div>
+
+            <div className="star-rating">
+              {[...Array(5)].map((star, index) => {
+                index +=1;
+                return (
+                  <button
+                    type="rating_button"
+                    key={index}
+                    className={index <= (hover || rating) ? "on" : "off"}
+                    onClick={() => {
+                      this.setState({rating:index});
+                      this.saveUserRating(index);
+                      this.udpateRating(index);
+                  }}
+                    onMouseEnter={() => this.setState({hover:index})}
+                    onMouseLeave={() => this.setState({hover:rating})}
+                  >
+                    <span className="star">&#9733;</span>
+                  </button>
+                );
+              })}
+            </div>
+
 					</div>
 				</div>
 			</div>

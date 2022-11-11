@@ -14,6 +14,8 @@ class Hostel extends Component{
             country : '',
             city : '',
             category : '',
+            rating : 0,
+            hover : 0,
             errors : {}
         };
     }
@@ -72,7 +74,7 @@ class Hostel extends Component{
     }
 
     render (){
-        const {errors,country,city,category} = this.state;
+        const {errors,country,city,category,rating,hover} = this.state;
           try{
             return(
             <section className="hostelDashboard">

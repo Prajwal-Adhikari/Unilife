@@ -8,6 +8,7 @@ import Register from './Components/Auth/Register';
 import Navbar from './Components/Navbar/Navbar';
 import Footer from './Components/Footer/Footer';
 import Profile from './Components/Profile/profile';
+import adminProfile from './Components/admin/adminprofile';
 import updateProfile from './Components/updateProfile/updateProfile';
 import AddProduct from './Components/AddProduct/addProduct';
 import Hostel from './Components/Hostel/hostel';
@@ -109,7 +110,7 @@ function App() {
       <Provider store={store}>
         <Router>
           <Navbar />
-          <Switch>
+            <Switch>
             <Route exact path="/" component={Login} />
            <Route path="/register" component={Register} />
            <Route exact path="/verification" component={Emailsent}/>
@@ -142,7 +143,9 @@ function App() {
         <Router>
           <Navbar />
           <Switch>
-            <Route exact path="/" component={Dashboard} />
+            <AdminRoute exact path="/admin" component={adminProfile}/>
+            <Switch>
+            <Route exact path="/" component={Login} />
            <Route path="/register" component={Register} />
            <Route exact path="/verification" component={Emailsent}/>
             <Route path="/login" component={Login} />
@@ -162,6 +165,8 @@ function App() {
               <Route path="*" component={NotFound} />
             </Switch>
             <Route path="*" component={NotFound} />
+          </Switch>
+          <Route path="*" component={NotFound} />
           </Switch>
            <Footer /> 
         </Router>

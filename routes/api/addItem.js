@@ -32,9 +32,11 @@ router.post('/additems',(req,res)=>{
             productby : req.body.productby,
             description : req.body.description,
             price : req.body.price,
+            rating:0,
             category : req.body.category,
             stock:req.body.stock,
-            availability:req.body.availability
+            availability:req.body.availability,
+            ratedtimes:0
         });
         hiddenProducts.save()
         .then(res.status(200).json("Saved in hidden products"))
@@ -49,8 +51,10 @@ router.post('/additems',(req,res)=>{
             description : req.body.description,
             price : req.body.price,
             category : req.body.category,
+            rating:0,
             stock:req.body.stock,
-            availability:req.body.availability
+            availability:req.body.availability,
+            ratedtimes:0
         });
         newProducts.save()
         .then(res.status(200).json("Saved in products"))
@@ -69,11 +73,13 @@ router.post('/hideproduct',(req,res)=>{
                     itemId : req.body.itemId,
                     productby : req.body.productby,
                     title : req.body.title,
+                    rating:req.body.rating,
                     description : req.body.description,
                     price : req.body.price,
                     category : req.body.category,
                     stock: req.body.stock,
-                    availability:req.body.availability
+                    availability:req.body.availability,
+                    ratedtimes:req.body.ratedtimes
                 })
                 saveProduct.save()
                 .then((r)=>{
@@ -90,10 +96,12 @@ router.post('/hideproduct',(req,res)=>{
                     ownerid : req.body.ownerid,
                     productby : req.body.productby,
                     description : req.body.description,
+                    rating:req.body.rating,
                     price : req.body.price,
                     category : req.body.category,
                     stock:req.body.stock,
-                    availability:req.body.availability
+                    availability:req.body.availability,
+                    ratedtimes:req.body.ratedtimes
             }})
             .then((r)=>{
                     try{
@@ -116,12 +124,14 @@ router.post('/hideproduct',(req,res)=>{
                         imagepath : req.body.imagepath,
                         title : req.body.title,
                         ownerid : req.body.ownerid,
+                        rating:req.body.rating,
                         productby : req.body.productby,
                         description : req.body.description,
                         price : req.body.price,
                         category : req.body.category,
                         stock:req.body.stock,
-                        availability:req.body.availability
+                        availability:req.body.availability,
+                        ratedtimes:req.body.ratedtimes
                     })
                     product.save()
                     .then(()=>{
@@ -136,11 +146,13 @@ router.post('/hideproduct',(req,res)=>{
                         ownerid:req.body.ownerid,
                         productby : req.body.productby,
                         title : req.body.title,
+                        rating:req.body.rating,
                         description : req.body.description,
                         price : req.body.price,
                         category : req.body.category,
                         stock: req.body.stock,
-                        availability:req.body.availability
+                        availability:req.body.availability,
+                        ratedtimes:req.body.ratedtimes
                     }},{upsert:true})
                     .then((r)=>res.status(200).json(r))
                     .catch((e)=>res.status(500).json(e))
@@ -157,7 +169,9 @@ router.post('/hideproduct',(req,res)=>{
                         price : req.body.price,
                         category : req.body.category,
                         stock:req.body.stock,
-                        availability:req.body.availability
+                        availability:req.body.availability,
+                        ratedtimes:req.body.ratedtimes,
+                        rating:req.body.rating
                     }},{upsert:true})
                     .then((r)=>{
                         hiddenProduct.deleteOne({_id:req.body.hiddenid})
@@ -177,7 +191,9 @@ router.post('/hideproduct',(req,res)=>{
                     price : req.body.price,
                     category : req.body.category,
                     stock: req.body.stock,
-                    availability:req.body.availability
+                    availability:req.body.availability,
+                    ratedtimes:req.body.ratedtimes,
+                    rating:req.body.rating
                 }},{upsert:true})
                 .then((foo)=>res.status(200).json(foo))
                 .catch((e)=>res.status(500).json(e))

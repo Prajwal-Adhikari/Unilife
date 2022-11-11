@@ -2,7 +2,6 @@ import React from "react";
 import jwt_decode from 'jwt-decode';
 import './cart.css';
 import { useState,useEffect } from 'react';
-import { saveHostel } from "../../redux/actions/authActions";
 
 const token = jwt_decode(localStorage.getItem('jwtToken'));
 let fetch_data=[];

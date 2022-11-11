@@ -9,6 +9,7 @@ const SearchHostel = require("./routes/api/searchhostel");
 const Mainpage = require("./routes/api/mainPage");
 const Profile = require("./routes/api/profile");
 const Cart = require("./routes/api/cart");
+const rating = require('./routes/api/userRating');
 const Payment = require("./routes/api/payment");
 const config = require('config');
 const app = express();
@@ -50,6 +51,7 @@ app.use("/api/users", Payment);
 app.use("/api/users",Mainpage);
 app.use("/api/users",Cart);
 app.use("/api/users",Profile);
+app.use("/api/users",rating);
 
 /* //Serve static assets if in production
 if (process.env.NODE_ENV = "production") {

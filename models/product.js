@@ -10,6 +10,8 @@ var productSchema = new Schema ({
     price : {type: Number, required:true},
     category : {type: [String], required:true},
     stock:{type:Number,required:true},
+    ratedtimes :{type:Number,required:false},
+    rating : {type:Number,required:false},
     availability:{type:String,required:true}
 });
 

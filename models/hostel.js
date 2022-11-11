@@ -12,7 +12,8 @@ var hostelSchema = new schema ({
     description : {type: String, required:true},
     price : {type: Number, required:true},
     category : {type: String, required:true},
-    rating : {type:Number},
+    rating : {type:Number,required:false},
+    ratedtimes :{type:Number,required:false},
     availability:{type:String,required:true}
 });
 

@@ -40,7 +40,8 @@ router.post('/addhostel',(req,res)=>{
                 contact: req.body.contact,
                 price : req.body.price,
                 category : req.body.category,
-                availability:req.body.availability
+                availability:req.body.availability,
+                ratedtimes:0
             });
             newHostel.save()
             .then(res.status(200).json("Hostel sucessfully hidden when added first time"))
@@ -60,7 +61,8 @@ router.post('/addhostel',(req,res)=>{
                 contact: req.body.contact,
                 price : req.body.price,
                 category : req.body.category,
-                availability:req.body.availability
+                availability:req.body.availability,
+                ratedtimes:0
             });
             newHostels.save()
             .then(res.status(200).json("Hostel sucessfully Added"))
@@ -118,7 +120,8 @@ router.post('/addhostel',(req,res)=>{
                             contact: req.body.contact,
                             price : req.body.price,
                             category : req.body.category,
-                            availability:req.body.availability
+                            availability:req.body.availability,
+                            ratedtimes:req.body.ratedtimes
                         }},{upsert:true})
                         .then(
                             Hostel.deleteOne({_id:req.body.id})
@@ -148,7 +151,8 @@ router.post('/addhostel',(req,res)=>{
                             contact: req.body.contact,
                             price : req.body.price,
                             category : req.body.category,
-                            availability:req.body.availability
+                            availability:req.body.availability,
+                            ratedtimes:req.body.ratedtimes
                         }},{upsert:true})
                         .then(
                             res.status(200).json("updated changes in hidden hostel collection")
@@ -175,7 +179,8 @@ router.post('/addhostel',(req,res)=>{
                 contact: req.body.contact,
                 price : req.body.price,
                 category : req.body.category,
-                availability:req.body.availability
+                availability:req.body.availability,
+                ratedtimes:req.body.ratedtimes
             }},{upsert:true})
             .then(
                     hiddenHostel.deleteOne({_id:req.body.hiddenid})
