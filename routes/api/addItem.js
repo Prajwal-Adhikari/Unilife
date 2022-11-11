@@ -57,7 +57,7 @@ router.post('/additems',(req,res)=>{
         .catch(err=>console.log(err));
     }
 });
-
+    
 router.post('/hideproduct',(req,res)=>{
     try{
         //pass hiddenid if hidden otherwise pass itemId from frontend

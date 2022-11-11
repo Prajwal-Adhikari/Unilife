@@ -126,14 +126,18 @@ const Cart = () => {
     }
 
     useEffect(()=>{
-      console.log("useEffect running");
         fetchData();
         handlePrice();
     },[])
 
     if(isLoading){
-        console.log("Returned Null")
         return null;
+    }
+
+    else if(fetch_data.length===0){
+      return(
+        <h1>Nothing in the cart</h1>
+      )
     }
 
     else{

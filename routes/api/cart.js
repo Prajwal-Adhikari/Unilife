@@ -76,29 +76,21 @@ router.post('/save-cart',(req,res)=>{
 });
 
 router.post('/remove',async (req,res)=>{
-    console.log("remove");
     const obj = req.body.items;
     try{
-        console.log("I");
-        console.log(req.body.items);
         obj.map((item)=>{
             //search product to change stock
             Product.findOne({_id:item.itemId})
             .then((data)=>{
-                console.log("II");
                 const num = data.stock;
-                console.log(num);
-                console.log(`${num-item.quantity}`);
                 //change the stock of the product
                 Product.updateOne({_id:item.itemId},{$set:{
                     stock:`${num-item.quantity}`
                 }}).then((_data)=>{
-                    console.log("III");
                     //search for the product again to check whether the stock is zero or not
                     Product.findOne({_id:item.itemId})
                     .then((value)=>{
                         if(value.stock===0){
-                            console.log("IV");
                             //remember to remove item from cart when removed by owner
                             //hiding item when quantity is zero
                             //add this below : ownerid:value.ownerid,
@@ -114,11 +106,9 @@ router.post('/remove',async (req,res)=>{
                                 availability:"No",
                             }},{upsert:true})
                             .then((oof)=>{
-                                console.log("V");
                                 //deleting the product from product collection 
                                 Product.deleteOne({_id:value._id})
                                 .then((removed)=>{
-                                    console.log("VI");
                                     res.status(200).json("worked")
                                 })
                                 .catch((e)=>res.status(500).json(e))
@@ -141,8 +131,7 @@ router.post('/remove',async (req,res)=>{
     try{
         Cart.deleteMany({id:req.body.id})
         .then((resp)=>{
-            console.log("Succesfully deleted");
-            //res.status(200).json("Succesfully deleted");
+            res.status(200).json("Succesfully deleted");
         })
         .catch((e)=>{
             res.status(500).json(e);
@@ -166,25 +155,5 @@ router.post('/load-cart',(req,res)=>{
         res.status(500).json(err);
     }
 });
-
-//to add in hiddenProduct collection
-router.post('/hiddenProduct',(req,res)=>{
-    const obj = new hiddenProduct({
-        imagepath : req.body.imagepath,
-        ownerid:req.body.ownerid,
-        itemId : req.body.itemId,
-        productby : req.body.productby,
-        title : req.body.title,
-        description : req.body.description,
-        price :req.body.price,
-        category : req.body.category,
-        stock:req.body.stock,
-        availability:req.body.availability
-    })
-    obj.save()
-    .then((data)=>res.status(200).json(data))
-    .catch((e)=>res.json(e))
-})
-
 
 module.exports = router;

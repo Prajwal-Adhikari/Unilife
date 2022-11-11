@@ -73,15 +73,6 @@ router.post("/create-checkout-session",async(req,res) => {
     }catch(e) {
         res.status(500).json({error:e.message})
     }
-    // try{
-    //     const session = await stripe.checkout.sessions.retrieve(
-    //         'pm_1M1QY2Dq9ZxoxTz0jNjKwXZ6'
-    //       );
-    //       //res.status(200).json(session)
-    //       console.log(session);
-    // }catch(e){
-    //     res.status(500).json(e);
-    // }
 })
 
 module.exports = router;
