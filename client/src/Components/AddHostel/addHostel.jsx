@@ -4,9 +4,7 @@ import { withRouter } from 'react-router-dom';
 import { saveHostel } from '../../redux/actions/authActions';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
-import jwt_decode from 'jwt-decode';
 
-const token = jwt_decode(localStorage.getItem('jwtToken'));
 
 class AddHostel extends Component{
   constructor() {
@@ -14,6 +12,7 @@ class AddHostel extends Component{
     this.state = {
       title : '',
       ownedby: '',
+      country : '',
       city : '',
       address : '',
       description : '',
@@ -38,13 +37,12 @@ class AddHostel extends Component{
     this.setState({ [e.target.id]: e.target.value });
   };
 
-
   addItem = e => {                  
     e.preventDefault();
     const newHostel = {
       title:this.state.title,
       ownedby :this.state.ownedby,
-      ownerid:token.id,
+      country : this.state.country,
       city : this.state.city,
       address :  this.state.address,
       description:this.state.description,
@@ -59,7 +57,7 @@ class AddHostel extends Component{
 
 
   render() {
-    const { errors,description,price,ownedby,city,contact,address,title,category,imagepath,availability } = this.state;
+    const { errors,description,price,ownedby,country,city,contact,address,title,category,imagepath,availability } = this.state;
     return (
         <div className="_container">
           <div className="_row">
@@ -122,6 +120,26 @@ class AddHostel extends Component{
                       />{' '}
                       <br />   
                       <span className="text-danger">{errors.description}</span>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                    <div class="form-group col-md-12">
+                      <label htmlFor="price">Country</label>
+                      <br />
+                      <input
+                        type="text"
+                        className="input-control"
+                        placeholder="Country"
+                        id="country"
+                        value={country}
+                        onChange={this.onChangeAddItem}
+                        error={errors.country}
+                        className={classnames('', {
+                          invalid: errors.country
+                        })}
+                      />{' '}
+                      <br />
+                      <span className="text-danger">{errors.country}</span>
                     </div>
                   </div>
                   <div class="form-row">
@@ -216,8 +234,8 @@ class AddHostel extends Component{
                   <div class="form-row">
                     <div class="form-group col-md-12">
                     <label htmlFor="availability">Category</label> <br/>
-                      <label><input type="radio" id="category" name="myCheckbox" value="Boys" onClick={this.onChangeAddItem}/>Boys</label>
-                      <label><input type="radio" id="category" name="myCheckbox" value="Girls" onClick={this.onChangeAddItem}/>Girls</label>
+                      <label><input type="radio" id="category" name="myCheckbox2" value="Boys" onClick={this.onChangeAddItem}/>Boys</label>
+                      <label><input type="radio" id="category" name="myCheckbox2" value="Girls" onClick={this.onChangeAddItem}/>Girls</label>
                     </div>
                   </div>
 
@@ -277,7 +295,6 @@ const mapStateToProps = state => ({
 });
 // export default AddProduct;
 export default connect(mapStateToProps, {saveHostel})(withRouter(AddHostel));
-
 
 
 

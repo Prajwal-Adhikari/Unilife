@@ -136,7 +136,7 @@ class Profile extends Component {
           {
             list.map((curElem)=>{ 
               return(
-                <h2>{curElem.title}</h2>
+                <h2>{curElem.description}</h2>
               )
             })
           }
