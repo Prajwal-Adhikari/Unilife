@@ -25,7 +25,6 @@ class Profile extends Component {
       } 
 
     fetchData = async()=>{
-      console.log("fetchData running")
         fetch_data = await fetch('http://localhost:5000/api/users/profile',{
             method : "POST",
         headers:{
@@ -50,7 +49,6 @@ class Profile extends Component {
 
 
     listData = async()=>{
-      console.log("listData running");
       list = await fetch('http://localhost:5000/api/users/profileItems',{
           method : "POST",
       headers:{
@@ -70,7 +68,6 @@ class Profile extends Component {
         .catch(e=>{
           console.error(e.error)
         })
-        console.log(list)
         this.updateState();
   }
 

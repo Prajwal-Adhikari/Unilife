@@ -279,3 +279,4 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps, {saveHostel})(withRouter(AddHostel));
 
 
+

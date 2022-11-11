@@ -48,6 +48,7 @@ import React from 'react';
 import './Home.css';
 import Axios from 'axios';
 import { useState,useEffect } from 'react';
+import {Link} from 'react-router-dom';
 //import {FaCartArrowDown, FaCheck} from "react-icons/fa"
 // import jwt_decode from 'jwt-decode';
 
@@ -129,7 +130,39 @@ function Home(){
 
   return(
     <>
-    <div class="mainImage">
+      <section id="banner" className="banner">
+        <div className="container p-0">
+          <div className="row">
+            <div className="col-lg-6">
+              <div className="banner-left">
+                <div className="test"><h1 className="text-capitalize">
+                  Welcome to
+                  <span className="text-uppercase"> Unilife</span>
+                  
+                </h1></div>
+                
+                <div className="buttons">
+                  <Link
+                    to="/login"
+                    className="btn btn-lg btn-outline-none border-3 btn-login"
+                  >
+                    Login
+                  </Link>
+                  <Link
+                    to="/register"
+                    className="btn btn-lg btn-outline-none border-3 btn-register"
+                  >
+                    Signup
+                  </Link>
+                </div>
+              </div>
+            </div>
+           
+          </div>
+        </div>
+      </section>
+
+    {/* <div class="mainImage">
       <img class="mainimg" src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/144249450.jpg?k=a29ff3ae5c4ac0ccdc92c1edd205f95783234671862bac8b0ddfc187e6231072&o=&hp=1" alt="Unilife">
       </img>
       </div>
@@ -191,7 +224,7 @@ function Home(){
       })}
     </div>
     </div>
-    </div>
+    </div> */}
     </>
   )
 };

@@ -43,6 +43,9 @@ function Dashboard(){
 
   const token = jwt_decode(localStorage.getItem('jwtToken'));
   const cartclicked = async (item) => {
+    if(item.ownerid===token.id){
+     return window.alert("Can not add your product to cart !!!");
+    }
       const response = await fetch('http://localhost:5000/api/users/add-to-cart',{
         method : "POST",
         headers:{
@@ -94,7 +97,7 @@ function Dashboard(){
     <div className = "row text-center">
       {
         myData.map((item)=>{
-        const {_id,title,rating,imagepath,country,city,address,category,price,productby} = item;
+        const {_id,title,rating,imagepath,city,address,category,price,productby} = item;
         if(typeof(productby)!=="undefined"){
           return(
             <div key={_id} className = "col-md mt-5">

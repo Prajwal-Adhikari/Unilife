@@ -26,8 +26,7 @@ import setAuthToken from './utils/setAuthToken';
 import { setCurrentUser, logoutUser } from './redux/actions/authActions';
 import PrivateRoute from './Components/private-route/PrivateRoute';
 import Dashboard from './Components/Dashboard/Dashboard';
-import { createContext } from 'react';
-import { initialState,reducer } from './redux/reducers/useReducer';
+
 //private routes are used to protect pages from aunthorized users
 // export const UserContext = createContext();
 // const Routing = () => {
@@ -87,12 +86,11 @@ import { initialState,reducer } from './redux/reducers/useReducer';
 // }
 
 // export default App;
-
+const token = localStorage.jwtToken;
 function App() {
   // Check for token to keep user logged in
        if (localStorage.jwtToken) {
   //   // Set auth token header auth
-       const token = localStorage.jwtToken;
        setAuthToken(token);
   //   // Decode token and get user info and exp
          const decoded = jwt_decode(token);
@@ -105,36 +103,71 @@ function App() {
          window.location.href = './login';
      }
    }
-  return (
-     <Provider store={store}>
-       <Router>
-         <Navbar />
-         <Switch>
-           <Route exact path="/" component={Dashboard} />
-          <Route path="/register" component={Register} />
-          <Route exact path="/verification" component={Emailsent}/>
-           <Route path="/login" component={Login} />
-           <Route path="/about" component={About} />
-           <Switch>
-             <PrivateRoute exact path="/dashboard" component={Dashboard} />
-             <PrivateRoute exact path="/additems" component={AddProduct}/>
-             <PrivateRoute exact path="/addhostel" component={AddHostel}/>
-             <PrivateRoute exact path="/hostel" component={Hostel}/>
-             <PrivateRoute exact path="/cart" component={Cart}/>
-             <PrivateRoute exact path="/product" component={Product}/>
-             <PrivateRoute exact path="/profile" component={Profile}/>
-             <PrivateRoute exact path="/updateprofile" component={updateProfile}/>
-             <PrivateRoute exact path="/checkedOut" component={CheckedOut}/>
-             <PrivateRoute exact path="/hostel/:id" component={viewHostel}/>
-             <PrivateRoute exact path="/product/:id" component={viewProduct}/>
-             <Route path="*" component={NotFound} />
-           </Switch>
-           <Route path="*" component={NotFound} />
-         </Switch>
-          <Footer /> 
-       </Router>
-     </Provider>
-   );
+
+   if(token===undefined||token===null){
+    return (
+      <Provider store={store}>
+        <Router>
+          <Navbar />
+          <Switch>
+            <Route exact path="/" component={Login} />
+           <Route path="/register" component={Register} />
+           <Route exact path="/verification" component={Emailsent}/>
+            <Route path="/login" component={Login} />
+            <Route path="/about" component={About} />
+            <Switch>
+              <PrivateRoute exact path="/dashboard" component={Dashboard} />
+              <PrivateRoute exact path="/additems" component={AddProduct}/>
+              <PrivateRoute exact path="/addhostel" component={AddHostel}/>
+              <PrivateRoute exact path="/hostel" component={Hostel}/>
+              <PrivateRoute exact path="/cart" component={Cart}/>
+              <PrivateRoute exact path="/product" component={Product}/>
+              <PrivateRoute exact path="/profile" component={Profile}/>
+              <PrivateRoute exact path="/updateprofile" component={updateProfile}/>
+              <PrivateRoute exact path="/checkedOut" component={CheckedOut}/>
+              <PrivateRoute exact path="/hostel/:id" component={viewHostel}/>
+              <PrivateRoute exact path="/product/:id" component={viewProduct}/>
+              <Route path="*" component={NotFound} />
+            </Switch>
+            <Route path="*" component={NotFound} />
+          </Switch>
+           <Footer /> 
+        </Router>
+      </Provider>
+    );
+   }
+   else{
+    return (
+      <Provider store={store}>
+        <Router>
+          <Navbar />
+          <Switch>
+            <Route exact path="/" component={Dashboard} />
+           <Route path="/register" component={Register} />
+           <Route exact path="/verification" component={Emailsent}/>
+            <Route path="/login" component={Login} />
+            <Route path="/about" component={About} />
+            <Switch>
+              <PrivateRoute exact path="/dashboard" component={Dashboard} />
+              <PrivateRoute exact path="/additems" component={AddProduct}/>
+              <PrivateRoute exact path="/addhostel" component={AddHostel}/>
+              <PrivateRoute exact path="/hostel" component={Hostel}/>
+              <PrivateRoute exact path="/cart" component={Cart}/>
+              <PrivateRoute exact path="/product" component={Product}/>
+              <PrivateRoute exact path="/profile" component={Profile}/>
+              <PrivateRoute exact path="/updateprofile" component={updateProfile}/>
+              <PrivateRoute exact path="/checkedOut" component={CheckedOut}/>
+              <PrivateRoute exact path="/hostel/:id" component={viewHostel}/>
+              <PrivateRoute exact path="/product/:id" component={viewProduct}/>
+              <Route path="*" component={NotFound} />
+            </Switch>
+            <Route path="*" component={NotFound} />
+          </Switch>
+           <Footer /> 
+        </Router>
+      </Provider>
+    );
+   }
  }
 
 export default App;
