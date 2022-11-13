@@ -17,13 +17,13 @@ function Dashboard(){
   const [isError, setIsError] =  useState("");
 
   function openHostelTab (hostel){
-    localStorage.setItem("selectedHostel",JSON.stringify(hostel));
+    sessionStorage.setItem("selectedHostel",JSON.stringify(hostel));
    // window.location.href = `/hostel/${hostel._id}`;
     window.open(`/hostel/${hostel._id}`,'_blank');
   }
 
   function openProductTab(product){
-    localStorage.setItem("selectedProduct",JSON.stringify(product));
+    sessionStorage.setItem("selectedProduct",JSON.stringify(product));
     window.open(`/product/${product._id}`,'_blank');
   }
 

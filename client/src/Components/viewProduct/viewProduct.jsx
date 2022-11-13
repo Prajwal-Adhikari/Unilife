@@ -8,7 +8,7 @@ let userRating=0;
 
 class viewProduct extends Component{
     state = {
-        card : JSON.parse(localStorage.getItem('selectedProduct')),
+        card : JSON.parse(sessionStorage.getItem('selectedProduct')),
         rating : 0,
         hover : 0
     }
@@ -122,7 +122,6 @@ class viewProduct extends Component{
 
     render(){
       const {rating,hover} = this.state;
-       // localStorage.removeItem('selectedProduct');
         return(
             // <div>
             //     <h1>See Your Product </h1>

@@ -44,7 +44,7 @@ class Product extends Component {
 
     openTab = (element) => {
         console.log("inside openTab");
-        const item = localStorage.setItem("selectedProduct", JSON.stringify(element));
+        const item = sessionStorage.setItem("selectedProduct", JSON.stringify(element));
         console.log(item);
         window.open(`/product/${element._id}`, '_blank');
         //this.props.history.push(generatePath(`/hostel/${element._id}`))

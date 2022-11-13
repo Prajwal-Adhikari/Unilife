@@ -142,8 +142,6 @@ function App() {
       <Provider store={store}>
         <Router>
           <Navbar />
-          <Switch>
-            <AdminRoute exact path="/admin" component={adminProfile}/>
             <Switch>
             <Route exact path="/" component={Login} />
            <Route path="/register" component={Register} />
@@ -165,8 +163,6 @@ function App() {
               <Route path="*" component={NotFound} />
             </Switch>
             <Route path="*" component={NotFound} />
-          </Switch>
-          <Route path="*" component={NotFound} />
           </Switch>
            <Footer /> 
         </Router>

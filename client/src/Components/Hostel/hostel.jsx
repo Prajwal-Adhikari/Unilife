@@ -43,7 +43,7 @@ class Hostel extends Component{
 
       openTab = (element) => {
         console.log("inside openTab");
-        const item = localStorage.setItem("selectedHostel",JSON.stringify(element));
+        const item = sessionStorage.setItem("selectedHostel",JSON.stringify(element));
         console.log(item);
         window.open(`/hostel/${element._id}`,'_blank');
         //this.props.history.push(generatePath(`/hostel/${element._id}`))

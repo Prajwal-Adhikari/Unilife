@@ -7,7 +7,7 @@ let userRating=0;
 
 class viewHostel extends Component{
     state = {   
-        card : JSON.parse(localStorage.getItem('selectedHostel')),
+        card : JSON.parse(sessionStorage.getItem('selectedHostel')),
         rating : 0,
         hover : 0
     }
@@ -86,7 +86,6 @@ class viewHostel extends Component{
 
     render(){
         const {rating,hover} = this.state;
-       // localStorage.removeItem('selectedHostel');
         return(
             <div>
                 <div className="view_container">
