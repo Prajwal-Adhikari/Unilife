@@ -7,7 +7,6 @@ import classnames from 'classnames';
 import jwt_decode from 'jwt-decode';
 
 const token = jwt_decode(localStorage.getItem('jwtToken'));
-
 class AddHostel extends Component{
   constructor() {
     super();
@@ -19,7 +18,12 @@ class AddHostel extends Component{
       address : '',
       description : '',
       contact : '',
-      imagepath : '',
+      imagepath : [],
+      imagepath0 : '',
+      imagepath1 : '',
+      imagepath2 : '',
+      imagepath3 : '',
+      imagepath4 : '',
       category :'',
       price : '',
       availability:'',
@@ -48,7 +52,7 @@ class AddHostel extends Component{
       city : this.state.city,
       address :  this.state.address,
       description:this.state.description,
-      imagepath:this.state.imagepath,
+      imagepath:[this.state.imagepath0,this.state.imagepath1,this.state.imagepath2,this.state.imagepath3,this.state.imagepath4],
       contact:this.state.contact,
       category:this.state.category,
       price:this.state.price,
@@ -59,7 +63,7 @@ class AddHostel extends Component{
 
 
   render() {
-    const { errors,description,price,ownedby,city,contact,address,title,category,imagepath,availability } = this.state;
+    const { errors,description,price,ownedby,city,contact,address,title,category,imagepath0,imagepath1,imagepath2,imagepath3,imagepath4,availability } = this.state;
     return (
         <div className="_container">
           <div className="_row">
@@ -186,7 +190,7 @@ class AddHostel extends Component{
                   </div>
                   <div class="form-row">
                     <div class="form-group col-md-12">
-                      <label htmlFor="price">Price in USD ( Monthly )</label>
+                      <label htmlFor="price">Price ( Monthly )</label>
                       <br />
                       <input
                         type="number"
@@ -216,7 +220,7 @@ class AddHostel extends Component{
                   <div class="form-row">
                     <div class="form-group col-md-12">
                     <label htmlFor="availability">Category</label> <br/>
-                      <label><input type="radio" id="category" name="myCheckbox2" value="Boys" onClick={this.onChangeAddItem}/>Boys</label>
+                      <label><input type="radio" id="category" name="myCheckbox2" value="Boys" onClick={this.onChangeAddItem} />Boys</label>
                       <label><input type="radio" id="category" name="myCheckbox2" value="Girls" onClick={this.onChangeAddItem}/>Girls</label>
                     </div>
                   </div>
@@ -227,15 +231,66 @@ class AddHostel extends Component{
                       <input
                         type="url"
                         className="input-control"
-                        placeholder="Url to image"
-                        id="imagepath"
-                        value={imagepath}
+                        placeholder="Url to image ( Main Image )"
+                        id="imagepath0"
+                        value={imagepath0}
                         onChange={this.onChangeAddItem}
-                        error={errors.imagepath}
+                        error={errors.imagepath0}
                         className={classnames('', {
-                          invalid: errors.imagepath
+                          invalid: errors.imagepath0
                         })}
                       />{' '}
+
+                      <input
+                        type="url"
+                        className="input-control"
+                        placeholder="Url to image"
+                        id="imagepath1"
+                        value={imagepath1}
+                        onChange={this.onChangeAddItem}
+                        error={errors.imagepath1}
+                        className={classnames('', {
+                          invalid: errors.imagepath1
+                        })}
+                      />{' '}
+                      <input
+                        type="url"
+                        className="input-control"
+                        placeholder="Url to image"
+                        id="imagepath2"
+                        value={imagepath2}
+                        onChange={this.onChangeAddItem}
+                        error={errors.imagepath2}
+                        className={classnames('', {
+                          invalid: errors.imagepath2
+                        })}
+                      />{' '}
+                      <input
+                        type="url"
+                        className="input-control"
+                        placeholder="Url to image"
+                        id="imagepath3"
+                        value={imagepath3}
+                        onChange={this.onChangeAddItem}
+                        error={errors.imagepath3}
+                        className={classnames('', {
+                          invalid: errors.imagepath3
+                        })}
+                      />{' '}
+                      <input
+                        type="url"
+                        className="input-control"
+                        placeholder="Url to image"
+                        id="imagepath4"
+                        value={imagepath4}
+                        onChange={this.onChangeAddItem}
+                        error={errors.imagepath4}
+                        className={classnames('', {
+                          invalid: errors.imagepath4
+                        })}
+                      />{' '}
+
+
                       <br />   
                       <span className="text-danger">{errors.imagepath}</span>
                     </div>

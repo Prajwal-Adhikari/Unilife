@@ -41,7 +41,8 @@ router.post('/addhostel',(req,res)=>{
                 price : req.body.price,
                 category : req.body.category,
                 availability:req.body.availability,
-                ratedtimes:0
+                ratedtimes:0,
+                rating:0
             });
             newHostel.save()
             .then(res.status(200).json("Hostel sucessfully hidden when added first time"))
@@ -62,7 +63,8 @@ router.post('/addhostel',(req,res)=>{
                 price : req.body.price,
                 category : req.body.category,
                 availability:req.body.availability,
-                ratedtimes:0
+                ratedtimes:0,
+                rating:0
             });
             newHostels.save()
             .then(res.status(200).json("Hostel sucessfully Added"))
@@ -120,6 +122,7 @@ router.post('/addhostel',(req,res)=>{
                             contact: req.body.contact,
                             price : req.body.price,
                             category : req.body.category,
+                            rating:req.body.rating,
                             availability:req.body.availability,
                             ratedtimes:req.body.ratedtimes
                         }},{upsert:true})
@@ -152,7 +155,8 @@ router.post('/addhostel',(req,res)=>{
                             price : req.body.price,
                             category : req.body.category,
                             availability:req.body.availability,
-                            ratedtimes:req.body.ratedtimes
+                            ratedtimes:req.body.ratedtimes,
+                            rating:req.body.rating
                         }},{upsert:true})
                         .then(
                             res.status(200).json("updated changes in hidden hostel collection")
@@ -180,6 +184,7 @@ router.post('/addhostel',(req,res)=>{
                 price : req.body.price,
                 category : req.body.category,
                 availability:req.body.availability,
+                rating:req.body.rating,
                 ratedtimes:req.body.ratedtimes
             }},{upsert:true})
             .then(

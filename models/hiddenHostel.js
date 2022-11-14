@@ -3,7 +3,7 @@ var schema = mongoose.Schema;
 
 var hostelSchema = new schema ({
     id:{type:String},
-    imagepath : {type : String, required : true},
+    imagepath : {type : [String], required : true},
     ownedby : {type : String, required:true},
     title : {type: String, required:true},
     city : {type: String, required:true},

@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var productSchema = new Schema ({
-    imagepath : {type : String, required : true},
+    imagepath : {type : [String], required : true},
     ownerid:{type:String,required:true},
     productby : {type : String, required:true},
     title : {type: String, required:true},

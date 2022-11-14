@@ -15,7 +15,12 @@ class AddProduct extends Component{
       title : '',
       productby: '',
       description : '',
-      imagepath : '',
+      imagepath : [],
+      imagepath0 : '',
+      imagepath1 : '',
+      imagepath2 : '',
+      imagepath3 : '',
+      imagepath4 : '',
       category :'',
       price : '',
       errors: {}
@@ -41,7 +46,7 @@ class AddProduct extends Component{
       ownerid:token.id,
       productby :this.state.productby,
       description:this.state.description,
-      imagepath:this.state.imagepath,
+      imagepath:[this.state.imagepath0,this.state.imagepath1,this.state.imagepath2,this.state.imagepath3,this.state.imagepath4],
       category:this.state.category,
       price:this.state.price
     }
@@ -50,7 +55,7 @@ class AddProduct extends Component{
 
   
   render() {
-    const { errors, description, price, productby, title,category,imagepath } = this.state;
+    const { errors, description, price, productby, title,category,imagepath,imagepath0,imagepath1,imagepath2,imagepath3,imagepath4 } = this.state;
     return (
       <div className="containerProduct">
       <div className="_row">
@@ -117,7 +122,7 @@ class AddProduct extends Component{
               </div>
               <div class="form-row">
                 <div class="form-group col-md-12">
-                  <label htmlFor="price">Price in USD</label>
+                  <label htmlFor="price">Price</label>
                   <br />
                   <input
                     type="number"
@@ -155,24 +160,75 @@ class AddProduct extends Component{
                 </div>
               </div>
               <div class="form-row">
-                <div class="form-group col-md-12">
-                  <label htmlFor="imagepath">Image URL</label> <br />
-                  <input
-                    type="url"
-                    className="input-control"
-                    placeholder="Url to image"
-                    id="imagepath"
-                    value={imagepath}
-                    onChange={this.onChangeAddItem}
-                    error={errors.imagepath}
-                    className={classnames('', {
-                      invalid: errors.imagepath
-                    })}
-                  />{' '}
-                  <br />   
-                  <span className="text-danger">{errors.imagepath}</span>
-                </div>
-              </div>
+                    <div class="form-group col-md-12">
+                      <label htmlFor="imagepath">Image URL</label> <br />
+                      <input
+                        type="url"
+                        className="input-control"
+                        placeholder="Url to image ( Main Image )"
+                        id="imagepath0"
+                        value={imagepath0}
+                        onChange={this.onChangeAddItem}
+                        error={errors.imagepath0}
+                        className={classnames('', {
+                          invalid: errors.imagepath0
+                        })}
+                      />{' '}
+
+                      <input
+                        type="url"
+                        className="input-control"
+                        placeholder="Url to image"
+                        id="imagepath1"
+                        value={imagepath1}
+                        onChange={this.onChangeAddItem}
+                        error={errors.imagepath1}
+                        className={classnames('', {
+                          invalid: errors.imagepath1
+                        })}
+                      />{' '}
+                      <input
+                        type="url"
+                        className="input-control"
+                        placeholder="Url to image"
+                        id="imagepath2"
+                        value={imagepath2}
+                        onChange={this.onChangeAddItem}
+                        error={errors.imagepath2}
+                        className={classnames('', {
+                          invalid: errors.imagepath2
+                        })}
+                      />{' '}
+                      <input
+                        type="url"
+                        className="input-control"
+                        placeholder="Url to image"
+                        id="imagepath3"
+                        value={imagepath3}
+                        onChange={this.onChangeAddItem}
+                        error={errors.imagepath3}
+                        className={classnames('', {
+                          invalid: errors.imagepath3
+                        })}
+                      />{' '}
+                      <input
+                        type="url"
+                        className="input-control"
+                        placeholder="Url to image"
+                        id="imagepath4"
+                        value={imagepath4}
+                        onChange={this.onChangeAddItem}
+                        error={errors.imagepath4}
+                        className={classnames('', {
+                          invalid: errors.imagepath4
+                        })}
+                      />{' '}
+
+
+                      <br />   
+                      <span className="text-danger">{errors.imagepath}</span>
+                    </div>
+                  </div>
               {/* <div class="confirm"> */}
               {/* </div> */}
               <div class="form-row">  

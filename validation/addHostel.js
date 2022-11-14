@@ -9,7 +9,7 @@ module.exports = validateAddHostelInput = data => {
     data.price = !isEmpty(data.price) ? data.price : "";
     data.city = !isEmpty(data.city) ? data.city : "";
     data.address = !isEmpty(data.address) ? data.address : "";
-    data.imagepath = !isEmpty(data.imagepath) ? data.imagepath : "";
+    const imagepath = data.imagepath;
     data.contact = !isEmpty(data.contact) ? data.contact : "";
     data.category = !isEmpty(data.category) ? data.category : "";
     data.description = !isEmpty(data.description) ? data.description : "";
@@ -45,7 +45,13 @@ module.exports = validateAddHostelInput = data => {
     }
 
     //Category Checks
-    if (validator.isEmpty(data.category)) {
+    // if (validator.isEmpty(data.category)) {
+    //     errors.category = "Category field is required";
+    // }
+    // if(data.category!=="Boys"&&data.category!=="Girls"){
+    //     errors.category ="Category field is required";
+    // }
+    if(data.category===""){
         errors.category = "Category field is required";
     }
 
@@ -55,7 +61,7 @@ module.exports = validateAddHostelInput = data => {
     }
 
     //Imagepath Checks
-    if (validator.isEmpty(data.imagepath)) {
+    if (imagepath[0]===""&&imagepath[1]===""&&imagepath[2]===""&&imagepath[3]===""&&imagepath[4]==="") {
         errors.imagepath = "Imagepath field is required";
     }
 

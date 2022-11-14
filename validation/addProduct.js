@@ -7,7 +7,7 @@ module.exports = validateAddProductInput = data => {
     data.title = !isEmpty(data.title) ? data.title : "";
     data.productby = !isEmpty(data.productby) ? data.productby : "";
     data.price = !isEmpty(data.price) ? data.price : "";
-    data.imagepath = !isEmpty(data.imagepath) ? data.imagepath : "";
+    const imagepath = data.imagepath;
     data.category = !isEmpty(data.category) ? data.category : "";
     data.description = !isEmpty(data.description) ? data.description : "";
     data.stock = !isEmpty(data.stock) ? data.stock : "";
@@ -38,7 +38,7 @@ module.exports = validateAddProductInput = data => {
     }
 
     //Imagepath Checks
-    if (validator.isEmpty(data.imagepath)) {
+    if (imagepath[0]===""&&imagepath[1]===""&&imagepath[2]===""&&imagepath[3]===""&&imagepath[4]==="") {
         errors.imagepath = "Imagepath field is required";
     }
 
