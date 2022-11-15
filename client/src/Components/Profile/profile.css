@@ -147,8 +147,8 @@ hr {
 
 
 .img_container {
-  height: 250px;
-  width: 250px;
+  height: 200px;
+  width: 200px;
   margin-top: 2rem;
   display: block;
   margin: auto;
@@ -156,8 +156,8 @@ hr {
 }
 
 .main_image {
-  height: 250px;
-  width: 250px;
+  height: 100%;
+  width: 100%;
   border-radius: 10px;
 
 }

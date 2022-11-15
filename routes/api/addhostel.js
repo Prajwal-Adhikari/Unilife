@@ -5,6 +5,7 @@ const app = express();
 app.use(express.json());
 
 const validateAddHostelInput = require('../../validation/addHostel');
+const validateUpdateHostelInput = require('../../validation/updatehostel');
 const Hostel = require('../../models/hostel');
 const hiddenHostel = require('../../models/hiddenHostel');
 
@@ -24,8 +25,6 @@ router.post('/addhostel',(req,res)=>{
         return res.status(400).json(errors);
     }
 
-    //if new hostel is added
-    if(req.body.id===undefined){
         //new hostel in hiddenHostel collection
         if(req.body.availability==="No"){
             const newHostel = new hiddenHostel({
@@ -33,7 +32,6 @@ router.post('/addhostel',(req,res)=>{
                 title : req.body.title,
                 ownedby : req.body.ownedby,
                 ownerid:req.body.ownerid,
-                country :  req.body.country,
                 city : req.body.city,
                 address :  req.body.address,
                 description : req.body.description,
@@ -45,7 +43,7 @@ router.post('/addhostel',(req,res)=>{
                 rating:0
             });
             newHostel.save()
-            .then(res.status(200).json("Hostel sucessfully hidden when added first time"))
+            .then(res.json("Hostel sucessfully hidden when added first time"))
             .catch(err=>console.log(err));
         }
         //new hostel in hostel collection
@@ -55,7 +53,6 @@ router.post('/addhostel',(req,res)=>{
                 title : req.body.title,
                 ownedby : req.body.ownedby,
                 ownerid:req.body.ownerid,
-                country :  req.body.country,
                 city : req.body.city,
                 address :  req.body.address,
                 description : req.body.description,
@@ -67,139 +64,134 @@ router.post('/addhostel',(req,res)=>{
                 rating:0
             });
             newHostels.save()
-            .then(res.status(200).json("Hostel sucessfully Added"))
+            .then(res.json("Hostel sucessfully Added"))
             .catch(err=>console.log(err));
         }
-    }
-    //if details is being changed
-    else{
+    
+        //if details is being changed
         //when user wants to remove the hostel
         //remove should be passed from the frontend with value either true or false
-        if(req.body.remove){
-            if(req.body.availability==="Yes"){
-                Hostel.deleteOne({_id:req.body.id})
-                .then(res.status(200).json("Successfully removed hostel (availability:Yes)"))
-                .catch(res.status(200).json("Can not remove hostel (availability:Yes)"))
+});
+
+router.post("/updatehostel",(req,res)=>{
+
+    const {
+        errors,
+        isValid
+    } = validateUpdateHostelInput(req.body);
+
+    //Check Validation
+    if (!isValid) {
+        return res.status(400).json(errors);
+    }
+
+    console.log("update hostel called");
+    if(req.body.remove){
+        if(req.body.availability==="Yes"){
+            Hostel.deleteOne({_id:req.body.id})
+            .then(res.json("Successfully removed hostel (availability:Yes)"))
+            .catch(res.json("Can not remove hostel (availability:Yes)"))
+        }
+        else{
+            hiddenHostel.deleteOne({_id:req.body.id})
+            .then(res.json("Successfully removed hostel (availability:No)"))
+            .catch(res.json("Can not remove hostel (availability:No)"))
+        }
+    }
+    //not removing
+    else{
+        //if availability is no
+    if(req.body.availability==="No"){
+            //hiddenid is the _id in the hidden collection
+            //checking from which collection is the request comming from
+            if(req.body.hiddenid===undefined){
+                try{
+                    hiddenHostel.updateOne({_id:req.body.id},{$set : {
+                        id:req.body.id,
+                        imagepath : req.body.imagepath,
+                        title : req.body.title,
+                        ownedby : req.body.ownedby,
+                        city : req.body.city,   
+                        ownerid:req.body.ownerid,
+                        address :  req.body.address,
+                        description : req.body.description,
+                        contact: req.body.contact,
+                        price : req.body.price,
+                        category : req.body.category,
+                        rating:req.body.rating,
+                        availability:req.body.availability,
+                        ratedtimes:req.body.ratedtimes
+                    }},{upsert:true})
+                    .then(
+                        Hostel.deleteOne({_id:req.body.id})
+                        .then(
+                            res.json("data"))
+                        .catch((e)=>{res.json("Can not delete (second last)")})
+    
+                    )
+                    .catch(
+                        res.json("can not delete (after second last)")
+                    )
+                }catch(e){
+                    res.json(e)
+                }
             }
             else{
-                hiddenHostel.deleteOne({_id:req.body.id})
-                .then(res.status(200).json("Successfully removed hostel (availability:No)"))
-                .catch(res.status(200).json("Can not remove hostel (availability:No)"))
-            }
-        }
-        //not removing
-        else{
-            //if availability is no
-        if(req.body.availability==="No"){
-                //hiddenid is the _id in the hidden collection
-                //checking from which collection is the request comming from
-                if(req.body.hiddenid===undefined){
-                    try{
-                        // const newHostel = new hiddenHostel({
-                        //     imagepath : req.body.imagepath,
-                        //     title : req.body.title,
-                        //     ownedby : req.body.ownedby,
-                        //     country :  req.body.country,
-                        //     city : req.body.city,
-                        //     address :  req.body.address,
-                        //     description : req.body.description,
-                        //     contact: req.body.contact,
-                        //     price : req.body.price,
-                        //     category : req.body.category,
-                        //     availability:req.body.availability
-                        // });
-                        // newHostel.save()
-                        hiddenHostel.updateOne({_id:req.body.id},{$set : {
-                            id:req.body.id,
-                            imagepath : req.body.imagepath,
-                            title : req.body.title,
-                            ownedby : req.body.ownedby,
-                            country :  req.body.country,
-                            city : req.body.city,   
-                            ownerid:req.body.ownerid,
-                            address :  req.body.address,
-                            description : req.body.description,
-                            contact: req.body.contact,
-                            price : req.body.price,
-                            category : req.body.category,
-                            rating:req.body.rating,
-                            availability:req.body.availability,
-                            ratedtimes:req.body.ratedtimes
-                        }},{upsert:true})
-                        .then(
-                            Hostel.deleteOne({_id:req.body.id})
-                            .then(
-                                res.status(200).json("data"))
-                            .catch((e)=>{res.status(500).json("Can not delete (second last)")})
-        
-                        )
-                        .catch(
-                            res.status(500).json("can not delete (after second last)")
-                        )
-                    }catch(e){
-                        res.status(500).json(e)
-                    }
+                try{
+                    hiddenHostel.updateOne({_id:req.body.hiddenid},{$set :{
+                        imagepath : req.body.imagepath,
+                        title : req.body.title,
+                        ownedby : req.body.ownedby,
+                        ownerid:req.body.ownerid,
+                        city : req.body.city,
+                        address :  req.body.address,
+                        description : req.body.description,
+                        contact: req.body.contact,
+                        price : req.body.price,
+                        category : req.body.category,
+                        availability:req.body.availability,
+                        ratedtimes:req.body.ratedtimes,
+                        rating:req.body.rating
+                    }},{upsert:true})
+                    .then(
+                        res.json("updated changes in hidden hostel collection")
+                    )
+                    .catch(res.json("Can not save in hiddenHostel collection when availability to No"));
+                }catch(e){
+                    res.json(e)
                 }
-                else{
-                    try{
-                        hiddenHostel.updateOne({_id:req.body.hiddenid},{$set :{
-                            imagepath : req.body.imagepath,
-                            title : req.body.title,
-                            ownedby : req.body.ownedby,
-                            ownerid:req.body.ownerid,
-                            country :  req.body.country,
-                            city : req.body.city,
-                            address :  req.body.address,
-                            description : req.body.description,
-                            contact: req.body.contact,
-                            price : req.body.price,
-                            category : req.body.category,
-                            availability:req.body.availability,
-                            ratedtimes:req.body.ratedtimes,
-                            rating:req.body.rating
-                        }},{upsert:true})
-                        .then(
-                            res.status(200).json("updated changes in hidden hostel collection")
-                        )
-                        .catch(res.status(500).json("Can not save in hiddenHostel collection when availability to No"));
-                    }catch(e){
-                        res.status(500).json(e)
-                    }
-                }
-            
-        }
-        else{
-            try{
-                //changing details when availability is Yes
-            Hostel.updateOne({_id:req.body.id},{$set : {
-                imagepath : req.body.imagepath,
-                title : req.body.title,
-                ownedby : req.body.ownedby,
-                ownerid:req.body.ownerid,
-                country :  req.body.country,
-                city : req.body.city,   
-                address :  req.body.address,
-                description : req.body.description,
-                contact: req.body.contact,
-                price : req.body.price,
-                category : req.body.category,
-                availability:req.body.availability,
-                rating:req.body.rating,
-                ratedtimes:req.body.ratedtimes
-            }},{upsert:true})
-            .then(
-                    hiddenHostel.deleteOne({_id:req.body.hiddenid})
-                    .then((data)=>{
-                        res.status(200).json(data)
-                    })
-                    .catch((e)=>{res.status(500).json("Can not delete (last)")})
-            )
-            }catch(e){
-                res.status(500).json(e)
             }
-        }
-        }
         
+    }
+    else{
+        try{
+            //changing details when availability is Yes
+        Hostel.updateOne({_id:req.body.id},{$set : {
+            imagepath : req.body.imagepath,
+            title : req.body.title,
+            ownedby : req.body.ownedby,
+            ownerid:req.body.ownerid,
+            city : req.body.city,   
+            address :  req.body.address,
+            description : req.body.description,
+            contact: req.body.contact,
+            price : req.body.price,
+            category : req.body.category,
+            availability:req.body.availability,
+            rating:req.body.rating,
+            ratedtimes:req.body.ratedtimes
+        }},{upsert:true})
+        .then(
+                hiddenHostel.deleteOne({_id:req.body.hiddenid})
+                .then((data)=>{
+                    res.json(data)
+                })
+                .catch((e)=>{res.json("Can not delete (last)")})
+        )
+        }catch(e){
+            res.json(e)
+        }
+    }
     }
 });
 

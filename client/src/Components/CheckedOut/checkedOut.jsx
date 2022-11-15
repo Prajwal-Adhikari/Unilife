@@ -60,7 +60,7 @@ const CheckedOut = () => {
                 "Content-Type" : "application/json"
               },
               body : JSON.stringify({
-                id : token.id,
+                id : token.id
               }),
         })
           .then(res=> {

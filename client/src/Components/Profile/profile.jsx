@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import './profile.css'
 import jwt_decode from 'jwt-decode'
-import {FaPhone} from "react-icons/fa"
+
 
 let fetch_data = []
 let list = []
@@ -23,8 +23,8 @@ class Profile extends Component {
     this.setState({ isLoading: false })
   }
 
+
   fetchData = async () => {
-    console.log('fetchData running')
     fetch_data = await fetch('http://localhost:5000/api/users/profile', {
       method: 'POST',
       headers: {
@@ -44,7 +44,6 @@ class Profile extends Component {
       .catch((e) => {
         console.error(e.error)
       })
-    //this.updateState();
   }
 
   listData = async () => {
@@ -71,6 +70,59 @@ class Profile extends Component {
     console.log(list)
     this.updateState()
   }
+
+  RemoveHostel = async(elem)=>{
+    console.log("Remove called");
+    await fetch("http://localhost:5000/api/users/updatehostel", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        id:elem._id,
+        availability:elem.availability,
+        remove:true
+      }),
+    })
+      .then((res) => {
+        if (res.ok) return res.json()
+        return res.json().then((json) => Promise.reject(json))
+      })
+      .then((data) => {
+        return data
+      })
+      .catch((e) => {
+        console.error(e.error)
+      })
+      this.listData();
+  }
+
+  // RemoveProduct = async(elem)=>{
+  //   console.log("Remove called");
+  //   await fetch("http://localhost:5000/api/users/updateproduct", {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({
+  //       id:elem._id,
+  //       availability:elem.availability,
+  //       remove:true
+  //     }),
+  //   })
+  //     .then((res) => {
+  //       if (res.ok) return res.json()
+  //       return res.json().then((json) => Promise.reject(json))
+  //     })
+  //     .then((data) => {
+  //       return data
+  //     })
+  //     .catch((e) => {
+  //       console.error(e.error)
+  //     })
+  //     this.listData();
+  // }
+
 
   componentDidMount() {
     this.fetchData()
@@ -172,18 +224,32 @@ class Profile extends Component {
                     <span class="card-desc-first">
                       <strong id='card_title'>{curElem.title}</strong>
 
-                      <div><p>{curElem.category} hostel</p></div>
-                      <div><p>Availability : {curElem.availability}</p></div>
-                      <div><p>Address : {curElem.address}</p></div>
+                      <div><p>Category : {curElem.category}</p></div>
                       <div><p> Rs. {curElem.price}</p></div>
-                      <div><p><FaPhone/> {curElem.contact}</p></div>
                     </span>
 
                     <hr />
 
                   <div class="update_remove">
-                    <button className='update'>update</button>
-                    <button className='update'>remove</button>
+                    <button className='update' onClick={()=>{
+                      if(typeof(curElem.productby)==="undefined"){
+                        sessionStorage.setItem("updatethisHostel",JSON.stringify(curElem));
+                          window.location.href='/updatehostel';
+                      }
+                      else{
+                        sessionStorage.setItem("updatethisProduct",JSON.stringify(curElem));
+                        window.location.href="/updateproduct";
+                      }
+                    }}>Update</button>
+                    <button className='update' onClick={()=>{
+                      if(typeof(curElem.productby)==="undefined"){
+                        this.RemoveHostel(curElem);
+                      }
+                      else{
+                        this.RemoveProduct(curElem);
+                      }
+                    }}>Remove</button>
+                    {/* <button className='update'>Remove</button> */}
                   </div>
                   </div>
                 </div>

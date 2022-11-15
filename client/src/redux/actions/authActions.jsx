@@ -83,6 +83,28 @@ export const saveProfile = (userData,history)=>dispatch=>{
   );
 };
 
+export const saveHostelChanges = (userData,history)=>dispatch=>{
+  axios
+    .post('/api/users/savehostelchanges',userData)
+    .then(res=>history.push('/profile'))
+    .catch(err=>dispatch({
+      type:GET_ERRORS,
+      payload:err.response.data
+    })
+  );
+};
+
+export const saveProductChanges = (userData,history)=>dispatch=>{
+  axios
+    .post('/api/users/saveproductchanges',userData)
+    .then(res=>history.push('/profile'))
+    .catch(err=>dispatch({
+      type:GET_ERRORS,
+      payload:err.response.data
+    })
+  );
+};
+
 // Login - get user token
 export const loginUser = userData => dispatch => {
   axios
