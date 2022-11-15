@@ -10,7 +10,9 @@ var addToCartSchema = new schema ({
     price : {type:Number,required:true},
     productby : {type:String,required:true},
     title:{type:String,required:true},
-    stock:{type:Number,required:true}
+    stock:{type:Number,required:true},
+    buy : {type:Boolean,required:false}, //when buying through buy now
+    buycart : {type:Boolean,required:false} //when buying through cart
 });
 
 module.exports = mongoose.model("cart", addToCartSchema)

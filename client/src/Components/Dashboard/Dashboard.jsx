@@ -2,15 +2,8 @@ import React from 'react';
 import './Dashboard.css';
 import Axios from 'axios';
 import { useState,useEffect } from 'react';
-import {FaCartArrowDown, FaCheck} from "react-icons/fa"
+import {FaCartArrowDown} from "react-icons/fa"
 import jwt_decode from 'jwt-decode';
-
-// openHostelTab =  (element) => {
-//     console.log("inside openTab");
-//     const item = localStorage.setItem("selectedHostel",JSON.stringify(element));
-//     console.log(item);
-//     this.props.history.push(generatePath(`/hostel/${element._id}`))
-// }
 
 function Dashboard(){
   const [myData, setMyData] = useState([]);
@@ -18,7 +11,6 @@ function Dashboard(){
 
   function openHostelTab (hostel){
     sessionStorage.setItem("selectedHostel",JSON.stringify(hostel));
-   // window.location.href = `/hostel/${hostel._id}`;
     window.open(`/hostel/${hostel._id}`,'_blank');
   }
 

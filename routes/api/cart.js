@@ -65,10 +65,32 @@ router.post('/save-cart',(req,res)=>{
     const arr = req.body.items;
     try{
         arr.map((item)=>{
-            Cart.updateOne({_id:item._id},{$set:{
-                quantity:item.quantity
-            }}).then()
-            .catch((e)=>{res.status(e)})
+            if(req.body.buy===true){
+                try{
+                    Cart.updateOne({itemId:item._id,id:req.body.id},{$set:{
+                        buy : true,
+                        id:req.body.id,
+                        quantity:req.body.quantity,
+                        itemId:item._id,
+                        price:item.price,
+                        ownerid : item.ownerid,
+                        title:item.title,
+                        imagepath :item.imagepath,
+                        productby : item.productby,
+                        stock: item.stock,
+                    }},{upsert:true}).then()
+                    .catch((e)=>{throw e})
+                }catch(e){
+                    res.status(500).json(e)
+                }
+            }
+            else{
+                Cart.updateOne({_id:item._id},{$set:{
+                    quantity:item.quantity,
+                    buycart:true
+                }}).then()
+                .catch((e)=>{res.status(e)})
+            }
         })
     }catch(e){
         res.json(e);
@@ -129,7 +151,7 @@ router.post('/remove',async (req,res)=>{
         res.json(e);
     }
     try{
-        Cart.deleteMany({id:req.body.id})
+        Cart.deleteMany({id:req.body.id,$or:[{buy:true},{buycart:true}]})
         .then((resp)=>{
             res.status(200).json("Succesfully deleted");
         })
@@ -145,6 +167,22 @@ router.post('/load-cart',(req,res)=>{
     try{
         Cart.find({ 
             id:req.body.id
+          })
+          .then((info)=>{
+            res.status(200).json(info)
+          }).catch((err)=>{
+              res.status(500).json("Can not find the given id in cart db "+ err);
+          })
+    }catch(err){
+        res.status(500).json(err);
+    }
+});
+
+router.post('/load-checkout',(req,res)=>{
+    try{
+        Cart.find({ 
+            id:req.body.id,
+            $or : [{buy:true},{buycart:true}]
           })
           .then((info)=>{
             res.status(200).json(info)

@@ -45,13 +45,7 @@ module.exports = validateAddHostelInput = data => {
     }
 
     //Category Checks
-    // if (validator.isEmpty(data.category)) {
-    //     errors.category = "Category field is required";
-    // }
-    // if(data.category!=="Boys"&&data.category!=="Girls"){
-    //     errors.category ="Category field is required";
-    // }
-    if(data.category===""){
+    if (validator.isEmpty(data.category)) {
         errors.category = "Category field is required";
     }
 

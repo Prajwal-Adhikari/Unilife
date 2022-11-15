@@ -77,7 +77,8 @@ const Cart = () => {
                 "Content-Type" : "application/json"
               },
               body : JSON.stringify({
-                items:fetch_data
+                items:fetch_data,
+                buycart:true
               }),
         })
           .then(res=> {

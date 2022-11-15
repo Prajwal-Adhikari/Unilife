@@ -54,7 +54,7 @@ const CheckedOut = () => {
     //to load data from backend  
     let fetchData = async () => {
         let ans=0;
-        fetch_data = await fetch('http://localhost:5000/api/users/load-cart',{
+        fetch_data = await fetch('http://localhost:5000/api/users/load-checkout',{
             method : "POST",
             headers:{
                 "Content-Type" : "application/json"

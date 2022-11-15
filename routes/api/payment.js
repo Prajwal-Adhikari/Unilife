@@ -55,15 +55,29 @@ router.post("/create-checkout-session",async(req,res) => {
                 },
             ],
             line_items :  req.body.items.map(item => {
-                return {
-                    price_data : {
-                        currency : "usd",
-                        product_data : {
-                            name : item.title,
+                if(req.body.quantity!==undefined){
+                    return {
+                        price_data : {
+                            currency : "usd",
+                            product_data : {
+                                name : item.title,
+                            },
+                            unit_amount : item.price,
                         },
-                        unit_amount : item.price,
-                    },
-                    quantity:item.quantity,
+                        quantity:req.body.quantity,
+                    }
+                }
+                else{
+                    return {
+                        price_data : {
+                            currency : "usd",
+                            product_data : {
+                                name : item.title,
+                            },
+                            unit_amount : item.price,
+                        },
+                        quantity:item.quantity,
+                    }
                 }
             }),
             success_url : `${config.get("CLIENT_URL")}/checkedOut`,

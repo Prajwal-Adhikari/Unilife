@@ -17,7 +17,7 @@ import Cart from './Components/Cart/cart';
 import CheckedOut from './Components/CheckedOut/checkedOut';
 import Product from './Components/Product/Product';
 import viewHostel from './Components/viewHostel/viewHostel';
-import viewProduct from './Components/viewProduct/viewProduct';
+import ViewProduct from './Components/viewProduct/viewProduct';
 import Emailsent from './Components/Pages/Emailsent';
 import NotFound from './Components/NotFound/NotFound';
 import { Provider } from 'react-redux';
@@ -127,7 +127,7 @@ function App() {
               <PrivateRoute exact path="/updateprofile" component={updateProfile}/>
               <PrivateRoute exact path="/checkedOut" component={CheckedOut}/>
               <PrivateRoute exact path="/hostel/:id" component={viewHostel}/>
-              <PrivateRoute exact path="/product/:id" component={viewProduct}/>
+              <PrivateRoute exact path="/product/:id" component={ViewProduct}/>
               <Route path="*" component={NotFound} />
             </Switch>
             <Route path="*" component={NotFound} />
@@ -159,7 +159,7 @@ function App() {
               <PrivateRoute exact path="/updateprofile" component={updateProfile}/>
               <PrivateRoute exact path="/checkedOut" component={CheckedOut}/>
               <PrivateRoute exact path="/hostel/:id" component={viewHostel}/>
-              <PrivateRoute exact path="/product/:id" component={viewProduct}/>
+              <PrivateRoute exact path="/product/:id" component={ViewProduct}/>
               <Route path="*" component={NotFound} />
             </Switch>
             <Route path="*" component={NotFound} />

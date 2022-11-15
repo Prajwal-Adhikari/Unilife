@@ -1,104 +1,171 @@
 import React, { Component } from "react";
 import jwt_decode from 'jwt-decode';
 import './viewProduct.css';
-
+import { useState,useEffect } from 'react';
 const token = jwt_decode(localStorage.getItem('jwtToken'));
 let userRating=0;
+let card = [];
+const obj = JSON.parse(sessionStorage.getItem('selectedProduct'));
+card.push(obj);
+let value = 1;
 
+const ViewProduct = () => {
+  const [hover,sethover] = useState(0);
+  const [rating,setrating] = useState(0);
+  const [quantity,setquantity] = useState(1);
 
-class viewProduct extends Component{
-    state = {
-        card : JSON.parse(sessionStorage.getItem('selectedProduct')),
-        rating : 0,
-        hover : 0
+  console.log(card);
+  //handles quantity change
+  const handleChange = async (_quantity) => {
+    if(quantity===1&&_quantity===0){
+      return window.alert("Can not reduce the quantity");
     }
 
-    //loads user rating for the given product
-    UserRating = async() =>{
-      userRating = await fetch('http://localhost:5000/api/users/userrating',{
-          method : "POST",
-      headers:{
-          "Content-Type" : "application/json"
-        },
-        body : JSON.stringify({
-          id : token.id,
-          itemId : this.state.card._id,
-        }),
-      })
-      .then(res=> {
-          if(res.ok) return res.json()
-          return res.json().then(json=>Promise.reject(json))
-        })
-        .then((data)=>{
-          return data.rating;
-        })
-        .catch(e=>{
-          console.error(e.error)
-        })
-      console.log(userRating);
-  }
+      //increasing the quantity
+      if(_quantity!==0){
+        if(quantity<card[0].stock){
+          value = quantity + 1;
+          setquantity(value) ;
+        } 
+        else{
+          window.alert("The maximum available qunantity from the seller for this item is " + card[0].stock);
+        }
+      }
+      //decreasing the quantity
+      if(_quantity===0){
+        value = quantity - 1;
+        setquantity(value) ;
+      }
+}
 
-  //saves user rating for the given item
-  saveUserRating = async(value) =>{
-      await fetch('http://localhost:5000/api/users/saveuserrating',{
-          method : "POST",
-      headers:{
-          "Content-Type" : "application/json"
-        },
-        body : JSON.stringify({
-          id : token.id,
-          itemId : this.state.card._id,
-          rating:value
-        }),
-      })
-      .then(res=> {
-          if(res.ok) return res.json()
-          return res.json().then(json=>Promise.reject(json))
-        })
-        .then((data)=>{
-          return data;
-        })
-        .catch(e=>{
-          console.error(e.error)
-        })
-  }
 
-  //updates rating of the product
-  udpateRating = async(value) =>{
-      await fetch('http://localhost:5000/api/users/updaterating',{
-          method : "POST",
-      headers:{
-          "Content-Type" : "application/json"
-        },
-        body : JSON.stringify({
-          itemId : this.state.card._id,
-          rating:value,
-          productby:this.state.card.productby
-        }),
+  //loads user rating for the given product
+  const UserRating = async() =>{
+    userRating = await fetch('http://localhost:5000/api/users/userrating',{
+        method : "POST",
+    headers:{
+        "Content-Type" : "application/json"
+      },
+      body : JSON.stringify({
+        id : token.id,
+        itemId : card[0]._id,
+      }),
+    })
+    .then(res=> {
+        if(res.ok) return res.json()
+        return res.json().then(json=>Promise.reject(json))
       })
-      .then(res=> {
-          if(res.ok) return res.json()
-          return res.json().then(json=>Promise.reject(json))
-        })
-        .then((data)=>{
-          return data;
-        })
-        .catch(e=>{
-          console.error(e.error)
-        })
-  }
+      .then((data)=>{
+        return data.rating;
+      })
+      .catch(e=>{
+        console.error(e.error)
+      })
+    console.log(userRating);
+}
 
-    cartclicked = async (itemid) => {
-        const token = jwt_decode(localStorage.getItem('jwtToken'));
-        const response = await fetch('http://localhost:5000/api/users/add-to-cart',{
+//saves user rating for the given item
+const saveUserRating = async(value) =>{
+    await fetch('http://localhost:5000/api/users/saveuserrating',{
+        method : "POST",
+    headers:{
+        "Content-Type" : "application/json"
+      },
+      body : JSON.stringify({
+        id : token.id,
+        itemId : card[0]._id,
+        rating:value
+      }),
+    })
+    .then(res=> {
+        if(res.ok) return res.json()
+        return res.json().then(json=>Promise.reject(json))
+      })
+      .then((data)=>{
+        return data;
+      })
+      .catch(e=>{
+        console.error(e.error)
+      })
+}
+
+//updates rating of the product
+const udpateRating = async(value) =>{
+    await fetch('http://localhost:5000/api/users/updaterating',{
+        method : "POST",
+    headers:{
+        "Content-Type" : "application/json"
+      },
+      body : JSON.stringify({
+        itemId : card[0]._id,
+        rating:value,
+        productby:card[0].productby
+      }),
+    })
+    .then(res=> {
+        if(res.ok) return res.json()
+        return res.json().then(json=>Promise.reject(json))
+      })
+      .then((data)=>{
+        return data;
+      })
+      .catch(e=>{
+        console.error(e.error)
+      })
+}
+
+  const cartclicked = async () => {
+    if(card[0].ownerid===token.id){
+      return window.alert("You can not buy your own product !!!");
+    }
+      const response = await fetch('http://localhost:5000/api/users/add-to-cart',{
+        method : "POST",
+        headers:{
+            "Content-Type" : "application/json"
+          },
+          body : JSON.stringify({
+            itemId : card[0]._id,
+            quantity : value,
+            id : token.id,
+            imagepath : card[0].imagepath,
+            title : card[0].title,
+            price : card[0].price,
+            productby : card[0].productby,
+            stock:card[0].stock
+          }),
+    })
+      .then(res=> {
+            if(res.ok) return res.json()
+            return res.json().then(json=>Promise.reject(json))
+          })
+          .then((data)=>{
+            return data;
+          })
+          .catch(e=>{
+            console.error(e.error)
+          })
+    console.log(response);
+    if(response===true){
+      window.alert("Item added to Cart");
+    }
+    else{
+      window.alert("Error 402 : Can not add item to card");
+    }
+  } 
+
+   //save changes when going through payment
+   const saveCart = async() => {
+    console.log("save-cart frotend");
+    await fetch('http://localhost:5000/api/users/save-cart',{
           method : "POST",
           headers:{
               "Content-Type" : "application/json"
             },
             body : JSON.stringify({
-              itemId : itemid,
-              quantity : 1,
-              id : token.id,
+              id:token.id,
+              items:card,
+              quantity:value,
+              buy : true
             }),
       })
         .then(res=> {
@@ -111,93 +178,105 @@ class viewProduct extends Component{
             .catch(e=>{
               console.error(e.error)
             })
-      console.log(response);
-      if(response===true){
-        window.alert("Item added to Cart");
-      }
-      else{
-        window.alert("Error 402 : Can not add item to card");
-      }
-    }
+  }
 
-    render(){
-      const {rating,hover} = this.state;
-        return(
-            // <div>
-            //     <h1>See Your Product </h1>
-            //     <h2>{this.state.card.title}</h2>
-            //     <img src={this.state.card.imagepath}
-            //     alt={this.state.card.title}
-            //     className = "img-fluid img-thumbnail rounded indvCard bg-dark"
-            //     />
-            //     <div class="cart-div">
-            //         <FaCartArrowDown class="cart-icon" onClick={()=>{
-            //             this.cartclicked(this.state.card._id)
-            //         }
-            //         }/>
-            //     </div>
-            // </div>
-			<div className=''>
-				<div className='header'>
-					<h1>Product details</h1>
-				</div>
-				<div className='main-section'>
-					<div classname='product-image'>
-						<img
-							src={this.state.card.imagepath}
-							alt={this.state.card.title}
-							className='thumbnail'
-						/>
-					</div>
-					<div className='product-details'>
-						<h3>{this.state.card.title}</h3>
-						<div className='price-rate'>
-							Rs. {this.state.card.price}
-						</div>
-						<div className='description'>
-							{this.state.card.description}
-						</div>
-						<div className='button-options'>
-							<button
-								className = 'buy-now'
-							>
-								Buy Now	
-							</button>
-							<button
-								className = 'add-to-cart'
-								// onClick = {() => this.cartclicked(this.state.card._id)}
-							>
-								Add to Cart	
-							</button>
-						</div>
+  useEffect(()=>{
+    UserRating();
+},[])
 
-            <div className="star-rating">
-              {[...Array(5)].map((star, index) => {
-                index +=1;
-                return (
-                  <button
-                    type="rating_button"
-                    key={index}
-                    className={index <= (hover || rating) ? "on" : "off"}
-                    onClick={() => {
-                      this.setState({rating:index});
-                      this.saveUserRating(index);
-                      this.udpateRating(index);
-                  }}
-                    onMouseEnter={() => this.setState({hover:index})}
-                    onMouseLeave={() => this.setState({hover:rating})}
-                  >
-                    <span className="star">&#9733;</span>
-                  </button>
-                );
-              })}
+      return(
+    <div className=''>
+      <div className='header'>
+        <h1>Product details</h1>
+      </div>
+      <div className='main-section'>
+        <div classname='product-image'>
+          <img
+            src={card[0].imagepath}
+            alt={card[0].title}
+            className='thumbnail'
+          />
+        </div>
+        <div className='product-details'>
+          <h3>{card[0].title}</h3>
+          <div className='price-rate'>
+            Rs. {card[0].price}
+          </div>
+          <div className='description'>
+            {card[0].description}
+          </div>
+          <div>
+              <button onClick={()=>{
+                  handleChange(1); 
+                }}>+</button>
+                <button>{quantity}</button>
+                <button onClick={()=>{
+                  handleChange(0);
+              }}>-</button>
             </div>
+          <div className='button-options'>
+            <button
+              className = 'buy-now'
+              onClick={()=>{
+                saveCart();
+                 fetch('http://localhost:5000/api/users/create-checkout-session',{
+                      method:"POST",
+                      headers:{
+                        "Content-Type" : "application/json"
+                      },
+                      body:JSON.stringify({
+                        items:card,
+                        quantity:value
+                      }),
+                    })
+                    .then(res=> {
+                      if(res.ok) return res.json()
+                      return res.json().then(json=>Promise.reject(json))
+                    })
+                    .then(({ url }) => {
+                      window.location = url
+                    })
+                    .catch(e=>{
+                      console.error(e.error)
+                    })
+                }}
+            >
+              Buy Now	
+            </button>
+            <button
+              className = 'add-to-cart'
+              onClick = {() => cartclicked()}
+            >
+              Add to Cart	
+            </button>
+          </div>
 
-					</div>
-				</div>
-			</div>
-        )
-    }
+          <div className="star-rating">
+            {[...Array(5)].map((star, index) => {
+              index +=1;
+              return (
+                <button
+                  type="rating_button"
+                  key={index}
+                  className={index <= (hover || rating) ? "on" : "off"}
+                  onClick={() => {
+                    setrating(index);
+                    saveUserRating(index);
+                    udpateRating(index);
+                }}
+                  onMouseEnter={() => sethover(index)}
+                  onMouseLeave={() => sethover(rating)}
+                >
+                  <span className="star">&#9733;</span>
+                </button>
+              );
+            })}
+          </div>
+
+        </div>
+      </div>
+    </div>
+      )
 }
 
-export default viewProduct;
+export default ViewProduct;
