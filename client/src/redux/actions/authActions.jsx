@@ -85,7 +85,7 @@ export const saveProfile = (userData,history)=>dispatch=>{
 
 export const saveHostelChanges = (userData,history)=>dispatch=>{
   axios
-    .post('/api/users/savehostelchanges',userData)
+    .post('/api/users/updatehostel',userData)
     .then(res=>history.push('/profile'))
     .catch(err=>dispatch({
       type:GET_ERRORS,
@@ -96,7 +96,7 @@ export const saveHostelChanges = (userData,history)=>dispatch=>{
 
 export const saveProductChanges = (userData,history)=>dispatch=>{
   axios
-    .post('/api/users/saveproductchanges',userData)
+    .post('/api/users/updateproduct',userData)
     .then(res=>history.push('/profile'))
     .catch(err=>dispatch({
       type:GET_ERRORS,

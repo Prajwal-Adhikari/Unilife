@@ -159,6 +159,7 @@ function App() {
               <PrivateRoute exact path="/cart" component={Cart}/>
               <PrivateRoute exact path="/product" component={Product}/>
               <PrivateRoute exact path="/profile" component={Profile}/>
+              <PrivateRoute exact path="/updatehostel" component={UpdateHostel}/>
               <PrivateRoute exact path="/updateprofile" component={updateProfile}/>
               <PrivateRoute exact path="/checkedOut" component={CheckedOut}/>
               <PrivateRoute exact path="/hostel/:id" component={viewHostel}/>
