@@ -158,10 +158,11 @@ class Profile extends Component {
               Your Activities
               </div>
               </div>
+            
 
             {list.map((curElem) => {
               return (
-                <div>
+                <div className='canvas'>
                 <div className='main_container'>
                   <div class="img_container">
                     <img src={curElem.imagepath} alt="" className='main_image' />
@@ -170,10 +171,11 @@ class Profile extends Component {
                   <div class="card-desc">
                     <span class="card-desc-first">
                       <strong id='card_title'>{curElem.title}</strong>
-                      <div><p>{curElem.description}</p></div>
-                      <div><p>Address : {curElem.address}</p></div>
+
                       <div><p>{curElem.category} hostel</p></div>
-                      <div><p> $ {curElem.price}</p></div>
+                      <div><p>Availability : {curElem.availability}</p></div>
+                      <div><p>Address : {curElem.address}</p></div>
+                      <div><p> Rs. {curElem.price}</p></div>
                       <div><p><FaPhone/> {curElem.contact}</p></div>
                     </span>
 
@@ -185,6 +187,7 @@ class Profile extends Component {
                   </div>
                   </div>
                 </div>
+               
                 </div>
               )
             })}
