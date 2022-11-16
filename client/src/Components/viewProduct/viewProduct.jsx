@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import jwt_decode from 'jwt-decode';
 import './viewProduct.css';
-import Axios from 'axios';
 import { useState,useEffect } from 'react';
 import { saveReview } from '../../redux/actions/authActions';
+import {FaFlag} from "react-icons/fa"
+
 const token = jwt_decode(localStorage.getItem('jwtToken'));
 let userRating=0;
 let card = [];
@@ -162,6 +163,28 @@ const udpateRating = async(value) =>{
       })
 }
 
+  const reportProduct = () => {
+    fetch('http://localhost:5000/api/users/reportproduct',{
+      method : "POST",
+      headers:{
+          "Content-Type" : "application/json"
+        },
+        body : JSON.stringify({
+          id : card[0]._id,
+        }),
+  })
+    .then(res=> {
+          if(res.ok) return res.json()
+          return res.json().then(json=>Promise.reject(json))
+        })
+        .then((data)=>{
+          return data;
+        })
+        .catch(e=>{
+          console.error(e.error)
+        })
+  }
+
   const cartclicked = async () => {
     if(card[0].ownerid===token.id){
       return window.alert("You can not buy your own product !!!");
@@ -192,7 +215,6 @@ const udpateRating = async(value) =>{
           .catch(e=>{
             console.error(e.error)
           })
-    console.log(response);
     if(response===true){
       window.alert("Item added to Cart");
     }
@@ -230,32 +252,8 @@ const udpateRating = async(value) =>{
 
   useEffect(()=>{
     UserRating();
-	getReviews();
-},[])
-
-// const addReview = async(value) =>{
-//     await fetch('http://localhost:5000/api/users/addreview',{
-//         method : "POST",
-//     headers:{
-//         "Content-Type" : "application/json"
-//       },
-//       body : JSON.stringify({
-// 		itemId: token.id,
-//         userId : this.state.card._id,
-// 		review: this.state.review
-//       }),
-//     })
-//     .then(res=> {
-//         if(res.ok) return res.json()
-//         return res.json().then(json=>Promise.reject(json))
-//       })
-//       .then((data)=>{
-//         return data;
-//       })
-//       .catch(e=>{
-//         console.error(e.error)
-//       })
-// }
+	  getReviews();
+  },[])
 
       return(
     <div className=''>
@@ -344,6 +342,13 @@ const udpateRating = async(value) =>{
                 </button>
               );
             })}
+          </div>  
+
+          <div classname="report">
+           <FaFlag classname="report-flag" onClick={()=>{
+              window.alert("Thanks for reporting the product. This product will be reviewed by Unilife.")
+              reportProduct();
+           }}/>
           </div>
 
         </div>

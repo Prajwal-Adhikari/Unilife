@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./viewHostel.css";
 import jwt_decode from 'jwt-decode';
+import {FaFlag} from "react-icons/fa"
 
 const token = jwt_decode(localStorage.getItem('jwtToken'));
 let userRating=0;
@@ -49,6 +50,28 @@ class viewHostel extends Component{
           }),
         })
         .then(res=> {
+            if(res.ok) return res.json()
+            return res.json().then(json=>Promise.reject(json))
+          })
+          .then((data)=>{
+            return data;
+          })
+          .catch(e=>{
+            console.error(e.error)
+          })
+    }
+
+    reportHostel = () => {
+      fetch('http://localhost:5000/api/users/reporthostel',{
+        method : "POST",
+        headers:{
+            "Content-Type" : "application/json"
+          },
+          body : JSON.stringify({
+            id : this.state.card._id,
+          }),
+    })
+      .then(res=> {
             if(res.ok) return res.json()
             return res.json().then(json=>Promise.reject(json))
           })
@@ -123,9 +146,14 @@ class viewHostel extends Component{
                     })}
                  </div>
                 </div>
+
+                <div classname="report">
+                  <FaFlag className="report-flag" onClick={()=>{
+                  window.alert("Thanks for reporting the Hostel. This hostel will be reviewed by Unilife.")
+                  this.reportHostel();
+                  }}/>
+                </div>
             </div>
-               
-   
         )
     }
 }

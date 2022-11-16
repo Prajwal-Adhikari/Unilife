@@ -14,7 +14,8 @@ var hostelSchema = new schema ({
     price : {type: Number, required:true},
     category : {type: String, required:true},
     rating : {type:Number},
-    availability:{type:String,required:true}
+    availability:{type:String,required:true},
+    report : {type:Number}
 });
 
 module.exports = mongoose.model("hiddenHostel", hostelSchema)

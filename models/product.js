@@ -12,7 +12,8 @@ var productSchema = new Schema ({
     stock:{type:Number,required:true},
     ratedtimes :{type:Number,required:false},
     rating : {type:Number,required:false},
-    availability:{type:String,required:true}
+    availability:{type:String,required:true},
+    report : {type:Number}
 });
 
 // const Product = mongoose.model('Product',schema);

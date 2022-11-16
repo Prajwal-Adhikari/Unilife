@@ -146,4 +146,36 @@ router.post('/searchproduct',async (req,res)=>{
         }
 });
 
+router.post('/reporthostel',(req,res)=>{
+    Hostel.findOne({_id:req.body.id})
+    .then((data)=>{
+       if(data.report==9){
+            Hostel.deleteOne({_id:req.body.id})
+            .then((r)=>res.json(r))
+            .catch(e=>res.json(e))
+       }
+       else{
+            Hostel.updateOne({_id:req.body.id},{$set : {report:`${data.report+1}`}})
+            .then((r)=>res.json(r))
+            .catch((e)=>res.json(e))
+       }
+    })
+});
+
+router.post('/reportproduct',(req,res)=>{
+    Product.findOne({_id:req.body.id})
+    .then((data)=>{
+       if(data.report==9){
+            Product.deleteOne({_id:req.body.id})
+            .then((r)=>res.json(r))
+            .catch(e=>res.json(e))
+       }
+       else{
+            Product.updateOne({_id:req.body.id},{$set : {report:`${data.report+1}`}})
+            .then((r)=>res.json(r))
+            .catch((e)=>res.json(e))
+       }
+    })
+});
+
 module.exports = router;

@@ -62,7 +62,8 @@ class UpdateProduct extends Component {
             imagepath:[this.state.imagepath0,this.state.imagepath1,this.state.imagepath2,this.state.imagepath3,this.state.imagepath4],
             price : `${this.state.price===""?fetch_data.price:this.state.price}`,
             rating : fetch_data.rating,
-            ratedtimes : fetch_data.ratedtimes
+            ratedtimes : fetch_data.ratedtimes,
+            report : fetch_data.report
           };
           console.log(ProductData);
           this.props.saveProductChanges(ProductData,this.props.history); 
@@ -80,7 +81,8 @@ class UpdateProduct extends Component {
             imagepath:[this.state.imagepath0,this.state.imagepath1,this.state.imagepath2,this.state.imagepath3,this.state.imagepath4],
             price : `${this.state.price===""?fetch_data.price:this.state.price}`,
             rating : fetch_data.rating,
-            ratedtimes : fetch_data.ratedtimes
+            ratedtimes : fetch_data.ratedtimes,
+            report : fetch_data.report
             
           };
           console.log(ProductData);

@@ -11,7 +11,8 @@ var productSchema = new Schema ({
     price : {type: Number, required:true},
     category : {type: [String], required:true},
     stock:{type:Number,required:true},
-    availability:{type:String,required:true}
+    availability:{type:String,required:true},
+    report : {type:Number}
 });
 
 module.exports = mongoose.model("hiddenProduct", productSchema)

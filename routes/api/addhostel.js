@@ -39,7 +39,8 @@ router.post('/addhostel',(req,res)=>{
                 category : req.body.category,
                 availability:req.body.availability,
                 ratedtimes:0,
-                rating:0
+                rating:0,
+                report:0
             });
             newHostel.save()
             .then(res.json("Hostel sucessfully hidden when added first time"))
@@ -60,7 +61,8 @@ router.post('/addhostel',(req,res)=>{
                 category : req.body.category,
                 availability:req.body.availability,
                 ratedtimes:0,
-                rating:0
+                rating:0,
+                report:0
             });
             newHostels.save()
             .then(res.json("Hostel sucessfully Added"))
@@ -108,7 +110,8 @@ router.post("/updatehostel",(req,res)=>{
                         category : req.body.category,
                         rating:req.body.rating,
                         availability:req.body.availability,
-                        ratedtimes:req.body.ratedtimes
+                        ratedtimes:req.body.ratedtimes,
+                        report : req.body.report
                     }},{upsert:true})
                     .then(
                         Hostel.deleteOne({_id:req.body.id})
@@ -139,7 +142,8 @@ router.post("/updatehostel",(req,res)=>{
                         category : req.body.category,
                         availability:req.body.availability,
                         ratedtimes:req.body.ratedtimes,
-                        rating:req.body.rating
+                        rating:req.body.rating,
+                        report : req.body.report
                     }},{upsert:true})
                     .then(
                         res.json("updated changes in hidden hostel collection")
@@ -168,7 +172,8 @@ router.post("/updatehostel",(req,res)=>{
                 category : req.body.category,
                 availability:req.body.availability,
                 rating:req.body.rating,
-                ratedtimes:req.body.ratedtimes
+                ratedtimes:req.body.ratedtimes,
+                report : req.body.report
             }},{upsert:true})
             .then((eve)=>res.json(eve))
             }catch(e){
@@ -189,7 +194,8 @@ router.post("/updatehostel",(req,res)=>{
                 category : req.body.category,
                 availability:req.body.availability,
                 rating:req.body.rating,
-                ratedtimes:req.body.ratedtimes
+                ratedtimes:req.body.ratedtimes,
+                report : req.body.report
             }},{upsert:true})
             .then((eve)=>{
                 hiddenHostel.deleteOne({_id:req.body.hiddenid})

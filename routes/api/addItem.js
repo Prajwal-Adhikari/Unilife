@@ -37,7 +37,8 @@ router.post('/additems',(req,res)=>{
             category : req.body.category,
             stock:req.body.stock,
             availability:req.body.availability,
-            ratedtimes:0
+            ratedtimes:0,
+            report:0
         });
         hiddenProducts.save()
         .then(res.status(200).json("Saved in hidden products"))
@@ -55,7 +56,8 @@ router.post('/additems',(req,res)=>{
             rating:0,
             stock:req.body.stock,
             availability:req.body.availability,
-            ratedtimes:0
+            ratedtimes:0,
+            report:0
         });
         newProducts.save()
         .then(res.status(200).json("Saved in products"))
@@ -79,7 +81,8 @@ router.post('/updateproduct',(req,res)=>{
                     category : req.body.category,
                     stock: req.body.stock,
                     availability:req.body.availability,
-                    ratedtimes:req.body.ratedtimes
+                    ratedtimes:req.body.ratedtimes,
+                    report : req.body.report
                 })
                 saveProduct.save()
                 .then((r)=>{
@@ -101,7 +104,8 @@ router.post('/updateproduct',(req,res)=>{
                     category : req.body.category,
                     stock:req.body.stock,
                     availability:req.body.availability,
-                    ratedtimes:req.body.ratedtimes
+                    ratedtimes:req.body.ratedtimes,
+                    report : req.body.report
             }})
             .then((r)=>{
                 res.json("deleted product in hidden collection");
@@ -122,7 +126,8 @@ router.post('/updateproduct',(req,res)=>{
                         category : req.body.category,
                         stock:req.body.stock,
                         availability:req.body.availability,
-                        ratedtimes:req.body.ratedtimes
+                        ratedtimes:req.body.ratedtimes,
+                        report : req.body.report
                     })
                     product.save()
                     .then(()=>{
@@ -143,7 +148,8 @@ router.post('/updateproduct',(req,res)=>{
                         category : req.body.category,
                         stock: req.body.stock,
                         availability:req.body.availability,
-                        ratedtimes:req.body.ratedtimes
+                        ratedtimes:req.body.ratedtimes,
+                        report : req.body.report
                     }})
                     .then((r)=>res.json(r))
                     .catch((e)=>res.json(e))
