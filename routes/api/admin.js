@@ -10,17 +10,25 @@ const hiddenProduct = require('../../models/hiddenProduct');
 
 router.post('/searchuser',(req,res)=>{
     User.findOne({email:req.body.email})
-    .then((data)=>res.json(data))
-    .catch((e)=>res.json(e));
+    .then((val)=>{
+        User.deleteOne({email:req.body.email})
+        .then((data)=>{
+            User.findOne({email:req.body.email})
+            .then((obj)=>res.json(true))
+            .catch((e)=>res.json(false))
+        })
+        .catch((e)=>res.json(false))
+    })
+    .catch((e)=>res.status("no")) 
 });
 
 router.post('/searchhostel',async (req,res)=>{
     let collection = [];
-    const hostels = await Hostel.find({title:req.body.title})
+    const hostels = await Hostel.find({title:{$regex:req.body.title,$options:"i"}})
     .then((data)=>{return data})
     .catch((e)=>res.json(e))
 
-    const hiddenhostels = await hiddenHostel.find({title:req.body.title})
+    const hiddenhostels = await hiddenHostel.find({title:{$regex:req.body.title,$options:"i"}})
     .then((data)=>{return data})
     .catch((e)=>res.json(e))
 
@@ -30,11 +38,11 @@ router.post('/searchhostel',async (req,res)=>{
 
 router.post('/searchproduct',async (req,res)=>{
     let collection = [];
-    const products = await Product.find({title:req.body.title})
+    const products = await Product.find({title:{$regex:req.body.title,$options:"i"}})
     .then((data)=>{return data})
     .catch((e)=>res.json(e))
 
-    const hiddenproducts = await hiddenProduct.find({title:req.body.title})
+    const hiddenproducts = await hiddenProduct.find({title:{$regex:req.body.title,$options:"i"}})
     .then((data)=>{return data})
     .catch((e)=>res.json(e))
 

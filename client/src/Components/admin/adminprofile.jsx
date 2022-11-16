@@ -12,6 +12,7 @@ function validateForm() {
 }
 
 let fetch_data =[];
+let delete_user = [];
 const token = jwt_decode(localStorage.getItem('jwtToken'));
 
 class adminProfile extends Component {
@@ -20,8 +21,12 @@ class adminProfile extends Component {
         super(props) 
             
         // Set initial state 
-        this.state = {isLoading : true} 
-            
+        this.state = {
+          isLoading : true,
+          name : '',
+          title : '',
+          email : ''
+        }     
         // Binding this keyword 
         this.updateState = this.updateState.bind(this) 
       } 
@@ -30,6 +35,10 @@ class adminProfile extends Component {
         // Changing state 
         this.setState({isLoading :false}) 
       } 
+
+      onChangeAddItem = e => {        
+        this.setState({ [e.target.id]: e.target.value });
+      };
 
     fetchData = async()=>{
         fetch_data = await fetch('http://localhost:5000/api/users/profile',{
@@ -54,6 +63,34 @@ class adminProfile extends Component {
           this.updateState();
     }
 
+    deleteUser = async () =>{
+      delete_user = await fetch('http://localhost:5000/api/users/searchuser',{
+          method : "POST",
+      headers:{
+          "Content-Type" : "application/json"
+        },
+        body : JSON.stringify({
+          email : this.state.email
+        }),
+      })
+      .then(res=> {
+          if(res.ok) return res.json()
+          return res.json().then(json=>Promise.reject(json))
+        })
+        .then((data)=>{
+          return data;
+        })
+        .catch(e=>{
+          console.error(e.error)
+        })
+        if(delete_user==="no"){
+          window.alert("User not found");
+        }
+        if(delete_user===false){
+          window.alert("User deleted");
+        }
+  }
+
 
     componentDidMount(){
         this.fetchData();
@@ -64,6 +101,7 @@ class adminProfile extends Component {
         return null;
     }
     else{
+      const {title,email,name} = this.state;
         return(
             <div>
               <hr></hr>
@@ -112,8 +150,10 @@ class adminProfile extends Component {
             
 
             <div className="admin_delete">
-            <label class="_labels">Delete User</label><br></br><input type="text" placeholder="Enter username here" name='username'/>
-            <button className='admin_search_button'>Search</button>
+            <label class="_labels">Delete User</label><br></br><input type="text" placeholder="Enter username here" id="email" name='username' value={email} onChange={this.onChangeAddItem}/>
+            <button className='admin_search_button' onClick={()=>{
+              this.deleteUser();
+            }}>Delete</button>
             </div>
             
             <hr id='profile_break'></hr>

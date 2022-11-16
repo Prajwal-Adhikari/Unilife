@@ -125,14 +125,13 @@ function App() {
               <PrivateRoute exact path="/hostel" component={Hostel}/>
               <PrivateRoute exact path="/cart" component={Cart}/>   
               <PrivateRoute exact path="/product" component={Product}/>
-              <PrivateRoute exact path="/profile" component={Profile}/>
               <PrivateRoute exact path="/updateprofile" component={updateProfile}/>
               <PrivateRoute exact path="/updatehostel" component={UpdateHostel}/> 
               <PrivateRoute exact path="/updateproduct" component={updateProduct}/> 
               <PrivateRoute exact path="/checkedOut" component={CheckedOut}/>
               <PrivateRoute exact path="/hostel/:id" component={viewHostel}/>
               <PrivateRoute exact path="/product/:id" component={ViewProduct}/>
-              <PrivateRoute exact path="/adminpanel" component={adminProfile}/>
+              <PrivateRoute exact path="/profile" component={adminProfile}/>
               <Route path="*" component={NotFound} />
             </Switch>
             <Route path="*" component={NotFound} />
