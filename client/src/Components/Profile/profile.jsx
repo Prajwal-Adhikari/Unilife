@@ -135,7 +135,7 @@ class Profile extends Component {
           <hr></hr>
 
           <div class="container bg-white mt-5 mb-5" id="corner">
-            <div class="row">
+            <div class="row main-profile">
               <div class="col-md-3 border-right">
                 <div class="d-flex flex-column align-items-center text-center p-3 py-5">
                   <img
@@ -201,12 +201,22 @@ class Profile extends Component {
           </div>
 
           <hr id="profile_break"></hr>
+          <div className='add'>
+                      <button className='listing_add' onClick={() => {
+                        window.open("/addhostel")
+                      }}>Add hostel</button>
 
+                      <button className='listing_add' onClick={() => {
+                        window.open("/additems")
+                      }}>Add product</button>
+
+              </div>
             <div className="listing_header">
               <div className="listing_title">
               Your Activities
               </div>
               </div>
+             
             
 
             {list.map((curElem) => {

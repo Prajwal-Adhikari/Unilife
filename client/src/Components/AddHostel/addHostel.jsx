@@ -11,7 +11,7 @@ class AddHostel extends Component{
   constructor() {
     super();
     this.state = {
-      title : '',
+      _title : '',
       ownedby: '',
       ownerid:'',
       city : '',
@@ -46,7 +46,7 @@ class AddHostel extends Component{
   addItem = e => {                  
     e.preventDefault();
     const newHostel = {
-      title:this.state.title,
+      title:this.state._title,
       ownedby :this.state.ownedby,
       ownerid:token.id,
       city : this.state.city,
@@ -63,13 +63,13 @@ class AddHostel extends Component{
 
 
   render() {
-    const { errors,description,price,ownedby,city,contact,address,title,category,imagepath0,imagepath1,imagepath2,imagepath3,imagepath4,availability } = this.state;
+    const { errors,description,price,ownedby,city,contact,address,_title,category,imagepath0,imagepath1,imagepath2,imagepath3,imagepath4,availability } = this.state;
     return (
         <div className="_container">
           <div className="_row">
             <div className="col-lg-6">
               <div className="addproduct-title">
-                <h1>Add Your Hostel</h1>
+                <h1 className='add_hostel_title'>Add Your Hostel</h1>
                 <form noValidate onSubmit={this.addItem}>
                   <div class="form-row">
                     <div class="form-group col-md-12">
@@ -78,12 +78,12 @@ class AddHostel extends Component{
                         type="text"
                         className="input-control"
                         placeholder="Enter Hostel Name"
-                        id="title"
-                        value={title}
+                        id="_title"
+                        value={_title}
                         onChange={this.onChangeAddItem}
                         error={errors.title}
                         className={classnames('', {
-                          invalid: errors.title
+                          invalid: errors._title
                         })}
                       />{' '}
                       <br />

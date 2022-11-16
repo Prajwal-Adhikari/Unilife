@@ -12,7 +12,7 @@ class AddProduct extends Component{
   constructor() {
     super();
     this.state = {
-      title : '',
+      _title : '',
       productby: '',
       description : '',
       imagepath : [],
@@ -42,7 +42,7 @@ class AddProduct extends Component{
   addItem = e => {                  //registerSubmit -> addItem
     e.preventDefault();
     const newProducts = {
-      title:this.state.title,
+      _title:this.state._title,
       ownerid:token.id,
       productby :this.state.productby,
       description:this.state.description,
@@ -55,31 +55,31 @@ class AddProduct extends Component{
 
   
   render() {
-    const { errors, description, price, productby, title,category,imagepath,imagepath0,imagepath1,imagepath2,imagepath3,imagepath4 } = this.state;
+    const { errors, description, price, productby, _title,category,imagepath,imagepath0,imagepath1,imagepath2,imagepath3,imagepath4 } = this.state;
     return (
       <div className="containerProduct">
       <div className="_row">
         <div className="col-lg-6">
-          <div className="addproduct-title">
-            <h1>Add Product</h1>
+          <div className="addproduct-_title">
+            <h1 className='add_product__title'>Add Product</h1>
             <form noValidate onSubmit={this.addItem}>
               <div class="form-row">
                 <div class="form-group col-md-12">
-                  <label htmlFor="title">Product</label> <br />
+                  <label htmlFor="_title">Product</label> <br />
                   <input
                     type="text"
                     className="input-control"
                     placeholder="Enter Product Name"
-                    id="title"
-                    value={title}
+                    id="_title"
+                    value={_title}
                     onChange={this.onChangeAddItem}
-                    error={errors.title}
+                    error={errors.__title}
                     className={classnames('', {
-                      invalid: errors.title
+                      invalid: errors.__title
                     })}
                   />{' '}
                   <br />
-                  <span className="text-danger">{errors.title}</span>
+                  <span className="text-danger">{errors.__title}</span>
                 </div>
               </div>
               <div class="form-row">
@@ -148,7 +148,7 @@ class AddProduct extends Component{
                     className="input-control"
                     placeholder="Description about product"
                     id="category"
-                    value={category}
+                    value={category}  
                     onChange={this.onChangeAddItem}
                     error={errors.category}
                     className={classnames('', {

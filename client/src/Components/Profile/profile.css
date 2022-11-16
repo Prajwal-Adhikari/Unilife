@@ -1,6 +1,4 @@
 body {
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
   border-radius: 10px;
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
@@ -19,8 +17,6 @@ body {
 .profile-button:hover {
   background: #d3d60f
 }
-
-
 
 .profile-button:active {
   background: #FF9F1C;
@@ -45,64 +41,23 @@ body {
 
 #corner {
   border-radius: 35px;
-  box-shadow: 0 8px 8px -4px #FFBF69;
-
-
-
-
-  position: relative;
-  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
 }
 
-.corner:before,
-.corner:after {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
-  -moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
-  top: 0;
-  bottom: 0;
-  left: 10px;
-  right: 10px;
-  -moz-border-radius: 100px / 10px;
-  border-radius: 100px / 10px;
-}
-
-.corner:after {
-  right: 10px;
-  left: auto;
-  -webkit-transform: skew(8deg) rotate(3deg);
-  -moz-transform: skew(8deg) rotate(3deg);
-  -ms-transform: skew(8deg) rotate(3deg);
-  -o-transform: skew(8deg) rotate(3deg);
-  transform: skew(8deg) rotate(3deg);
-}
-
-/*==================================================
-* Effect 8
-* ===============================================*/
-.effect8 {
-  position: relative;
-  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-}
 
 
 #save_button {
   padding: 5px;
-  border: 2px solid rgb(55, 56, 61);
+  border: 2px solid #CBF3F0 !important;
   border-radius: 7px;
-  background-color: #CBF3F0;
+  color: #000000;
+  background-color: #CBF3F0!important;
   font-weight: 500;
 }
 
 #save_button:hover {
-  background-color: #FF9F1C;
+  color: #FFFFFF;
+  border: 2px solid #2EC4B6 !important;
+  background-color: #2EC4B6 !important;
 }
 
 .labels {
@@ -119,13 +74,10 @@ hr {
 
 .listing_header {
   height: 70px;
-  border: 1px solid black top bottom;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 3rem;
-  border-top: 1px solid black;
-  border-bottom: 1px solid black;
   font-size: 60px;
   ;
 }
@@ -134,7 +86,7 @@ hr {
   width: 50vw;
   margin-left: 50px;
   background: rgba(129, 155, 230, 0.027);
-  box-shadow: 0 8px 8px -4px rgb(20, 52, 63);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
   border-radius: 15px;
   margin-top: 35px;
   margin-bottom: 25px;
@@ -235,14 +187,27 @@ hr {
   border: 1px solid grey;
 
 }
-
 .add{
-    margin-top: 2rem;
-    display: flex;
-    justify-content: flex-end;
-    margin-right: 1rem;
-    background-color: #fff;
+  height: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+.listing_add{
+  border: none;
+  padding: 10px;
+  margin-left: 15px;
+  background-color: white;;
+  
+}
+.listing_add:first-child{
+  background-color: rgba(255, 159, 28, 0.8);
+}
+.listing_add:last-child{
+  background-color: rgba(46, 196, 182, 0.8);
+}
+
 
 .profile_addhostel, .profile_addproduct{
     width: 150px;
@@ -276,4 +241,8 @@ hr {
 
 .profile_add_button:hover{
   background-color: pink;
+}
+
+.container {
+	box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px !important;
 }
