@@ -201,12 +201,22 @@ class Profile extends Component {
           </div>
 
           <hr id="profile_break"></hr>
+          <div className='add'>
+                      <button className='listing_add' onClick={() => {
+                        window.open("/addhostel")
+                      }}>Add hostel</button>
 
+                      <button className='listing_add' onClick={() => {
+                        window.open("/additems")
+                      }}>Add product</button>
+
+              </div>
             <div className="listing_header">
               <div className="listing_title">
               Your Activities
               </div>
               </div>
+             
             
 
             {list.map((curElem) => {

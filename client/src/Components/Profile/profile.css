@@ -187,14 +187,27 @@ hr {
   border: 1px solid grey;
 
 }
-
 .add{
-    margin-top: 2rem;
-    display: flex;
-    justify-content: flex-end;
-    margin-right: 1rem;
-    background-color: #fff;
+  height: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
+
+.listing_add{
+  border: none;
+  padding: 10px;
+  margin-left: 15px;
+  background-color: white;;
+  
+}
+.listing_add:first-child{
+  background-color: rgba(255, 159, 28, 0.8);
+}
+.listing_add:last-child{
+  background-color: rgba(46, 196, 182, 0.8);
+}
+
 
 .profile_addhostel, .profile_addproduct{
     width: 150px;

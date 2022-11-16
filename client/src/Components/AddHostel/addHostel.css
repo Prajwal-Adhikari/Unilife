@@ -4,6 +4,9 @@
   background-size: cover;
   height: 225vh;
 }
+.add_hostel_title{
+  color: rgba(255, 159, 28, 0.8);;
+}
 
 #onlyChoice{
   width: 20px;
