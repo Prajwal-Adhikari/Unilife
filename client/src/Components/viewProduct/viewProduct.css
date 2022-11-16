@@ -54,3 +54,54 @@
 	border: none;
 	background-color: rgba(255, 159, 28, 1);
 }
+
+.review-section {
+	margin: 3rem auto;
+}
+
+.review-section form {
+	display: flex;
+	justify-content: center;
+	height: 100%;
+}
+
+.text-area {
+	margin-right: 1rem;
+	margin-bottom: 2rem;
+	width: 40%;
+	height: 4rem;
+	border: none;
+	border-left: 3px solid #FF9F1C;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 10px;
+}
+
+.review-section > form > button{
+	width: 9%;
+	height: 4rem;
+	border: none;
+}
+
+.review-button:hover {
+	background-color: #2EC4B6;
+}
+
+.old-reviews{
+	min-height: 50vh;
+	display: flex;
+	flex-direction: column;
+}
+
+.review-box {
+	margin: 0.5rem auto;
+	margin-bottom: 2rem;
+	padding-left: 0.6rem;
+	box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+	border: none;
+	min-height: 3rem;
+	width: 50vw;
+	font-size: 1.2rem;
+}
+
+.reviewer {
+	color: #FF9F1C;
+}

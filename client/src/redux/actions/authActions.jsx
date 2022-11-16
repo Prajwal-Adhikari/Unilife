@@ -41,6 +41,17 @@ export const saveProduct = (userData,history)=>dispatch=>{
   );
 };
 
+export const saveReview = (userData, history) => dispatch => {
+	axios
+		.post('/api/users/addreview', userData)
+		.then(res => history.push('/Dashboard'))
+		.catch(err => dispatch({
+			type:GET_ERRORS,
+			payload:err.response.data
+		})
+		);
+};
+
 export const saveOptions = (userData,history)=>dispatch=>{
   axios
     .post('/api/users/hostel',userData)
