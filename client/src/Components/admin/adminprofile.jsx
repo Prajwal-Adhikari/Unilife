@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
-//import './profile.css';
+import './admin.css';
 import jwt_decode from 'jwt-decode';
 
+
+function validateForm() {
+  let x = document.forms["myForm"]["fname"].value;
+  if (x == "") {
+    alert("Name must be filled out");
+    return false;
+  }
+}
 
 let fetch_data =[];
 const token = jwt_decode(localStorage.getItem('jwtToken'));
@@ -99,7 +107,34 @@ class adminProfile extends Component {
         </div>
 
         <hr id='profile_break'></hr>
+          <div className="admin_contanier">
 
+            
+
+            <div className="admin_delete">
+            <label class="_labels">Delete User</label><br></br><input type="text" placeholder="Enter username here" name='username'/>
+            <button className='admin_search_button'>Search</button>
+            </div>
+            
+            <hr id='profile_break'></hr>
+
+            <div className="admin_delete">
+            <label class="_labels">Delete Hostel</label><br></br><input type="text" placeholder="Enter hostel name here" name='hostel'/>
+            <button className='admin_search_button'>Search</button>
+            </div>
+            <hr id='profile_break'></hr>
+
+            <div className="admin_delete">
+            <label class="_labels">Delete Product</label><br></br><input type="text" placeholder="Enter product name here" name='product'/>
+            <button className='admin_search_button'>Search</button>
+            </div>
+
+
+          
+            
+
+
+          </div>
         </div>
         )
     }
