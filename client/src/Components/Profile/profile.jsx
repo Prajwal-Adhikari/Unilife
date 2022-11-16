@@ -6,7 +6,6 @@ import jwt_decode from 'jwt-decode'
 let fetch_data = []
 let list = []
 const token = jwt_decode(localStorage.getItem('jwtToken'))
-
 class Profile extends Component {
   constructor(props) {
     super(props)
