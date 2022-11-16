@@ -200,7 +200,8 @@ router.post('/login', (req, res) => {
                     //Create JWT Payload
                     const payload = {
                         id: user.id,
-                        name: user.name
+                        name: user.name,
+                        isAdmin :user.isAdmin
                     };
 
                     //Sign Token
@@ -248,7 +249,6 @@ router.post('/updateprofile',async (req,res)=>{
                      password:info.password
                 }
              }).then((data)=>{
-                console.log("working")
                  res.status(200).json(true)
              })
              .catch((e)=>{

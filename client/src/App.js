@@ -11,7 +11,7 @@ import Profile from './Components/Profile/profile';
 import adminProfile from './Components/admin/adminprofile';
 import updateProfile from './Components/updateProfile/updateProfile';
 import UpdateHostel from './Components/UpdateHostel/updateHostel';
-//import updateProduct form './Components/UpdateProduct/updateProduct';
+import updateProduct from './Components/UpdateProduct/updateProduct';
 import AddProduct from './Components/AddProduct/addProduct';
 import Hostel from './Components/Hostel/hostel';
 import AddHostel from './Components/AddHostel/addHostel';
@@ -90,13 +90,14 @@ import Dashboard from './Components/Dashboard/Dashboard';
 
 // export default App;
 const token = localStorage.jwtToken;
+const user = jwt_decode(localStorage.getItem('jwtToken'))
 function App() {
   // Check for token to keep user logged in
        if (localStorage.jwtToken) {
   //   // Set auth token header auth
        setAuthToken(token);
   //   // Decode token and get user info and exp
-         const decoded = jwt_decode(token);
+          const decoded = jwt_decode(token);
   //   // Set user and isAuthenticated
          store.dispatch(setCurrentUser(decoded)); // Check for expired token
        const currentTime = Date.now() / 1000; // to get in milliseconds
@@ -106,14 +107,13 @@ function App() {
          window.location.href = './login';
      }
    }
-
-   if(token===undefined||token===null){
+   if(user.isAdmin===true){
     return (
       <Provider store={store}>
         <Router>
           <Navbar />
             <Switch>
-            <Route exact path="/" component={Login} />
+            <Route exact path="/" component={Dashboard} />
            <Route path="/register" component={Register} />
            <Route exact path="/verification" component={Emailsent}/>
             <Route path="/login" component={Login} />
@@ -127,10 +127,12 @@ function App() {
               <PrivateRoute exact path="/product" component={Product}/>
               <PrivateRoute exact path="/profile" component={Profile}/>
               <PrivateRoute exact path="/updateprofile" component={updateProfile}/>
-              <PrivateRoute exact path="/updatehostel" component={UpdateHostel}/>
+              <PrivateRoute exact path="/updatehostel" component={UpdateHostel}/> 
+              <PrivateRoute exact path="/updateproduct" component={updateProduct}/> 
               <PrivateRoute exact path="/checkedOut" component={CheckedOut}/>
               <PrivateRoute exact path="/hostel/:id" component={viewHostel}/>
               <PrivateRoute exact path="/product/:id" component={ViewProduct}/>
+              <PrivateRoute exact path="/adminpanel" component={adminProfile}/>
               <Route path="*" component={NotFound} />
             </Switch>
             <Route path="*" component={NotFound} />
@@ -141,36 +143,75 @@ function App() {
     );
    }
    else{
-    return (
-      <Provider store={store}>
-        <Router>
-          <Navbar />
-            <Switch>
-            <Route exact path="/" component={Login} />
-           <Route path="/register" component={Register} />
-           <Route exact path="/verification" component={Emailsent}/>
-            <Route path="/login" component={Login} />
-            <Route path="/about" component={About} />
-            <Switch>
-              <PrivateRoute exact path="/dashboard" component={Dashboard} />
-              <PrivateRoute exact path="/additems" component={AddProduct}/>
-              <PrivateRoute exact path="/addhostel" component={AddHostel}/>
-              <PrivateRoute exact path="/hostel" component={Hostel}/>
-              <PrivateRoute exact path="/cart" component={Cart}/>
-              <PrivateRoute exact path="/product" component={Product}/>
-              <PrivateRoute exact path="/profile" component={Profile}/>
-              <PrivateRoute exact path="/updateprofile" component={updateProfile}/>
-              <PrivateRoute exact path="/checkedOut" component={CheckedOut}/>
-              <PrivateRoute exact path="/hostel/:id" component={viewHostel}/>
-              <PrivateRoute exact path="/product/:id" component={ViewProduct}/>
+    if(token===undefined){
+      return (
+        <Provider store={store}>
+          <Router>
+            <Navbar />
+              <Switch>
+              <Route exact path="/" component={Login} />
+             <Route path="/register" component={Register} />
+             <Route exact path="/verification" component={Emailsent}/>
+              <Route path="/login" component={Login} />
+              <Route path="/about" component={About} />
+              <Switch>
+                <PrivateRoute exact path="/dashboard" component={Dashboard} />
+                <PrivateRoute exact path="/additems" component={Login}/>
+                <PrivateRoute exact path="/addhostel" component={Login}/>
+                <PrivateRoute exact path="/hostel" component={Login}/>
+                <PrivateRoute exact path="/cart" component={Login}/>
+                <PrivateRoute exact path="/product" component={Login}/>
+                <PrivateRoute exact path="/profile" component={Login}/>
+                <PrivateRoute exact path="/updatehostel" component={Login}/>
+                <PrivateRoute exact path="/updateproduct" component={Login}/> 
+                <PrivateRoute exact path="/updateprofile" component={Login}/>
+                <PrivateRoute exact path="/checkedOut" component={Login}/>
+                <PrivateRoute exact path="/hostel/:id" component={Login}/>
+                <PrivateRoute exact path="/product/:id" component={Login}/>
+                <Route path="*" component={NotFound} />
+              </Switch>
               <Route path="*" component={NotFound} />
             </Switch>
-            <Route path="*" component={NotFound} />
-          </Switch>
-           <Footer /> 
-        </Router>
-      </Provider>
-    );
+             <Footer /> 
+          </Router>
+        </Provider>
+      );
+    }
+    else{
+      return (
+        <Provider store={store}>
+          <Router>
+            <Navbar />
+              <Switch>
+              <Route exact path="/" component={Dashboard} />
+             <Route path="/register" component={Register} />
+             <Route exact path="/verification" component={Emailsent}/>
+              <Route path="/login" component={Login} />
+              <Route path="/about" component={About} />
+              <Switch>
+                <PrivateRoute exact path="/dashboard" component={Dashboard} />
+                <PrivateRoute exact path="/additems" component={AddProduct}/>
+                <PrivateRoute exact path="/addhostel" component={AddHostel}/>
+                <PrivateRoute exact path="/hostel" component={Hostel}/>
+                <PrivateRoute exact path="/cart" component={Cart}/>
+                <PrivateRoute exact path="/product" component={Product}/>
+                <PrivateRoute exact path="/profile" component={Profile}/>
+                <PrivateRoute exact path="/updatehostel" component={UpdateHostel}/>
+                <PrivateRoute exact path="/updateproduct" component={updateProduct}/> 
+                <PrivateRoute exact path="/updateprofile" component={updateProfile}/>
+                <PrivateRoute exact path="/checkedOut" component={CheckedOut}/>
+                <PrivateRoute exact path="/hostel/:id" component={viewHostel}/>
+                <PrivateRoute exact path="/product/:id" component={ViewProduct}/>
+                <Route path="*" component={NotFound} />
+              </Switch>
+              <Route path="*" component={NotFound} />
+            </Switch>
+             <Footer /> 
+          </Router>
+        </Provider>
+      );
+    }
+    
    }
  }
 

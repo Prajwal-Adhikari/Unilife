@@ -4,7 +4,6 @@ import jwt_decode from 'jwt-decode';
 
 
 let fetch_data =[];
-let list = [];
 const token = jwt_decode(localStorage.getItem('jwtToken'));
 
 class adminProfile extends Component {
@@ -44,36 +43,12 @@ class adminProfile extends Component {
           .catch(e=>{
             console.error(e.error)
           })
-          //this.updateState();
+          this.updateState();
     }
 
 
-    listData = async()=>{
-      list = await fetch('http://localhost:5000/api/users/profileItems',{
-          method : "POST",
-      headers:{
-          "Content-Type" : "application/json"
-        },
-        body : JSON.stringify({
-          id : token.id
-        }),
-      })
-      .then(res=> {
-          if(res.ok) return res.json()
-          return res.json().then(json=>Promise.reject(json))
-        })
-        .then((data)=>{
-          return data;
-        })
-        .catch(e=>{
-          console.error(e.error)
-        })
-        this.updateState();
-  }
-
     componentDidMount(){
         this.fetchData();
-        this.listData();
     }
 
   render() {
@@ -123,21 +98,8 @@ class adminProfile extends Component {
         </div>
         </div>
 
-<hr id='profile_break'></hr>
+        <hr id='profile_break'></hr>
 
-
-        <div className='listing'>
-              <div className="listing_title">Your Activities</div>
-        </div>
-        <div class="parent">
-          {
-            list.map((curElem)=>{ 
-              return(
-                <h2>{curElem.description}</h2>
-              )
-            })
-          }
-        </div>
         </div>
         )
     }

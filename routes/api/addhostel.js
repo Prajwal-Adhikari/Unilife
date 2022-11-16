@@ -5,7 +5,6 @@ const app = express();
 app.use(express.json());
 
 const validateAddHostelInput = require('../../validation/addHostel');
-const validateUpdateHostelInput = require('../../validation/updatehostel');
 const Hostel = require('../../models/hostel');
 const hiddenHostel = require('../../models/hiddenHostel');
 
@@ -75,17 +74,6 @@ router.post('/addhostel',(req,res)=>{
 
 router.post("/updatehostel",(req,res)=>{
 
-    const {
-        errors,
-        isValid
-    } = validateUpdateHostelInput(req.body);
-
-    //Check Validation
-    if (!isValid) {
-        return res.status(400).json(errors);
-    }
-
-    console.log("update hostel called");
     if(req.body.remove){
         if(req.body.availability==="Yes"){
             Hostel.deleteOne({_id:req.body.id})
@@ -113,7 +101,7 @@ router.post("/updatehostel",(req,res)=>{
                         ownedby : req.body.ownedby,
                         city : req.body.city,   
                         ownerid:req.body.ownerid,
-                        address :  req.body.address,
+                        address :  req.body.address,    
                         description : req.body.description,
                         contact: req.body.contact,
                         price : req.body.price,
@@ -164,32 +152,53 @@ router.post("/updatehostel",(req,res)=>{
         
     }
     else{
-        try{
+        if(req.body.hiddenid===undefined){
+            try{
             //changing details when availability is Yes
-        Hostel.updateOne({_id:req.body.id},{$set : {
-            imagepath : req.body.imagepath,
-            title : req.body.title,
-            ownedby : req.body.ownedby,
-            ownerid:req.body.ownerid,
-            city : req.body.city,   
-            address :  req.body.address,
-            description : req.body.description,
-            contact: req.body.contact,
-            price : req.body.price,
-            category : req.body.category,
-            availability:req.body.availability,
-            rating:req.body.rating,
-            ratedtimes:req.body.ratedtimes
-        }},{upsert:true})
-        .then(
+            Hostel.updateOne({_id:req.body.id},{$set : {
+                imagepath : req.body.imagepath,
+                title : req.body.title,
+                ownedby : req.body.ownedby,
+                ownerid:req.body.ownerid,
+                city : req.body.city,   
+                address :  req.body.address,
+                description : req.body.description,
+                contact: req.body.contact,
+                price : req.body.price,
+                category : req.body.category,
+                availability:req.body.availability,
+                rating:req.body.rating,
+                ratedtimes:req.body.ratedtimes
+            }},{upsert:true})
+            .then((eve)=>res.json(eve))
+            }catch(e){
+                res.json(e)
+            }
+        }
+        else{
+            Hostel.updateOne({_id:req.body.hiddenid},{$set:{
+                imagepath : req.body.imagepath,
+                title : req.body.title,
+                ownedby : req.body.ownedby,
+                ownerid:req.body.ownerid,
+                city : req.body.city,   
+                address :  req.body.address,
+                description : req.body.description,
+                contact: req.body.contact,
+                price : req.body.price,
+                category : req.body.category,
+                availability:req.body.availability,
+                rating:req.body.rating,
+                ratedtimes:req.body.ratedtimes
+            }},{upsert:true})
+            .then((eve)=>{
                 hiddenHostel.deleteOne({_id:req.body.hiddenid})
                 .then((data)=>{
                     res.json(data)
                 })
-                .catch((e)=>{res.json("Can not delete (last)")})
-        )
-        }catch(e){
-            res.json(e)
+                .catch((e)=>res.json(e))
+            })
+            .catch((e)=>res.json(e))
         }
     }
     }

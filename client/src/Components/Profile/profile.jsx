@@ -6,7 +6,6 @@ import jwt_decode from 'jwt-decode'
 let fetch_data = []
 let list = []
 const token = jwt_decode(localStorage.getItem('jwtToken'))
-
 class Profile extends Component {
   constructor(props) {
     super(props)
@@ -72,7 +71,6 @@ class Profile extends Component {
   }
 
   RemoveHostel = async(elem)=>{
-    console.log("Remove called");
     await fetch("http://localhost:5000/api/users/updatehostel", {
       method: 'POST',
       headers: {
@@ -97,31 +95,30 @@ class Profile extends Component {
       this.listData();
   }
 
-  // RemoveProduct = async(elem)=>{
-  //   console.log("Remove called");
-  //   await fetch("http://localhost:5000/api/users/updateproduct", {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({
-  //       id:elem._id,
-  //       availability:elem.availability,
-  //       remove:true
-  //     }),
-  //   })
-  //     .then((res) => {
-  //       if (res.ok) return res.json()
-  //       return res.json().then((json) => Promise.reject(json))
-  //     })
-  //     .then((data) => {
-  //       return data
-  //     })
-  //     .catch((e) => {
-  //       console.error(e.error)
-  //     })
-  //     this.listData();
-  // }
+  RemoveProduct = async(elem)=>{
+    console.log("Remove called");
+    await fetch("http://localhost:5000/api/users/removeproduct", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        id:elem._id,
+        availability:elem.availability
+      }),
+    })
+      .then((res) => {
+        if (res.ok) return res.json()
+        return res.json().then((json) => Promise.reject(json))
+      })
+      .then((data) => {
+        return data
+      })
+      .catch((e) => {
+        console.error(e.error)
+      })
+      this.listData();
+  }
 
 
   componentDidMount() {
@@ -249,7 +246,6 @@ class Profile extends Component {
                         this.RemoveProduct(curElem);
                       }
                     }}>Remove</button>
-                    {/* <button className='update'>Remove</button> */}
                   </div>
                   </div>
                 </div>
