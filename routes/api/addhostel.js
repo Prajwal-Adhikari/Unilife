@@ -5,7 +5,6 @@ const app = express();
 app.use(express.json());
 
 const validateAddHostelInput = require('../../validation/addHostel');
-const validateUpdateHostelInput = require('../../validation/updatehostel');
 const Hostel = require('../../models/hostel');
 const hiddenHostel = require('../../models/hiddenHostel');
 
@@ -74,16 +73,6 @@ router.post('/addhostel',(req,res)=>{
 });
 
 router.post("/updatehostel",(req,res)=>{
-
-    const {
-        errors,
-        isValid
-    } = validateUpdateHostelInput(req.body);
-
-    //Check Validation
-    if (!isValid) {
-        return res.status(400).json(errors);
-    }
 
     if(req.body.remove){
         if(req.body.availability==="Yes"){

@@ -11,7 +11,7 @@ import Profile from './Components/Profile/profile';
 import adminProfile from './Components/admin/adminprofile';
 import updateProfile from './Components/updateProfile/updateProfile';
 import UpdateHostel from './Components/UpdateHostel/updateHostel';
-//import updateProduct form './Components/UpdateProduct/updateProduct';
+import updateProduct from './Components/UpdateProduct/updateProduct';
 import AddProduct from './Components/AddProduct/addProduct';
 import Hostel from './Components/Hostel/hostel';
 import AddHostel from './Components/AddHostel/addHostel';
@@ -127,7 +127,8 @@ function App() {
               <PrivateRoute exact path="/product" component={Product}/>
               <PrivateRoute exact path="/profile" component={Profile}/>
               <PrivateRoute exact path="/updateprofile" component={updateProfile}/>
-              <PrivateRoute exact path="/updatehostel" component={UpdateHostel}/>
+              <PrivateRoute exact path="/updatehostel" component={UpdateHostel}/> 
+              <PrivateRoute exact path="/updateproduct" component={updateProduct}/> 
               <PrivateRoute exact path="/checkedOut" component={CheckedOut}/>
               <PrivateRoute exact path="/hostel/:id" component={viewHostel}/>
               <PrivateRoute exact path="/product/:id" component={ViewProduct}/>
@@ -160,6 +161,7 @@ function App() {
               <PrivateRoute exact path="/product" component={Product}/>
               <PrivateRoute exact path="/profile" component={Profile}/>
               <PrivateRoute exact path="/updatehostel" component={UpdateHostel}/>
+              <PrivateRoute exact path="/updateproduct" component={updateProduct}/> 
               <PrivateRoute exact path="/updateprofile" component={updateProfile}/>
               <PrivateRoute exact path="/checkedOut" component={CheckedOut}/>
               <PrivateRoute exact path="/hostel/:id" component={viewHostel}/>

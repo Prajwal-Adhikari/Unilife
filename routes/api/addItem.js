@@ -9,7 +9,7 @@ app.use(express.json());
 const validateAddProductInput = require('../../validation/addProduct');
 const Product = require('../../models/product');
 const hiddenProduct = require('../../models/hiddenProduct');
-const product = require('../../models/product');
+const e = require('express');
 
 router.post('/additems',(req,res)=>{
 
@@ -24,6 +24,7 @@ router.post('/additems',(req,res)=>{
     if (!isValid) {
         return res.status(400).json(errors);
     }
+
     if(req.body.availability==="No"||req.body.stock==="0"){
         const hiddenProducts = new hiddenProduct({
             imagepath : req.body.imagepath,
@@ -62,9 +63,8 @@ router.post('/additems',(req,res)=>{
     }
 });
     
-router.post('/hideproduct',(req,res)=>{
+router.post('/updateproduct',(req,res)=>{
     try{
-        //pass hiddenid if hidden otherwise pass itemId from frontend
         if(req.body.hiddenid===undefined){
             if(req.body.availability==="No"||req.body.stock==="0"){
                 const saveProduct = new hiddenProduct({
@@ -104,21 +104,12 @@ router.post('/hideproduct',(req,res)=>{
                     ratedtimes:req.body.ratedtimes
             }})
             .then((r)=>{
-                    try{
-                        //check this out
-                        console.log("in deleting hidden product");
-                        hiddenProduct.deleteOne({_id:req.body.hiddenid})
-                        .then((res)=>{res.status(200).json("sucessful deleted from hidden product after update")})
-                        .catch((e)=>res.status(500).json(e));
-                    }catch(e){
-                        res.status(500).json(e)
-                    }   
+                res.json("deleted product in hidden collection");
             })
             .catch((e)=>{res.status(500).json(e)})
             }
         }
         else{
-            if(req.body.itemId===undefined){
                 if(req.body.availability==="Yes"&&req.body.stock>0){
                     const product = new Product({
                         imagepath : req.body.imagepath,
@@ -153,57 +144,28 @@ router.post('/hideproduct',(req,res)=>{
                         stock: req.body.stock,
                         availability:req.body.availability,
                         ratedtimes:req.body.ratedtimes
-                    }},{upsert:true})
-                    .then((r)=>res.status(200).json(r))
-                    .catch((e)=>res.status(500).json(e))
-                }
-            }
-            else{
-                if(req.body.availability==="Yes"&&req.body.stock>0){
-                    Product.updateOne({_id:req.body.itemId},{$set:{
-                        imagepath : req.body.imagepath,
-                        title : req.body.title,
-                        ownerid : req.body.ownerid,
-                        productby : req.body.productby,
-                        description : req.body.description,
-                        price : req.body.price,
-                        category : req.body.category,
-                        stock:req.body.stock,
-                        availability:req.body.availability,
-                        ratedtimes:req.body.ratedtimes,
-                        rating:req.body.rating
-                    }},{upsert:true})
-                    .then((r)=>{
-                        hiddenProduct.deleteOne({_id:req.body.hiddenid})
-                        .then((r)=>res.status(200).json(r))
-                        .catch((e)=>res.status(500).json(e))
-                    })
-                    .catch((e)=>{res.status(500).json(e)})
-            }
-            else{
-                hiddenProduct.updateOne({_id:req.body.hiddenid},{$set:{
-                    imagepath : req.body.imagepath,
-                    ownerid:req.body.ownerid,
-                    itemId : req.body.itemId,
-                    productby : req.body.productby,
-                    title : req.body.title,
-                    description : req.body.description,
-                    price : req.body.price,
-                    category : req.body.category,
-                    stock: req.body.stock,
-                    availability:req.body.availability,
-                    ratedtimes:req.body.ratedtimes,
-                    rating:req.body.rating
-                }},{upsert:true})
-                .then((foo)=>res.status(200).json(foo))
-                .catch((e)=>res.status(500).json(e))
-            }
-            }
-            
+                    }})
+                    .then((r)=>res.json(r))
+                    .catch((e)=>res.json(e))
+                } 
         }
     }catch(e){
-        res.status(500).json(e)
+        res.json(e)
     }
 });
+
+router.post('/removeproduct',(req,res)=>{
+    console.log("remove product called");
+    if(req.body.availability==="Yes"){
+        Product.deleteOne({_id:req.body.id})
+        .then((r)=>res.json(r))
+        .catch(e=>res.json(e))
+    }
+    else{
+        hiddenProduct.deleteOne({_id:req.body.id})
+        .then((r)=>res.json(r))
+        .catch(e=>res.json(e))
+    }
+})
 
 module.exports = router;
