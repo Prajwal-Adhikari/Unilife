@@ -35,63 +35,115 @@ router.post('/searchuser',(req,res)=>{
 });
 
 router.post('/searchhostel',async (req,res)=>{
-    let collection = [];
-    const hostels = await Hostel.find({title:{$regex:req.body.title,$options:"i"}})
-    .then((data)=>{return data})
-    .catch((e)=>res.json(e))
 
-    const hiddenhostels = await hiddenHostel.find({title:{$regex:req.body.title,$options:"i"}})
-    .then((data)=>{return data})
-    .catch((e)=>res.json(e))
-
-    collection = hostels.concat(hiddenhostels);
-    res.json(collection);
+    if(req.body.remove===true){
+        if(req.body.availability==="Yes"){
+            Hostel.findOne({_id:req.body.id})
+            .then((val)=>{
+                if(val===null){
+                    res.json("negative");
+                }
+                else{
+                    Hostel.deleteOne({_id:req.body.id})
+                    .then((data)=>{
+                        Hostel.findOne({_id:req.body.id})
+                        .then((obj)=>res.json(true))
+                        .catch((e)=>res.json(false))
+                })
+                .catch((e)=>res.json(false))
+            }
+        })
+        .catch((e)=>res.status("no")) 
+        }
+        else{
+            hiddenHostel.findOne({_id:req.body.id})
+            .then((val)=>{
+                if(val===null){
+                    res.json("negative");
+                }
+                else{
+                    hiddenHostel.deleteOne({_id:req.body.id})
+                    .then((data)=>{
+                        hiddenHostel.findOne({_id:req.body.id})
+                        .then((obj)=>res.json(true))
+                        .catch((e)=>res.json(false))
+                })
+                .catch((e)=>res.json(false))
+            }
+        })
+        .catch((e)=>res.status("no")) 
+        }
+        }
+        else{
+            Hostel.findOne({title:{$regex:req.body.title,$options:"i"},address:{$regex:req.body.address,$options:"i"}})
+            .then((data)=>{
+                if(data===null){
+                    hiddenHostel.findOne({title:{$regex:req.body.title,$options:"i"},address:{$regex:req.body.address,$options:"i"}})
+                    .then((val=>res.json(val)))
+                    .catch(e=>res.json(e))
+                }
+                else{
+                    res.json(data);
+                }
+            })
+            .catch(e=>res.json(e))
+        }
 });
 
 router.post('/searchproduct',async (req,res)=>{
-    let collection = [];
-    const products = await Product.find({title:{$regex:req.body.title,$options:"i"}})
-    .then((data)=>{return data})
-    .catch((e)=>res.json(e))
 
-    const hiddenproducts = await hiddenProduct.find({title:{$regex:req.body.title,$options:"i"}})
-    .then((data)=>{return data})
-    .catch((e)=>res.json(e))
-
-    collection = products.concat(hiddenproducts);
-    res.json(collection);
-});
-
-router.post('/deleteuser',(req,res)=>{
-    User.deleteOne({_id:req.body.userid})
-    .then((r)=>res.json(true))
-    .catch((e)=>res.json(e))
-});
-
-router.post('/deletehostel',(req,res)=>{
-    if(req.body.availibility==="Yes"){
-        Hostel.deleteOne({_id:req.body.userid})
-        .then((r)=>res.json(true))
-        .catch((e)=>res.json(e))
-    }
-    else{
-        hiddenHostel.deleteOne({_id:req.body.userid})
-        .then((r)=>res.json(true))
-        .catch((e)=>res.json(e))
-    }  
-});
-
-router.post('/deleteproduct',(req,res)=>{
-    if(req.body.availibility==="Yes"&&req.body.stock!=="0"){
-        Product.deleteOne({_id:req.body.userid})
-        .then((r)=>res.json(true))
-        .catch((e)=>res.json(e))
-    }
-    else{
-        hiddenProduct.deleteOne({_id:req.body.userid})
-        .then((r)=>res.json(true))
-        .catch((e)=>res.json(e))
-    }
+    if(req.body.remove===true){
+        if(req.body.availability==="Yes"&&req.body.stock!==0){
+            Product.findOne({_id:req.body.id})
+            .then((val)=>{
+                if(val===null){
+                    res.json("negative");
+                }
+                else{
+                    Product.deleteOne({_id:req.body.id})
+                    .then((data)=>{
+                        Product.findOne({_id:req.body.id})
+                        .then((obj)=>res.json(true))
+                        .catch((e)=>res.json(false))
+                })
+                .catch((e)=>res.json(false))
+            }
+        })
+        .catch((e)=>res.status("no")) 
+        }
+        else{
+            hiddenProduct.findOne({_id:req.body.id})
+            .then((val)=>{
+                if(val===null){
+                    res.json("negative");
+                }
+                else{
+                    hiddenProduct.deleteOne({_id:req.body.id})
+                    .then((data)=>{
+                        hiddenProduct.findOne({_id:req.body.id})
+                        .then((obj)=>res.json(true))
+                        .catch((e)=>res.json(false))
+                })
+                .catch((e)=>res.json(false))
+            }
+        })
+        .catch((e)=>res.status("no")) 
+        }
+        }
+        else{
+            Product.findOne({title:{$regex:req.body.title,$options:"i"},productby:{$regex:req.body.productby,$options:"i"}})
+            .then((data)=>{
+                if(data===null){
+                    hiddenProduct.findOne({title:{$regex:req.body.title,$options:"i"},productby:{$regex:req.body.productby,$options:"i"}})
+                    .then((val=>res.json(val)))
+                    .catch(e=>res.json(e))
+                }
+                else{
+                    res.json(data);
+                }
+            })
+            .catch(e=>res.json(e))
+        }
 });
 
 module.exports = router;

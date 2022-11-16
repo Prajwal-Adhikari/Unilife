@@ -15,6 +15,10 @@ function validateForm() {
 let fetch_data =[];
 let delete_user = [];
 let fetch_user = [];
+let fetch_hostel =[];
+let fetch_product = [];
+let delete_hostel = [];
+let delete_product = [];
 const token = jwt_decode(localStorage.getItem('jwtToken'));
 
 class adminProfile extends Component {
@@ -26,8 +30,10 @@ class adminProfile extends Component {
         this.state = {
           isLoading : true,
           name : '',
-          title : '',
-          email : ''
+          htitle : '',
+          ptitle : '',
+          email : '',
+          productby : '',
         }     
         // Binding this keyword 
         this.updateState = this.updateState.bind(this) 
@@ -81,6 +87,8 @@ class adminProfile extends Component {
         },
         body : JSON.stringify({
           email : this.state.email,
+          id : fetch_hostel._id,
+          availability : fetch_hostel.availability,
           remove : true
         }),
       })
@@ -125,16 +133,127 @@ class adminProfile extends Component {
       }) 
   }
 
+    deleteHostel = async () =>{
+      delete_hostel = await fetch('http://localhost:5000/api/users/searchhostel',{
+          method : "POST",
+      headers:{
+          "Content-Type" : "application/json"
+        },
+        body : JSON.stringify({
+          id : fetch_hostel._id,
+          availability : fetch_hostel.availability,
+          remove : true
+        }),
+      })
+      .then(res=> {
+          if(res.ok) return res.json()
+          return res.json().then(json=>Promise.reject(json))
+        })
+        .then((data)=>{
+          return data;
+        })
+        .catch(e=>{
+          console.error(e.error)
+        })
+        if(delete_hostel==="negative"){
+          window.alert("Hostel not found");
+        }
+        if(delete_hostel===true){
+          window.alert("Hostel deleted");
+        }
+   }
+
+
+  fetchHostel = async () =>{
+    fetch_hostel = await fetch('http://localhost:5000/api/users/searchhostel',{
+        method : "POST",
+    headers:{
+        "Content-Type" : "application/json"
+      },
+      body : JSON.stringify({
+        title : this.state.htitle,
+        address : this.state.address
+      }),
+    })
+    .then(res=> {
+        if(res.ok) return res.json()
+        return res.json().then(json=>Promise.reject(json))
+      })
+      .then((data)=>{
+        return data;
+      })
+      .catch(e=>{
+        console.error(e.error)
+      }) 
+  }
+
     componentDidMount(){
         this.fetchData();
     }
 
+    deleteProduct = async () =>{
+      delete_hostel = await fetch('http://localhost:5000/api/users/searchproduct',{
+          method : "POST",
+      headers:{
+          "Content-Type" : "application/json"
+        },
+        body : JSON.stringify({
+          id : fetch_product._id,
+          availability : fetch_hostel.availability,
+          stock : fetch_product.stock,
+          remove : true
+        }),
+      })
+      .then(res=> {
+          if(res.ok) return res.json()
+          return res.json().then(json=>Promise.reject(json))
+        })
+        .then((data)=>{
+          return data;
+        })
+        .catch(e=>{
+          console.error(e.error)
+        })
+        if(delete_product==="negative"){
+          window.alert("Product not found");
+        }
+        if(delete_product===true){
+          window.alert("Product deleted");
+        }
+   }
+
+
+  fetchProduct = async () =>{
+    fetch_hostel = await fetch('http://localhost:5000/api/users/searchproduct',{
+        method : "POST",
+    headers:{
+        "Content-Type" : "application/json"
+      },
+      body : JSON.stringify({
+        title : this.state.ptitle,
+        productby : this.state.productby
+      }),
+    })
+    .then(res=> {
+        if(res.ok) return res.json()
+        return res.json().then(json=>Promise.reject(json))
+      })
+      .then((data)=>{
+        return data;
+      })
+      .catch(e=>{
+        console.error(e.error)
+      }) 
+  }
+
   render() {
+    
     if(this.state.isLoading){
         return null;
     }
+
     else{
-      const {title,email,name} = this.state;
+      const {address,ptitle,htitle,email,name,productby} = this.state;
         return(
             <div>
               <hr></hr>
@@ -196,27 +315,58 @@ class adminProfile extends Component {
                     this.deleteUser();
                   }
                 }
-            }}>Delete</button>
+            }}>Search</button>
             </div>
 
             <hr id='profile_break'></hr>
 
             <div className="admin_delete">
-            <label class="_labels">Delete Hostel</label><br></br><input type="text" placeholder="Enter hostel name here" name='hostel'/>
-            <button className='admin_search_button'>Search</button>
+            <label class="_labels">Delete Hostel</label><br></br>
+            <label classname="label_for_name">Hostel Name</label><br/>
+            <input type="text" placeholder="Enter hostel name here" id="htitle" value={htitle} name='hostelname' onChange={this.onChangeAddItem}/><br/>
+            <label classname="label_for_address">Hostel Address</label><br/>
+            <input type="text" placeholder="Enter address" name='hosteladdress' id='address' value={address} onChange={this.onChangeAddItem}/>
+            <button className='admin_search_button' onClick={async ()=>{
+                this.fetchHostel();
+                await this.Async();
+                if(fetch_hostel===null){
+                  window.alert("Hostel not found");
+                }
+                else{
+                  const result = await confirm("Do you want to delete this hostel ?\n" + `Name: ${fetch_hostel.title}` + "\n" +`Owner : ${fetch_hostel.ownedby}` + "\n" + `City : ${fetch_hostel.city}` + "\n" + `Address : ${fetch_hostel.address}`)
+                  if(result){
+                    this.deleteHostel();
+                  }
+                }
+            }}>Search</button>
             </div>
             <hr id='profile_break'></hr>
 
-            <div className="admin_delete">
+            {/* <div className="admin_delete">
             <label class="_labels">Delete Product</label><br></br><input type="text" placeholder="Enter product name here" name='product'/>
             <button className='admin_search_button'>Search</button>
+            </div> */}
+
+            <div className="admin_delete">
+            <label class="_labels">Delete Product</label><br></br>
+            <label classname="label_for_name">Product Name</label><br/>
+            <input type="text" placeholder="Enter Product name here" id="ptitle" value={ptitle} name='hostelname' onChange={this.onChangeAddItem}/><br/>
+            <label classname="label_for_address">Product By</label><br/>
+            <input type="text" placeholder="Product by" name='hosteladdress' id='productby' value={productby} onChange={this.onChangeAddItem}/>
+            <button className='admin_search_button' onClick={async ()=>{
+                this.fetchProduct();
+                await this.Async();
+                if(fetch_product===null){
+                  window.alert("Product not found");
+                }
+                else{
+                  const result = await confirm("Do you want to delete this Product ?\n" + `Name: ${fetch_product.title}` + "\n" +`ProductBy : ${fetch_product.productby}` + "\n" + `Availability : ${fetch_product.availability}` + "\n" + `Price : ${fetch_product.price}`)
+                  if(result){
+                    this.deleteProduct();
+                  }
+                }
+            }}>Search</button>
             </div>
-
-
-          
-            
-
-
           </div>
         </div>
         )
