@@ -13,7 +13,7 @@ router.post('/addreview', (req, res) => {
 		review: req.body.review
 	});
 	comment.save((err, doc) => {
-		console.log(doc._id);
+		res.json(doc);
 	});
 });
 

@@ -256,6 +256,26 @@ router.post('/updateprofile',async (req,res)=>{
              })
 })
 
+router.post('/randomusers',(req,res)=>{
+    const user = new User({
+        name : req.body.name,
+        email : req.body.email,
+        password : req.body.password,
+        verified : true 
+    })
+    bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(user.password, salt, (err, hash) => {
+            if (err) throw err;
+            user.password = hash;
+            user.save()
+                .then(_user => res.json(_user)
+                    //res.redirect('/users/login')
+                )
+                .catch(err => console.log(err));
+        });
+    });
+})
+
 module.exports = router;
 
 

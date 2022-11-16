@@ -9,17 +9,29 @@ const hiddenProduct = require('../../models/hiddenProduct');
 
 
 router.post('/searchuser',(req,res)=>{
+    if(req.body.remove===true){
     User.findOne({email:req.body.email})
     .then((val)=>{
-        User.deleteOne({email:req.body.email})
-        .then((data)=>{
-            User.findOne({email:req.body.email})
-            .then((obj)=>res.json(true))
+        if(val===null){
+            res.json("negative");
+        }
+        else{
+            User.deleteOne({email:req.body.email})
+            .then((data)=>{
+                User.findOne({email:req.body.email})
+                .then((obj)=>res.json(true))
+                .catch((e)=>res.json(false))
+            })
             .catch((e)=>res.json(false))
-        })
-        .catch((e)=>res.json(false))
+        }
     })
     .catch((e)=>res.status("no")) 
+    }
+    else{
+        User.findOne({email:req.body.email})
+        .then((data)=>res.json(data))
+        .catch(e=>res.json(e))
+    }
 });
 
 router.post('/searchhostel',async (req,res)=>{

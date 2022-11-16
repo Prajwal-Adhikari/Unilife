@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './admin.css';
 import jwt_decode from 'jwt-decode';
+import { confirm } from "react-confirm-box";
 
 
 function validateForm() {
@@ -13,6 +14,7 @@ function validateForm() {
 
 let fetch_data =[];
 let delete_user = [];
+let fetch_user = [];
 const token = jwt_decode(localStorage.getItem('jwtToken'));
 
 class adminProfile extends Component {
@@ -63,6 +65,14 @@ class adminProfile extends Component {
           this.updateState();
     }
 
+    Async = ()=>{
+      return new Promise((res)=>{
+        setTimeout(()=>{
+          res();
+        },500)
+      })
+    }
+
     deleteUser = async () =>{
       delete_user = await fetch('http://localhost:5000/api/users/searchuser',{
           method : "POST",
@@ -70,7 +80,8 @@ class adminProfile extends Component {
           "Content-Type" : "application/json"
         },
         body : JSON.stringify({
-          email : this.state.email
+          email : this.state.email,
+          remove : true
         }),
       })
       .then(res=> {
@@ -83,14 +94,36 @@ class adminProfile extends Component {
         .catch(e=>{
           console.error(e.error)
         })
-        if(delete_user==="no"){
+        if(delete_user==="negative"){
           window.alert("User not found");
         }
-        if(delete_user===false){
+        if(delete_user===true){
           window.alert("User deleted");
         }
-  }
+   }
 
+
+  fetchUser = async () =>{
+    fetch_user = await fetch('http://localhost:5000/api/users/searchuser',{
+        method : "POST",
+    headers:{
+        "Content-Type" : "application/json"
+      },
+      body : JSON.stringify({
+        email : this.state.email
+      }),
+    })
+    .then(res=> {
+        if(res.ok) return res.json()
+        return res.json().then(json=>Promise.reject(json))
+      })
+      .then((data)=>{
+        return data;
+      })
+      .catch(e=>{
+        console.error(e.error)
+      }) 
+  }
 
     componentDidMount(){
         this.fetchData();
@@ -151,11 +184,21 @@ class adminProfile extends Component {
 
             <div className="admin_delete">
             <label class="_labels">Delete User</label><br></br><input type="text" placeholder="Enter username here" id="email" name='username' value={email} onChange={this.onChangeAddItem}/>
-            <button className='admin_search_button' onClick={()=>{
-              this.deleteUser();
+            <button className='admin_search_button' onClick={async ()=>{
+                this.fetchUser();
+                await this.Async();
+                if(fetch_user===null){
+                  window.alert("User not found");
+                }
+                else{
+                  const result = await confirm("Do you want to delete the user ?\n" + `Name: ${fetch_user.name}` + "\n" +`Email : ${fetch_user.email}`)
+                  if(result){
+                    this.deleteUser();
+                  }
+                }
             }}>Delete</button>
             </div>
-            
+
             <hr id='profile_break'></hr>
 
             <div className="admin_delete">
