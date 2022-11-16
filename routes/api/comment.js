@@ -20,7 +20,6 @@ router.post('/addreview', (req, res) => {
 router.post('/getreview', async (req, res) => {
 	try {
 		let reviews = await Comment.find();
-		console.log(reviews);
 		res.status(200).json(reviews);
 	} catch (e) {
 		console.log(err);

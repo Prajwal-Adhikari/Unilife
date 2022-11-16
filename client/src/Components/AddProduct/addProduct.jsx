@@ -23,6 +23,8 @@ class AddProduct extends Component{
       imagepath4 : '',
       category :'',
       price : '',
+      availability : '',
+      stock : '',
       errors: {}
     };
   }
@@ -42,20 +44,22 @@ class AddProduct extends Component{
   addItem = e => {                  //registerSubmit -> addItem
     e.preventDefault();
     const newProducts = {
-      _title:this.state._title,
+      title:this.state._title,
       ownerid:token.id,
       productby :this.state.productby,
       description:this.state.description,
       imagepath:[this.state.imagepath0,this.state.imagepath1,this.state.imagepath2,this.state.imagepath3,this.state.imagepath4],
       category:this.state.category,
-      price:this.state.price
+      price:this.state.price,
+      availability :this.state.availability,
+      stock:this.state.stock
     }
       this.props.saveProduct(newProducts,this.props.history);
   };
 
   
   render() {
-    const { errors, description, price, productby, _title,category,imagepath,imagepath0,imagepath1,imagepath2,imagepath3,imagepath4 } = this.state;
+    const { errors, description, price, productby, _title,stock,category,imagepath,imagepath0,imagepath1,imagepath2,imagepath3,imagepath4 } = this.state;
     return (
       <div className="containerProduct">
       <div className="_row">
@@ -138,6 +142,25 @@ class AddProduct extends Component{
                   />{' '}
                   <br />
                   <span className="text-danger">{errors.price}</span>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="form-group col-md-12">
+                  <label htmlFor="category">Stock</label> <br />
+                  <input
+                    type="text"
+                    className="input-control"
+                    placeholder="Available quantity"
+                    id="stock"
+                    value={stock}  
+                    onChange={this.onChangeAddItem}
+                    error={errors.stock}
+                    className={classnames('', {
+                      invalid: errors.stock
+                    })}
+                  />{' '}
+                  <br />   
+                  <span className="text-danger">{errors.stock}</span>
                 </div>
               </div>
               <div class="form-row">
@@ -231,6 +254,15 @@ class AddProduct extends Component{
                   </div>
               {/* <div class="confirm"> */}
               {/* </div> */}
+
+              <div class="form-row">
+                    <div class="form-group col-md-12">
+                    <label htmlFor="availability">Availability</label> <br/>
+                      <label><input type="radio" id="availability" name="myCheckbox" value="Yes" onClick={this.onChangeAddItem}/>Yes</label>
+                      <label><input type="radio" id="availability" name="myCheckbox" value="No" onClick={this.onChangeAddItem}/>No</label>
+                    </div>
+               </div>
+
               <div class="form-row">  
                 <div class="form-group col-md-12">
                   <p><input type="checkbox" id="onlyChoice" name="confirm" value="confirming" required="required"
