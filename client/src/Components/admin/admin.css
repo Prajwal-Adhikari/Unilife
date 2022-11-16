@@ -1,0 +1,31 @@
+
+.admin_delete{
+    height: 15rem;
+    margin-bottom: 5rem;
+    width: 100vw;
+}
+._labels{
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+}
+
+.admin_search_button{
+    margin-left: 5px;
+    border: none;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: aqua;
+}
+
+.content{
+    margin-left: 30px;
+}
+
+.admin_input{
+    height: 35px;
+    border-radius: 0px;
+
+}

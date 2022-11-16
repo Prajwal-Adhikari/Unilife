@@ -11,6 +11,7 @@ const Profile = require("./routes/api/profile");
 const Cart = require("./routes/api/cart");
 const rating = require('./routes/api/userRating');
 const Payment = require("./routes/api/payment");
+const Admin = require("./routes/api/admin");
 const Comment = require('./routes/api/comment');
 const config = require('config');
 const app = express();
@@ -54,6 +55,7 @@ app.use("/api/users",Mainpage);
 app.use("/api/users",Cart);
 app.use("/api/users",Profile);
 app.use("/api/users",rating);
+app.use("/api/users",Admin);
 
 /* //Serve static assets if in production
 if (process.env.NODE_ENV = "production") {
