@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import {saveHostelChanges} from '../../redux/actions/authActions';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import './updateHostel.css';
 
 let fetch_data =[];
 
@@ -104,7 +105,7 @@ class UpdateHostel extends Component {
     else{
         return (
             <div>
-           <div class="container bg-white mt-5 mb-5" id='corner'>
+           <div class="container" id='corner'>
         <div class="row">
             <div class="col-md-5 border-right">
                 <div class="p-3 py-5">
@@ -112,31 +113,31 @@ class UpdateHostel extends Component {
                         <h4 class="text-right">User Profile</h4>
                     </div>
                     <div class="row mt-3">
-                    <div class="col-md-12"><label class="_labels">Title</label><input type="text" class="form-control" id="title"  placeholder={fetch_data.title} value={title} onChange={this.onChange}/></div>
+                    <div class="title-col col-md-12"><label class="_labels">Title</label><input type="text" className="title-box" id="title"  placeholder={fetch_data.title} value={title} onChange={this.onChange}/></div>
                     <div class="col-md-12"><label class="_labels">Owned By</label><input type="text" id="ownedby"  class="form-control" placeholder={fetch_data.ownedby} value={ownedby} onChange={this.onChange}/></div>
                     <div class="col-md-12"><label class="_labels">Contact</label><input type="text" id="contact" class="form-control" placeholder={fetch_data.contact} value={contact} onChange={this.onChange}/></div>
                     <div class="col-md-12"><label class="_labels">City</label><input type="text" id="city" class="form-control" placeholder={fetch_data.city} value={city} onChange={this.onChange}/></div>
                     <div class="col-md-12"><label class="_labels">Address</label><input type="text" id="address" class="form-control" placeholder={fetch_data.address} value={address} onChange={this.onChange}/></div>
-                    <div class="col-md-12"><label class="_labels">Price</label><input type="text" id="price"  class="form-control" placeholder={fetch_data.price} value={price} onChange={this.onChange}/></div>
+                    <div class="col-md-12"><label class="_labels">Price</label><input type="text" id="price"  class="price-box form-control" placeholder={fetch_data.price} value={price} onChange={this.onChange}/></div>
                     <div class="col-md-12"><label class="_labels">Description</label><input type="text" id="description"  class="form-control" placeholder={fetch_data.description} value={description} onChange={this.onChange}/></div>
-                    <div class="col-md-12"><label class="_labels">Image</label>
-                    <input type="text" id="imagepath0"  class="form-control" placeholder={fetch_data.imagepath[0]} value={imagepath0} onChange={this.onChange}/>
-                    <input type="text" id="imagepath1"  class="form-control" placeholder={fetch_data.imagepath[1]} value={imagepath1} onChange={this.onChange}/>
-                    <input type="text" id="imagepath2"  class="form-control" placeholder={fetch_data.imagepath[2]} value={imagepath2} onChange={this.onChange}/>
-                    <input type="text" id="imagepath3"  class="form-control" placeholder={fetch_data.imagepath[3]} value={imagepath3} onChange={this.onChange}/>
-                    <input type="text" id="imagepath4"  class="form-control" placeholder={fetch_data.imagepath[4]} value={imagepath4} onChange={this.onChange}/>
+                    <div class="col-md-12"><label class="_labels ">Image</label>
+                    <input type="text" id="imagepath0"  class="image-url form-control" placeholder={fetch_data.imagepath[0]} value={imagepath0} onChange={this.onChange}/>
+                    <input type="text" id="imagepath1"  class="image-url form-control" placeholder={fetch_data.imagepath[1]} value={imagepath1} onChange={this.onChange}/>
+                    <input type="text" id="imagepath2"  class="image-url form-control" placeholder={fetch_data.imagepath[2]} value={imagepath2} onChange={this.onChange}/>
+                    <input type="text" id="imagepath3"  class="image-url form-control" placeholder={fetch_data.imagepath[3]} value={imagepath3} onChange={this.onChange}/>
+                    <input type="text" id="imagepath4"  class="image-url form-control" placeholder={fetch_data.imagepath[4]} value={imagepath4} onChange={this.onChange}/>
                     </div>
-                    <div class="form-row">
-                    <div class="form-group col-md-12">
-                    <label htmlFor="availability">Availability</label> <br/>
+                    <div class="radio form-row">
+                    <div class="radio-opt form-group col-md-12">
+                    <label htmlFor="availability">Availability</label>
                       <label><input type="radio" id="availability" name="myCheckbox" value="Yes" onClick={this.onChange}/>Yes</label>
                       <label><input type="radio" id="availability" name="myCheckbox" value="No" onClick={this.onChange}/>No</label>
                     </div>
                   </div>
 
-                  <div class="form-row">
-                    <div class="form-group col-md-12">
-                    <label htmlFor="availability">Category</label> <br/>
+                  <div class="radio form-row">
+                    <div class="radio-opt form-group col-md-12">
+                    <label htmlFor="availability">Category</label>
                       <label><input type="radio" id="category" name="myCheckbox2" value="Boys" onClick={this.onChange} />Boys</label>
                       <label><input type="radio" id="category" name="myCheckbox2" value="Girls" onClick={this.onChange}/>Girls</label>
                     </div>

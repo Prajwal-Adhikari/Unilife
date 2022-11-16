@@ -135,7 +135,7 @@ class Profile extends Component {
           <hr></hr>
 
           <div class="container bg-white mt-5 mb-5" id="corner">
-            <div class="row">
+            <div class="row main-profile">
               <div class="col-md-3 border-right">
                 <div class="d-flex flex-column align-items-center text-center p-3 py-5">
                   <img
