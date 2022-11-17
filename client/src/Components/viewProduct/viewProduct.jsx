@@ -277,12 +277,14 @@ const udpateRating = async(value) =>{
             {card[0].description}
           </div>
           <div>
-              <button onClick={()=>{
+              <button className="change_quantity"
+                onClick={()=>{
                   handleChange(1); 
                 }}>+</button>
-                <button>{quantity}</button>
-                <button onClick={()=>{
+                <button className="change_quantity">{quantity}</button>
+                <button className="change_quantity" onClick={()=>{
                   handleChange(0);
+                  
               }}>-</button>
             </div>
           <div className='button-options'>
@@ -345,7 +347,7 @@ const udpateRating = async(value) =>{
           </div>  
 
           <div classname="report">
-           <FaFlag classname="report-flag" onClick={()=>{
+           <FaFlag classname="report-flag" title="Report" onClick={()=>{
               window.alert("Thanks for reporting the product. This product will be reviewed by Unilife.")
               reportProduct();
            }}/>

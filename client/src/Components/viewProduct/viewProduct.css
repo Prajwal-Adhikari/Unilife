@@ -20,6 +20,25 @@
 	box-shadow: rgba(255, 159, 28, 0.4) -5px 5px, rgba(255, 159, 28, 0.3) -10px 10px, rgba(255, 159, 28, 0.2) -15px 15px, rgba(255, 159, 28, 0.1) -20px 20px, rgba(255, 159, 28, 0.05) -25px 25px;
 }
 
+.star{
+	margin: 8x;
+	border: none;
+}
+
+title{
+	transition-delay: 0.25ms;
+}
+
+
+.change_quantity{
+	padding: 5px;
+	margin: 2px;
+	border: none;
+	font-size: 24px;
+	border-radius: 6px;
+
+}
+
 .price-rate {
 	font-size: 32px;
 	font-weight: bolder;
@@ -29,6 +48,8 @@
 .button-options {
 	display: flex;
 	gap: 1rem;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 
 .buy-now {

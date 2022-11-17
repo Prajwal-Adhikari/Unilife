@@ -21,8 +21,8 @@ class AddProduct extends Component{
       imagepath2 : '',
       imagepath3 : '',
       imagepath4 : '',
-      category :'',
-      price : '',
+      _category :'',
+      _price : '',
       availability : '',
       stock : '',
       errors: {}
@@ -49,8 +49,8 @@ class AddProduct extends Component{
       productby :this.state.productby,
       description:this.state.description,
       imagepath:[this.state.imagepath0,this.state.imagepath1,this.state.imagepath2,this.state.imagepath3,this.state.imagepath4],
-      category:this.state.category,
-      price:this.state.price,
+      category:this.state._category,
+      price:this.state._price,
       availability :this.state.availability,
       stock:this.state.stock
     }
@@ -77,13 +77,13 @@ class AddProduct extends Component{
                     id="_title"
                     value={_title}
                     onChange={this.onChangeAddItem}
-                    error={errors.__title}
+                    error={errors.title}
                     className={classnames('', {
-                      invalid: errors.__title
+                      invalid: errors.title
                     })}
                   />{' '}
                   <br />
-                  <span className="text-danger">{errors.__title}</span>
+                  <span className="text-danger">{errors.title}</span>
                 </div>
               </div>
               <div class="form-row">
@@ -132,7 +132,7 @@ class AddProduct extends Component{
                     type="number"
                     className="input-control"
                     placeholder="Price in USD"
-                    id="price"
+                    id="_price"
                     value={price}
                     onChange={this.onChangeAddItem}
                     error={errors.price}
@@ -170,7 +170,7 @@ class AddProduct extends Component{
                     type="text"
                     className="input-control"
                     placeholder="Description about product"
-                    id="category"
+                    id="_category"
                     value={category}  
                     onChange={this.onChangeAddItem}
                     error={errors.category}
