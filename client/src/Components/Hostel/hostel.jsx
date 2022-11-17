@@ -15,7 +15,7 @@ class Hostel extends Component{
             country : '',
             isLoading : true,
             city : '',
-            category : '',
+            _category : '',
             rating : 0,
             hover : 0,
             errors : {}
@@ -50,7 +50,7 @@ class Hostel extends Component{
         e.preventDefault();
         const newOption = {
           city : this.state.city,
-          category:this.state.category,
+          category:this.state._category,
         }
           this.props.saveOptions(newOption,this.props.history);
       };
@@ -70,7 +70,7 @@ class Hostel extends Component{
               },
               body : JSON.stringify({
                 city : this.state.city,
-                category : this.state.category,
+                category : this.state._category,
               }),
         })
           .then(res=> {
@@ -125,7 +125,7 @@ class Hostel extends Component{
                         type="text"
                         className="input-control"
                         placeholder="Boys or Girls"
-                        id="category"
+                        id="_category"
                         value={category}
                         onChange={this.onChangeAddOptions}
                         error={errors.category}
@@ -136,7 +136,7 @@ class Hostel extends Component{
                       <br />
                       <span className="text-danger">{errors.category}</span>
                     </div>
-                    <div>
+                    <div className="submit_btn">
                     <button type="submit" className = "searchHostel" onClick={this.getHostels}>
                         Search
                     </button>

@@ -1,23 +1,25 @@
 .hostelDashboard{
     position:relative;
     min-height: 100vh;
+    
 }
 
 
 .left_container{
-    width: 25%; 
+    width: 25%;
     float: left;
     padding: 20px;
-}   
+}
 
 .right_container{
-    background-color: #b3e5fc;
+    background-color: #e8f7654b;
     font-family : "Raleway", sans-serif;
     width:75%;
     height :max-content;
     float: right;
     padding: 20px;
-    border: 3px solid rgb(53, 27, 115);
+    border-radius: 8px;
+    margin-bottom: 5rem;
 }
 h2{
     text-align: center;
@@ -74,6 +76,21 @@ h2{
 
 
 .card:hover{
-    transform: translate(-10px, -10px);
-    transform: scale(1.2,1.2); 
+    transform: translate(-5px, -5px);
+    transform: scale(1.075,1.075);
+}
+
+.searchHostel{
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+  background-color: #FF9F1C;
+}
+
+
+
+.submit_btn{
+    display: flex;
+    justify-content: end;
+    margin-right: 2rem;
 }
