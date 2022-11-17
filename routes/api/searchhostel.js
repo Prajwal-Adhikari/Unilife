@@ -29,4 +29,11 @@ router.post('/hostel',async (req,res)=>{
     }
 });
 
+router.get('/loadhostel',async (req,res)=>{
+    const hostel = await Hostel.aggregate(
+        [{$sample:{size:6}}]
+    )
+    res.json(hostel);
+});
+
 module.exports = router;

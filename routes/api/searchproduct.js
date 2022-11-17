@@ -37,4 +37,11 @@ router.post('/product', async (req, res) => {
     }
 });
 
+router.get('/loadproduct',async (req,res)=>{
+    const product = await Product.aggregate(
+        [{$sample:{size:6}}]
+    )
+    res.json(product);
+});
+
 module.exports = router;

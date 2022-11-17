@@ -4,6 +4,7 @@ import { saveOptions } from "../../redux/actions/authActions";
 import classnames from 'classnames';
 import {connect} from 'react-redux';
 import { withRouter } from "react-router-dom";
+import Axios from "axios";
 
 let response = [];
 
@@ -12,6 +13,7 @@ class Hostel extends Component{
         super();
         this.state = {
             country : '',
+            isLoading : true,
             city : '',
             category : '',
             rating : 0,
@@ -27,6 +29,18 @@ class Hostel extends Component{
           });
         }
       }
+
+      getApiData = async() => {
+        try{
+          const res = await Axios.get("http://localhost:5000/api/users/loadhostel")
+          response = res.data;
+          this.setState({isLoading:false})
+        }
+        catch(e){
+          console.log(e);
+        }
+      };
+
     
       onChangeAddOptions = e => {          
         this.setState({ [e.target.id]: e.target.value });
@@ -71,8 +85,16 @@ class Hostel extends Component{
               })
     }
 
+    componentDidMount(){
+      this.getApiData();
+    }
+
     render (){
-        const {errors,country,city,category,rating,hover} = this.state;
+        const {errors,country,city,category,rating,hover,isLoading} = this.state;
+        if(isLoading){
+          return null;
+        }
+        else{
           try{
             return(
             <section className="hostelDashboard">
@@ -162,6 +184,8 @@ class Hostel extends Component{
             console.log(error);
             window.location.reload();
           }
+        }
+          
     }
 }
 
