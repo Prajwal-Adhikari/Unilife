@@ -16,6 +16,28 @@ const UserSchema = new mongoose.Schema({
   date: {
     type: Date,
     default: Date.now
+  },
+  verified : {
+    type:Boolean,
+    default:false,
+    required:true
+  },
+  gender:{
+    type:String,
+    required:false
+  },
+  contact : {
+    type:String,
+    required:false
+  },
+  country : {
+    type:String,
+    required:false
+  },
+  isAdmin : {
+    type : Boolean,
+    default : false,
+    required :false
   }
 });
 

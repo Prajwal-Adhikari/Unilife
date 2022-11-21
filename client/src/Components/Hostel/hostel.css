@@ -1,0 +1,96 @@
+.hostelDashboard{
+    position:relative;
+    min-height: 100vh;
+    
+}
+
+
+.left_container{
+    width: 25%;
+    float: left;
+    padding: 20px;
+}
+
+.right_container{
+    background-color: #e8f7654b;
+    font-family : "Raleway", sans-serif;
+    width:75%;
+    height :max-content;
+    float: right;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 5rem;
+}
+h2{
+    text-align: center;
+    margin:20px 0;
+}
+
+.card{
+    width:450px;
+    border:none;
+    border-radius : 30px;
+    background-color: #fff;
+    margin:auto;
+    display: flex; /* adding flex */
+    justify-content: space-around; /* Positioning them with spaces */
+    flex-wrap: wrap; /* Wrapping Elements when page is small */
+}
+
+.image{
+    min-width:155px;
+    margin-right:20px;
+}
+
+.stats{
+    background : #f2f5f8 !important;
+    color : #000 !important;
+}
+
+.category{
+    font-size : 10px;
+    color : #a1aab9;
+}
+
+.number1 {
+    font-weight: 500;
+}
+
+.price {
+    font-size :10px;
+    color:#a1aab9;
+}
+
+.number2 {
+    font-weight: 500;
+}
+
+.rating{
+    font-size : 10px;
+    color : #a1aab9
+}
+
+.number3 {
+    font-weight : 500 px;
+}
+
+
+.card:hover{
+    transform: translate(-5px, -5px);
+    transform: scale(1.075,1.075);
+}
+
+.searchHostel{
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+  background-color: #FF9F1C;
+}
+
+
+
+.submit_btn{
+    display: flex;
+    justify-content: end;
+    margin-right: 2rem;
+}

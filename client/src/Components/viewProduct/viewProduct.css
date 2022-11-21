@@ -1,0 +1,128 @@
+.main-section {
+	margin: 2rem auto;
+	display: flex;
+	justify-content: center;
+	gap: 2rem;
+}
+
+.header {
+	display: flex;
+	justify-content: center;
+}
+
+.header > h1 {
+	color: #000000;
+}
+
+.thumbnail {
+	height: 330px;
+	width: 330px;
+	box-shadow: rgba(255, 159, 28, 0.4) -5px 5px, rgba(255, 159, 28, 0.3) -10px 10px, rgba(255, 159, 28, 0.2) -15px 15px, rgba(255, 159, 28, 0.1) -20px 20px, rgba(255, 159, 28, 0.05) -25px 25px;
+}
+
+.star{
+	margin: 8x;
+	border: none;
+}
+
+title{
+	transition-delay: 0.25ms;
+}
+
+
+.change_quantity{
+	padding: 5px;
+	margin: 2px;
+	border: none;
+	font-size: 24px;
+	border-radius: 6px;
+
+}
+
+.price-rate {
+	font-size: 32px;
+	font-weight: bolder;
+	color: #FF9F1C;
+}
+
+.button-options {
+	display: flex;
+	gap: 1rem;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+.buy-now {
+	padding: 0.6rem 2rem;
+	border: none;
+	background-color: rgba(46, 196, 182, 0.8);
+}
+
+.buy-now:hover {
+	padding: 0.6rem 2rem;
+	border: none;
+	background-color: rgba(46, 196, 182, 1);
+}
+
+.add-to-cart {
+	padding: 0.6rem 2rem;
+	border: none;
+	background-color: rgba(255, 159, 28, 0.8);
+}
+
+.add-to-cart:hover {
+	padding: 0.6rem 2rem;
+	border: none;
+	background-color: rgba(255, 159, 28, 1);
+}
+
+.review-section {
+	margin: 3rem auto;
+}
+
+.review-section form {
+	display: flex;
+	justify-content: center;
+	height: 100%;
+}
+
+.text-area {
+	margin-right: 1rem;
+	margin-bottom: 2rem;
+	width: 40%;
+	height: 4rem;
+	border: none;
+	border-left: 3px solid #FF9F1C;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 10px;
+}
+
+.review-section > form > button{
+	width: 9%;
+	height: 4rem;
+	border: none;
+}
+
+.review-button:hover {
+	background-color: #2EC4B6;
+}
+
+.old-reviews{
+	min-height: 50vh;
+	display: flex;
+	flex-direction: column;
+}
+
+.review-box {
+	margin: 0.5rem auto;
+	margin-bottom: 2rem;
+	padding-left: 0.6rem;
+	box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+	border: none;
+	min-height: 3rem;
+	width: 50vw;
+	font-size: 1.2rem;
+}
+
+.reviewer {
+	color: #FF9F1C;
+}

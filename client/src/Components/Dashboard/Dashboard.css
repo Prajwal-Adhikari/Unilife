@@ -1,10 +1,10 @@
 /** =================banner====================*/
-.dashboard {
+/*.dashboard {
     background-image: url('https://images.pexels.com/photos/2740956/pexels-photo-2740956.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    height: 100vh;
+    height: 877;
     width: 100%;
     color: #ffffff !important;
     position: relative;
@@ -34,4 +34,51 @@
 }
 .dashboard .content h1, .dashboard .content h3 {
     font-weight: bolder;
+} */
+
+.mainImage{
+    height : 700px;
+    margin-right: 0;
+}
+.container-fluid{
+    margin-bottom: 30px;
+}
+.mainimg{
+    height:700px;
+    width:100%;
+    bottom:0;
+    object-fit:fill;
+}
+
+.ownedby{
+    font-size : 10px;
+    color : #a1aab9
+}
+
+.productby{
+    font-size : 10px;
+    color : #a1aab9
+}
+
+.cart-icon{
+    padding-top: 12px;
+    font-size :40px;
+    cursor:pointer;
+}
+
+.cart-icon:active{
+    color: blue;
+    content-visibility: hidden;
+}
+
+.image{
+    cursor: pointer;
+}
+
+.mb-0{
+    cursor: pointer;
+}
+
+.mb-0:hover{
+    text-decoration: underline;
 }

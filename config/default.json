@@ -1,4 +1,11 @@
 {
-    "mongoURI": "mongodb+srv://TeamUnilife:hMytTfaord9pzIox@cluster0.4nebu.mongodb.net/?retryWrites=true&w=majority",
-    "secretOrKey": "secret"
+    "mongoURI": "mongodb+srv://TeamUnilife:hMytTfaord9pzIox@cluster0.4nebu.mongodb.net/?retryWrites=true&w=majority", 
+    "secretOrKey": "secret",
+    "accountSid" : "ACaffae85ae81a5052fd9ff098f4d9af88",
+    "authToken" : "8c7e26677d2da54f7aa636b9170e08ab",
+    "JWT_ACC_ACTIVATE" : "accountactivatekey123",
+    "MAILGUN_APIKEY" : "6f71721d44d47b4e521fa8c70cb22e4d-d117dd33-f962d430",
+    "MAILGUN_DOMAIN" : "sandbox809af8fc073040cd961fcfe78f2bb92c.mailgun.org",
+    "CLIENT_URL" : "http://localhost:3000/",
+    "STRIPE_PRIVATE_KEY" : "sk_test_51LfgqMDq9ZxoxTz0x770h1BdWXSssyWxTLol86mpMcP8Dpu1hnjsrA7eerDbOoURKThUnEWiTbEzsCVZilRo3Coc0099mFDyzk"
 }

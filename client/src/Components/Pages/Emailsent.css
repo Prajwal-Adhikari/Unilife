@@ -1,35 +1,93 @@
 
-.container {
+.container_email {
+    background-image: url('https://imgflip.com/memetemplate/144941050/Slate-Blue-Solid-Color-Background');
+    background-color: #cccccc;
     display: flex ;
     flex-direction:column;
+    padding-top: 250px;
+    padding-bottom: 250px;
     justify-content: center;
     align-items: center;
-    height: 50vh;
-    max-width: 700px;
-   
     background-color:  rgba(93, 93, 116, 1) 50%;
    
-    border: 1px solid #dfdfdf;
+    /* border: 1px solid #dfdfdf;
    
-    border-radius: 5px;
-    position: relative;
+    border-radius: 5px;*/
+    position: relative; 
 }
 
-h1{
+.email{
+    display: flex ;
+    justify-content: center;
+    align-items: center;
+}
+
+.check{
+    display: flex ;
+    justify-content: center;
+    align-items: center;
+}
+
+.otp-section{
+  align-self: center;
+}
+
+.verifyButton{
+    padding-top: 5px;
+    display: flex ;
+    justify-content: center;
+    align-items: center;
+}
+
+/* .btn-verify{
+    border-width: 2px;
+   display:flex;
+   justify-content: center;
+   align-items : center;
+} */
+
+.btn {
+  border: 2px solid black;
+  background-color: white;
+  color: black;
+  padding: 10px 28px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* Green */
+.success {
+  color: green;
+  border-color: #04AA6D;
+}
+
+.success:hover {
+  background-color: #04AA6D;
+  color: white;
+}
+
+._verify{
+    display: flex ;
+    justify-content: center;
+    align-items: center;
+}
+
+.h1{
   padding: 30px;
    color:white
 }
-p{
+.p{
 
     color: white;
     font-weight: 100;
 }
-Button{
+.Button{
     background-color:rgb(192, 191, 211);
     color: black;
     border-radius: 10px;
 }
-body {
+.body {
+    background-color: #cccccc;
   background: rgb(2, 0, 36);
   background: radial-gradient(
     circle,
@@ -37,5 +95,5 @@ body {
     rgba(30, 54, 59, 1) 0%,
     rgba(93, 93, 116, 1) 100%
   );
-  padding: 200px;
+  padding: 200px; 
 }
