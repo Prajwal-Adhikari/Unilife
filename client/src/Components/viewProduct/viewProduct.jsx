@@ -64,7 +64,6 @@ const ViewProduct = () => {
       })
 	};
 
-  console.log(card);
   //handles quantity change
   const handleChange = async (_quantity) => {
     if(quantity===1&&_quantity===0){
@@ -106,11 +105,12 @@ const ViewProduct = () => {
         return res.json().then(json=>Promise.reject(json))
       })
       .then((data)=>{
-        return data.rating;
+        return data;
       })
       .catch(e=>{
         console.error(e.error)
-      })
+      }) 
+      setrating(userRating);
 }
 
 //saves user rating for the given item
@@ -263,7 +263,7 @@ const udpateRating = async(value) =>{
       <div className='main-section'>
         <div classname='product-image'>
           <img
-            src={card[0].imagepath}
+            src={card[0].imagepath[0]}
             alt={card[0].title}
             className='thumbnail'
           />
@@ -323,10 +323,13 @@ const udpateRating = async(value) =>{
               Add to Cart	
             </button>
           </div>
+          <div>
+            <h3>Rating : {card[0].rating}/5</h3>
+          </div>
 
           <div className="star-rating">
             {[...Array(5)].map((star, index) => {
-              index +=1;
+               index +=1;
               return (
                 <button
                   type="rating_button"
@@ -337,7 +340,7 @@ const udpateRating = async(value) =>{
                     saveUserRating(index);
                     udpateRating(index);
                 }}
-                  onMouseEnter={() => sethover(index)}
+                  onMouseEnter={() => sethover()}
                   onMouseLeave={() => sethover(rating)}
                 >
                   <span className="star">&#9733;</span>

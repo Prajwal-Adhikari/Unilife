@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import './profile.css'
 import jwt_decode from 'jwt-decode'
 
-
 let fetch_data = []
 let list = []
 const token = jwt_decode(localStorage.getItem('jwtToken'))
@@ -224,7 +223,7 @@ class Profile extends Component {
                 <div className='canvas'>
                 <div className='main_container'>
                   <div class="img_container">
-                    <img src={curElem.imagepath} alt="" className='main_image' />
+                    <img src={curElem.imagepath[0]} alt="" className='main_image' />
                   </div>
 
                   <div class="card-desc">

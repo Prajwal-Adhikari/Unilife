@@ -147,7 +147,7 @@ const Cart = () => {
                   fetch_data.map((item)=>(
                     <div className="cart_box" key={item._id}>
                         <div className="cart_img">
-                            <img src={item.imagepath}/>
+                            <img src={item.imagepath[0]}/>
                             <p>{item.title}</p>
                         </div>
                         <div>

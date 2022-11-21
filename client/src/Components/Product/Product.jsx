@@ -57,15 +57,12 @@ class Product extends Component {
     };
 
     openTab = (element) => {
-        console.log("inside openTab");
-        const item = sessionStorage.setItem("selectedProduct", JSON.stringify(element));
-        console.log(item);
+        element.rating = Math.floor(element.rating) > 5 ? 5 : Math.floor(element.rating);
+        sessionStorage.setItem("selectedProduct", JSON.stringify(element));
         window.open(`/product/${element._id}`, '_blank');
-        //this.props.history.push(generatePath(`/hostel/${element._id}`))
     }
 
     getProducts = async () => {
-        console.log("getProducts function is called");
         response = await fetch('http://localhost:5000/api/users/product', {
             method: "POST",
             headers: {
@@ -156,7 +153,7 @@ class Product extends Component {
                                             <div key={curElem.id} className="col-10 col-md mt-5">
                                                 <div className="product-card p-2">
                                                     <div class="d-flex align-items-center">
-                                                        <div class="image"> <img src={curElem.imagepath} alt="" class="rounded" height="150" width="150" /> </div>
+                                                        <div class="image"> <img src={curElem.imagepath[0]} alt="" class="rounded" height="150" width="150" /> </div>
                                                         <div class="ml-3 w-100">
                                                             <h4 class="mb-0 mt-0 textLeft" onClick={
                                                                 () => this.openTab(curElem)

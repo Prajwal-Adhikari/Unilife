@@ -29,12 +29,12 @@ class viewHostel extends Component{
             return res.json().then(json=>Promise.reject(json))
           })
           .then((data)=>{
-            return data.rating;
+            return data;
           })
           .catch(e=>{
             console.error(e.error)
           })
-        console.log(userRating);
+          this.setState({rating:userRating})
     }
 
     saveUserRating = async(value) =>{
@@ -107,22 +107,26 @@ class viewHostel extends Component{
           })
     }
 
+    componentDidMount(){
+      this.UserRating();
+    }
+
     render(){
         const {rating,hover} = this.state;
         return(
             <div>
                 <div className="view_container">
                 <div className="left">
-                    <img src={this.state.card.imagepath}
+                    <img src={this.state.card.imagepath[0]}
                     alt={this.state.card.title}
                     className = "hostel-image"
-                    />      
+                    />        
                 </div>
                 <div className="right">
                     <h1 id="details">Details about {this.state.card.title}</h1>
                   
                     
-                    <h3>Rating : {this.state.card.rating}</h3>
+                    <h3>Rating : {this.state.card.rating}/5</h3>
                 </div>
                 <div className="star-rating">
                     {[...Array(5)].map((star, index) => {
