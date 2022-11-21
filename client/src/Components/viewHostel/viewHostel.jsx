@@ -151,7 +151,7 @@ class viewHostel extends Component{
                     })}
                  </div>
 				</div>
-			<div className="description">
+			<div className="view_description">
 			<p>{this.state.card.description}</p>
 			</div>
                 <div classname="report" onClick={()=>{
