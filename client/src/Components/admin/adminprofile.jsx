@@ -3,15 +3,6 @@ import './admin.css';
 import jwt_decode from 'jwt-decode';
 import { confirm } from "react-confirm-box";
 
-
-function validateForm() {
-  let x = document.forms["myForm"]["fname"].value;
-  if (x == "") {
-    alert("Name must be filled out");
-    return false;
-  }
-}
-
 let fetch_data =[];
 let delete_user = [];
 let fetch_user = [];
@@ -224,7 +215,7 @@ class adminProfile extends Component {
 
 
   fetchProduct = async () =>{
-    fetch_hostel = await fetch('http://localhost:5000/api/users/searchproduct',{
+    fetch_product = await fetch('http://localhost:5000/api/users/searchproduct',{
         method : "POST",
     headers:{
         "Content-Type" : "application/json"
@@ -360,6 +351,7 @@ class adminProfile extends Component {
                   window.alert("Product not found");
                 }
                 else{
+                  console.log(fetch_product);
                   const result = await confirm("Do you want to delete this Product ?\n" + `Name: ${fetch_product.title}` + "\n" +`ProductBy : ${fetch_product.productby}` + "\n" + `Availability : ${fetch_product.availability}` + "\n" + `Price : ${fetch_product.price}`)
                   if(result){
                     this.deleteProduct();

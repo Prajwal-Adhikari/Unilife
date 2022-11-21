@@ -40,7 +40,8 @@ class Profile extends Component {
         return res.json().then((json) => Promise.reject(json))
       })
       .then((data) => {
-        return data
+        console.log(data);
+        return data;
       })
       .catch((e) => {
         console.error(e.error)
