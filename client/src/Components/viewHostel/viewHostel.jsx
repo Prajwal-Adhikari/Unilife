@@ -115,19 +115,20 @@ class viewHostel extends Component{
         const {rating,hover} = this.state;
         return(
             <div>
+
                 <div className="view_container">
-                <div className="left">
+                <div className="left-container">
+                    <h1 id="details">Hostel Details</h1>
                     <img src={this.state.card.imagepath[0]}
                     alt={this.state.card.title}
                     className = "hostel-image"
                     />        
                 </div>
-                <div className="right">
-                    <h1 id="details">Details about {this.state.card.title}</h1>
-                  
-                    
+
+                <div className="right-container">
+			<h1>{this.state.card.title}</h1>
                     <h3>Rating : {this.state.card.rating}/5</h3>
-                </div>
+			<div className="rating-option">
                 <div className="star-rating">
                     {[...Array(5)].map((star, index) => {
                         index +=1;
@@ -149,13 +150,19 @@ class viewHostel extends Component{
                         );
                     })}
                  </div>
-                </div>
-
-                <div classname="report">
-                  <FaFlag className="report-flag" onClick={()=>{
+				</div>
+			<div className="description">
+			<p>{this.state.card.description}</p>
+			</div>
+                <div classname="report" onClick={()=>{
                   window.alert("Thanks for reporting the Hostel. This hostel will be reviewed by Unilife.")
                   this.reportHostel();
-                  }}/>
+                  }}>
+                  <FaFlag className="report-flag"/>
+					<span className="report-text">Report</span>
+                </div>
+                </div>
+
                 </div>
             </div>
         )
