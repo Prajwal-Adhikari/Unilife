@@ -99,11 +99,7 @@ class Hostel extends Component{
             return(
             <section className="hostelDashboard">
             <div className="left_container">
-                <h2>Details about hostel</h2>
-                <div>
-                    <form noValidate onSubmit={this.addOption}>
-                    <div class="form-row">
-                    <label htmlFor="city">City</label> <br />
+                    <form className="form-hostel" noValidate onSubmit={this.addOption}>
                       <input
                         type="text"
                         className="input-control"
@@ -116,11 +112,6 @@ class Hostel extends Component{
                           invalid: errors.city
                         })}
                       />{' '}
-                      <br />
-                      <span className="text-danger">{errors.city}</span>
-                    </div>
-                    <div class="form-row">
-                    <label htmlFor="category">Category</label> <br />
                       <input
                         type="text"
                         className="input-control"
@@ -133,21 +124,15 @@ class Hostel extends Component{
                           invalid: errors.category
                         })}
                       />{' '}
-                      <br />
                       <span className="text-danger">{errors.category}</span>
-                    </div>
-                    <div className="submit_btn">
                     <button type="submit" className = "searchHostel" onClick={this.getHostels}>
                         Search
                     </button>
-                    </div>
                     </form>
-                </div>
             </div>
 
             
             <div className="right_container">
-                <h2 >List of Hostels</h2>
                 <div className="container-fluid mt-5">
                     <div className = "row text-center">
                         {
