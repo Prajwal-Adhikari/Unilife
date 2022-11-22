@@ -145,7 +145,7 @@ class Profile extends Component {
         console.error(e.error)
       })
       console.log(logs);
-      logItems.push(logs);
+     // logItems.push(logs);
       this.updateState();
   }
 
@@ -311,7 +311,7 @@ class Profile extends Component {
                   </tr>
                   {
                     logs !== null?
-                      logItems.map((logData)=>{
+                      logs.map((logData)=>{
                         return(
                         <tr className='listing_table_row'>
                         <td>{logData.title}</td>
@@ -322,7 +322,7 @@ class Profile extends Component {
                      )
                       }): null
                    
-                    }
+                  }
                    
                   
                 </table>
