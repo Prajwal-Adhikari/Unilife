@@ -10,8 +10,55 @@ class viewHostel extends Component{
     state = {   
         card : JSON.parse(sessionStorage.getItem('selectedHostel')),
         rating : 0,
-        hover : 0
+        hover : 0,
+		review : []
     }
+
+	getReviews = async() => {
+    const reviews = await fetch('http://localhost:5000/api/users/getreview',{
+        method : "POST",
+    headers:{
+        "Content-Type" : "application/json"
+      },
+    })
+    .then(res=> {
+        if(res.ok) return res.json()
+        return res.json().then(json=>Promise.reject(json))
+      })
+      .then((data)=>{
+		  // setreview(data);
+		  this.setState({review: data})
+		  return data;
+      })
+      .catch(e=>{
+        console.error(e.error)
+      })
+	}
+
+	addReview = async () => {
+	let text = document.getElementById("review").value;
+    userRating = await fetch('http://localhost:5000/api/users/addreview',{
+        method : "POST",
+    headers:{
+        "Content-Type" : "application/json"
+      },
+      body : JSON.stringify({
+        itemId : this.state.card._id,
+		userId : token.name,
+		review : text
+      }),
+    })
+    .then(res=> {
+        if(res.ok) return res.json()
+        return res.json().then(json=>Promise.reject(json))
+      })
+      .then((data)=>{
+        return data.rating;
+      })
+      .catch(e=>{
+        console.error(e.error)
+      })
+	};
     
     UserRating = async() =>{
         userRating = await fetch('http://localhost:5000/api/users/userrating',{
@@ -109,6 +156,7 @@ class viewHostel extends Component{
 
     componentDidMount(){
       this.UserRating();
+	  this.getReviews();
     }
 
     render(){
@@ -164,6 +212,28 @@ class viewHostel extends Component{
                 </div>
 
                 </div>
+		  <div className="review-section">
+		  <h2>Reviews</h2>
+		  <form>
+				<textarea className="text-area" id='review'></textarea>
+				<button className='review-button' type='submit' onClick={() => {this.addReview()}}>Submit</button>
+		  </form>
+			<div className="old-reviews">
+			{
+				this.state.review?.map(item => {
+					const {_id, itemId, userId, review} = item;
+					if(itemId == this.state.card._id) {
+						return(
+							<div className='review-box' key={_id}>
+							<div className='reviewer'>{userId}</div>
+							<div className='review'>{review}</div>
+							</div>
+						)
+					}
+				})
+			}
+			</div>
+		  </div>
             </div>
         )
     }
