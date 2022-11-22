@@ -150,20 +150,20 @@ const Cart = () => {
                             <img src={item.imagepath[0]}/>
                             <p>{item.title}</p>
                         </div>
-                        <div>
-                            <button onClick={()=>{
+                        <div className="quantity-buttons">
+                            <button className="plus" onClick={()=>{
                               handleChange(item,1); 
                               handlePrice();
                                     }}>+</button>
                             <button>{item.quantity}</button>
-                            <button onClick={()=>{
+                            <button className="minus" onClick={()=>{
                                 handleChange(item,0);
                                 handlePrice();
                               }}>-</button>
                         </div>
                         <div>
                             <span>{item.price}</span>
-                            <button onClick={()=>
+                            <button className="remove-button" onClick={()=>
                                 {   handleRemove(item);
                                 }
                                 }>Remove</button>
@@ -171,7 +171,7 @@ const Cart = () => {
                     </div>
                   ))  
                 }
-                
+               <hr /> 
                 <div className="total">
                     <span>Total Price</span>
                     <span>Rs - {price}</span>

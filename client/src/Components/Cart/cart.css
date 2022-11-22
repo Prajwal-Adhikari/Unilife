@@ -241,9 +241,40 @@ article{
     font-weight: bold;
 }   
 
+.checkout_button{
+	display: flex;
+	justify-content: center;
+}
 .checkoutTOpayment {
-    margin-top: 10px;
-    padding: 5px;
-    background-color: rgb(146, 212, 48);
+	margin: 1.2rem auto;
+    padding: 0.6rem;
+	border: 1px solid rgba(146, 212, 48, 0.8);
+	border-radius: 0.6rem;
+    background-color: rgba(146, 212, 48, 0.8);
     color: whitesmoke;
+}
+
+.checkoutTOpayment:hover {
+	background-color: rgba(146, 212, 48, 1);
+}
+
+.quantity-buttons > button {
+	border: none;
+	margin: auto 0.2rem;
+}
+
+.plus:hover {
+	background-color: #5FAD56;
+}
+
+.minus:hover {
+	background-color: #DB5461;
+}
+
+.remove-button {
+	background-color: #DB5461 !important;
+}
+
+.cart_box {
+	margin: auto 2rem;
 }
