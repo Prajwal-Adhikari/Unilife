@@ -1,6 +1,6 @@
 import React from "react";
 import './Footer.css';
-import logo from '../../static/image.png';
+import logo from '../../static/logo.png';
 import { Component } from "react";
 import {FaTwitter,FaInstagram,FaFacebook,FaMapMarkerAlt, FaPhone, FaEnvelope} from "react-icons/fa"
 // import { Facebook, Instagram, Twitter, Room, Phone, MailOutline } from "@material-ui/icons";
