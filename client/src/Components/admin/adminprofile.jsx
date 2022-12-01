@@ -292,9 +292,9 @@ class adminProfile extends Component {
 
             
 
-            <div className="admin_delete">
-            <label class="_labels">Delete User</label><br></br><input type="text" placeholder="Enter username here" id="email" name='username' value={email} onChange={this.onChangeAddItem}/>
-            <button className='admin_search_button' onClick={async ()=>{
+            <div className="delete_section">
+            <label class="_labels">Delete User</label><input type="text" placeholder="Enter user email here" id="email" className="placeholder_admin" name='username' value={email} onChange={this.onChangeAddItem}/>
+            <button className='search_admin_btn' onClick={async ()=>{
                 this.fetchUser();
                 await this.Async();
                 if(fetch_user===null){
@@ -311,13 +311,14 @@ class adminProfile extends Component {
 
             <hr id='profile_break'></hr>
 
-            <div className="admin_delete">
-            <label class="_labels">Delete Hostel</label><br></br>
-            <label classname="label_for_name">Hostel Name</label><br/>
-            <input type="text" placeholder="Enter hostel name here" id="htitle" value={htitle} name='hostelname' onChange={this.onChangeAddItem}/><br/>
-            <label classname="label_for_address">Hostel Address</label><br/>
-            <input type="text" placeholder="Enter address" name='hosteladdress' id='address' value={address} onChange={this.onChangeAddItem}/>
-            <button className='admin_search_button' onClick={async ()=>{
+            <div className="delete_section">
+            <label class="_labels">Delete Hostel</label><br/>
+            <label className='label_heads'>Hostel Name</label>
+            
+            <input type="text" className="placeholder_admin"  placeholder="Enter hostel name here" id="htitle" value={htitle} name='hostelname' onChange={this.onChangeAddItem}/><br/><br/>
+            <label>Hostel Address</label>
+            <input type="text" placeholder="Enter address" name='hosteladdress' className="placeholder_admin"  id='address' value={address} onChange={this.onChangeAddItem}/>
+            <button className='search_admin_btn' onClick={async ()=>{
                 this.fetchHostel();
                 await this.Async();
                 if(fetch_hostel===null){
@@ -333,18 +334,15 @@ class adminProfile extends Component {
             </div>
             <hr id='profile_break'></hr>
 
-            {/* <div className="admin_delete">
-            <label class="_labels">Delete Product</label><br></br><input type="text" placeholder="Enter product name here" name='product'/>
-            <button className='admin_search_button'>Search</button>
-            </div> */}
+         
 
-            <div className="admin_delete">
-            <label class="_labels">Delete Product</label><br></br>
-            <label classname="label_for_name">Product Name</label><br/>
-            <input type="text" placeholder="Enter Product name here" id="ptitle" value={ptitle} name='hostelname' onChange={this.onChangeAddItem}/><br/>
-            <label classname="label_for_address">Product By</label><br/>
-            <input type="text" placeholder="Product by" name='hosteladdress' id='productby' value={productby} onChange={this.onChangeAddItem}/>
-            <button className='admin_search_button' onClick={async ()=>{
+            <div className="delete_section">
+            <label class="_labels">Delete Product</label><br/>
+            <label>Product Name</label>
+            <input type="text" placeholder="Enter Product name here" className="placeholder_admin" id="ptitle" value={ptitle} name='hostelname' onChange={this.onChangeAddItem}/><br/><br/>
+            <label classname="label_for_address">Product By</label>
+            <input type="text" placeholder="Product by" className="placeholder_admin" name='hosteladdress' id='productby' value={productby} onChange={this.onChangeAddItem}/>
+            <button className='search_admin_btn' onClick={async ()=>{
                 this.fetchProduct();
                 await this.Async();
                 if(fetch_product===null){
