@@ -89,7 +89,7 @@ class Hostel extends Component{
       this.getApiData();
     }
 
-    render (){
+    render(){
         const {errors,country,city,category,rating,hover,isLoading} = this.state;
         if(isLoading){
           return null;
@@ -165,9 +165,8 @@ class Hostel extends Component{
             </section>
             )
           } catch (error) {
-            alert("Fill all the details in the detail section");
-            console.log(error);
-            window.location.reload();
+            window.alert("Fill all the details in the detail section");
+            window.location.reload(false);
           }
         }
           

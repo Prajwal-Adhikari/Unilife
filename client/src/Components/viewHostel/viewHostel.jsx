@@ -186,12 +186,27 @@ class viewHostel extends Component{
                             key={index}
                             className={index <= (hover || rating) ? "on" : "off"}
                             onClick={() => {
-                            this.setState({rating:index});
-                            this.saveUserRating(index);
-                            this.udpateRating(index);
+                              if(this.state.card.ownerid===token.id){
+                                window.alert("Can not rate your own Hostel")
+                              }
+                              else{
+                                this.setState({rating:index});
+                                this.saveUserRating(index);
+                                this.udpateRating(index);
+                              }
                         }}
-                            onMouseEnter={() => this.setState({hover:index})}
-                            onMouseLeave={() => this.setState({hover:rating})}
+                        onMouseEnter={() => {
+                          if(token.id!==this.state.card.ownerid)
+                          {
+                            this.setState({hover:index})
+                          }
+                        }}
+                        onMouseLeave={() => {
+                          if(token.id!==this.state.card.ownerid)
+                          {
+                            this.setState({hover:rating})
+                          }
+                        }}
                         >
                             <span className="star">&#9733;</span>
                         </button>
@@ -203,11 +218,16 @@ class viewHostel extends Component{
 			<p>{this.state.card.description}</p>
 			</div>
                 <div classname="report" onClick={()=>{
-                  window.alert("Thanks for reporting the Hostel. This hostel will be reviewed by Unilife.")
-                  this.reportHostel();
+                  if(token.id===this.state.card.ownerid){
+                    window.alert("Can not report your own Hostel")
+                  }
+                  else{
+                    window.alert("Thanks for reporting the Hostel. This hostel will be reviewed by Unilife.")
+                    this.reportHostel();
+                  } 
                   }}>
                   <FaFlag className="report-flag"/>
-					<span className="report-text">Report</span>
+					        <span className="report-text">Report</span>
                 </div>
                 </div>
 

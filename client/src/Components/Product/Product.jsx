@@ -177,8 +177,7 @@ class Product extends Component {
                 )
             } catch (error) {
                 alert("Fills all the details in the detail section");
-                console.log(error);
-                window.location.reload();
+                window.location.reload(false);
             }
         }
     }

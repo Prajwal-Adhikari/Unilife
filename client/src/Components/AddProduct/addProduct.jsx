@@ -169,7 +169,7 @@ class AddProduct extends Component{
                   <input
                     type="text"
                     className="input-control"
-                    placeholder="Description about product"
+                    placeholder="Category"
                     id="_category"
                     value={category}  
                     onChange={this.onChangeAddItem}
