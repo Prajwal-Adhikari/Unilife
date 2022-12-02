@@ -1,6 +1,10 @@
 <h1 align = "center">Unilife </h1>
 <h3 align = "center"> A student-oriented e-commerce web application</h3>
 
+<p align="center">
+  <img src="https://github.com/Prajwal-Adhikari/Unilife/blob/master/client/src/static/landing.png">
+</p>
+
 
 
 ---
@@ -13,7 +17,7 @@ Unilife is an all-in-one e-commerce website for university students and business
 
 # TEAM
 
-Baghchal project is a collaborative effort of 5 highly motivated developers. The team constitutes of 5 batch mates who are commited to digitize the game from Nepali origin. Followings are the team members of team Baghchal : 
+Unilife is a collaborative effort of 4 highly motivated developers. The team constitutes of 4 batch mates who are commited to start a revolution in Nepali ecommerce. Followings are the team members of team Unilife : 
 <br>
 <a href = "https://github.com/Prajwal-Adhikari">Prajwal Adhikari</a><br>
 <a href = "https://github.com/ankeet779">Ankit Rimal</a><br>
@@ -38,16 +42,10 @@ The web has become a crucial technology for sharing information and connecting w
 # GLIMPSE
 
 
-
-
-
-
-
-
-
-
-
-
-
+<p align="center">
+  <img src="https://github.com/Prajwal-Adhikari/Unilife/blob/master/client/src/static/landing.png">
+  <img src="https://github.com/Prajwal-Adhikari/Unilife/blob/master/client/src/static/dashboard.png">
+  <img src="https://github.com/Prajwal-Adhikari/Unilife/blob/master/client/src/static/product_page.png">
+</p>
 
 
