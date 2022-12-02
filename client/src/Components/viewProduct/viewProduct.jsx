@@ -64,7 +64,6 @@ const ViewProduct = () => {
       })
 	};
 
-  console.log(card);
   //handles quantity change
   const handleChange = async (_quantity) => {
     if(quantity===1&&_quantity===0){
@@ -106,16 +105,17 @@ const ViewProduct = () => {
         return res.json().then(json=>Promise.reject(json))
       })
       .then((data)=>{
-        return data.rating;
+        return data;
       })
       .catch(e=>{
         console.error(e.error)
-      })
+      }) 
+      setrating(userRating);
 }
 
 //saves user rating for the given item
 const saveUserRating = async(value) =>{
-    await fetch('http://localhost:5000/api/users/saveuserrating',{
+      await fetch('http://localhost:5000/api/users/saveuserrating',{
         method : "POST",
     headers:{
         "Content-Type" : "application/json"
@@ -140,6 +140,7 @@ const saveUserRating = async(value) =>{
 
 //updates rating of the product
 const udpateRating = async(value) =>{
+  console.log("update rating")
     await fetch('http://localhost:5000/api/users/updaterating',{
         method : "POST",
     headers:{
@@ -187,7 +188,7 @@ const udpateRating = async(value) =>{
 
   const cartclicked = async () => {
     if(card[0].ownerid===token.id){
-      return window.alert("You can not buy your own product !!!");
+      return window.alert("You can not add your own product to the cart !!!");
     }
       const response = await fetch('http://localhost:5000/api/users/add-to-cart',{
         method : "POST",
@@ -225,7 +226,6 @@ const udpateRating = async(value) =>{
 
    //save changes when going through payment
    const saveCart = async() => {
-    console.log("save-cart frotend");
     await fetch('http://localhost:5000/api/users/save-cart',{
           method : "POST",
           headers:{
@@ -263,7 +263,7 @@ const udpateRating = async(value) =>{
       <div className='main-section'>
         <div classname='product-image'>
           <img
-            src={card[0].imagepath}
+            src={card[0].imagepath[0]}
             alt={card[0].title}
             className='thumbnail'
           />
@@ -291,28 +291,33 @@ const udpateRating = async(value) =>{
             <button
               className = 'buy-now'
               onClick={()=>{
-                saveCart();
-                 fetch('http://localhost:5000/api/users/create-checkout-session',{
-                      method:"POST",
-                      headers:{
-                        "Content-Type" : "application/json"
-                      },
-                      body:JSON.stringify({
-                        items:card,
-                        quantity:value
-                      }),
-                    })
-                    .then(res=> {
-                      if(res.ok) return res.json()
-                      return res.json().then(json=>Promise.reject(json))
-                    })
-                    .then(({ url }) => {
-                      window.location = url
-                    })
-                    .catch(e=>{
-                      console.error(e.error)
-                    })
-                }}
+                if(token.id===card[0].ownerid){
+                  window.alert("Can not buy own product")
+                }
+                else{
+                  saveCart();
+                  fetch('http://localhost:5000/api/users/create-checkout-session',{
+                       method:"POST",
+                       headers:{
+                         "Content-Type" : "application/json"
+                       },
+                       body:JSON.stringify({
+                         items:card,
+                         quantity:value
+                       }),
+                     })
+                     .then(res=> {
+                       if(res.ok) return res.json()
+                       return res.json().then(json=>Promise.reject(json))
+                     })
+                     .then(({ url }) => {
+                       window.location = url
+                     })
+                     .catch(e=>{
+                       console.error(e.error)
+                     })
+                 }}
+                }
             >
               Buy Now	
             </button>
@@ -323,22 +328,40 @@ const udpateRating = async(value) =>{
               Add to Cart	
             </button>
           </div>
+          <div>
+            <h3>Rating : {card[0].rating}/5</h3>
+          </div>
 
           <div className="star-rating">
             {[...Array(5)].map((star, index) => {
-              index +=1;
+               index +=1;
               return (
                 <button
                   type="rating_button"
                   key={index}
                   className={index <= (hover || rating) ? "on" : "off"}
                   onClick={() => {
-                    setrating(index);
-                    saveUserRating(index);
-                    udpateRating(index);
+                    if(card[0].ownerid===token.id){
+                      window.alert("Can not rate your own product")
+                    }
+                    else{
+                      setrating(index);
+                      saveUserRating(index);
+                      udpateRating(index);
+                    }
                 }}
-                  onMouseEnter={() => sethover(index)}
-                  onMouseLeave={() => sethover(rating)}
+                  onMouseEnter={() => {
+                    if(token.id!==card[0].ownerid)
+                    {
+                      sethover()
+                    }
+                  }}
+                  onMouseLeave={() => {
+                    if(token.id!==card[0].ownerid)
+                    {
+                      sethover(rating)
+                    }
+                  }}
                 >
                   <span className="star">&#9733;</span>
                 </button>
@@ -348,8 +371,13 @@ const udpateRating = async(value) =>{
 
           <div classname="report">
            <FaFlag classname="report-flag" title="Report" onClick={()=>{
-              window.alert("Thanks for reporting the product. This product will be reviewed by Unilife.")
-              reportProduct();
+              if(token.id===card[0].ownerid){
+                window.alert("Can not report your own product")
+              }
+              else{
+                window.alert("Thanks for reporting the product. This product will be reviewed by Unilife.")
+                reportProduct();
+              }
            }}/>
           </div>
 

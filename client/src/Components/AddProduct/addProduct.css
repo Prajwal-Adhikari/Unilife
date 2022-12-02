@@ -17,6 +17,9 @@ position: relative;
   margin-top: 10px;
   color: black;
 }
+label{
+  display: block !important;
+}
 
 
 input::placeholder {

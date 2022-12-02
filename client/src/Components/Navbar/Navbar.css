@@ -123,6 +123,10 @@ a:hover {
     color: #FF9F1C;
 }
 
+#cart_icon{
+    font-size: 24px ;
+}
+
 @media screen and (max-width: 800px) {
     #sign-up {
         border: none;

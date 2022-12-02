@@ -195,7 +195,7 @@ class AddHostel extends Component{
                       <input
                         type="number"
                         className="input-control"
-                        placeholder="Price in USD"
+                        placeholder="Price"
                         id="price"
                         value={price}
                         onChange={this.onChangeAddItem}

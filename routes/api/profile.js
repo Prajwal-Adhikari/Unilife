@@ -29,13 +29,13 @@ router.post('/profileItems',async (req,res)=>{
     .catch((e)=>res.status(500).json(e))
 
     const list=listedHostel.concat(listedProduct,hidden_hostel,hidden_product);
-    res.status(200).json(list);
+    res.json(list);
 });
 
 router.post('/logs',(req,res)=>{
-    logs.findOne({userid:req.body.id})
-    .then((obj)=>{res.status(200).json(obj)})
-    .catch((e)=>res.status(500).json(e))
+    logs.find({userid:req.body.id})
+    .then((obj)=>{res.json(obj)})
+    .catch((e)=>res.json(e))
 });
 
 router.post('/updatelog',(req,res)=>{
@@ -50,7 +50,7 @@ router.post('/updatelog',(req,res)=>{
         })
         data.save()
         .then()
-        .catch((e)=>res.status(500).json(e))
+        .catch((e)=>res.json(e))
     })
 })
 

@@ -35,7 +35,6 @@ router.post('/searchuser',(req,res)=>{
 });
 
 router.post('/searchhostel',async (req,res)=>{
-
     if(req.body.remove===true){
         if(req.body.availability==="Yes"){
             Hostel.findOne({_id:req.body.id})
@@ -91,7 +90,6 @@ router.post('/searchhostel',async (req,res)=>{
 });
 
 router.post('/searchproduct',async (req,res)=>{
-
     if(req.body.remove===true){
         if(req.body.availability==="Yes"&&req.body.stock!==0){
             Product.findOne({_id:req.body.id})
@@ -135,7 +133,7 @@ router.post('/searchproduct',async (req,res)=>{
             .then((data)=>{
                 if(data===null){
                     hiddenProduct.findOne({title:{$regex:req.body.title,$options:"i"},productby:{$regex:req.body.productby,$options:"i"}})
-                    .then((val=>res.json(val)))
+                    .then((val)=>res.json(val))
                     .catch(e=>res.json(e))
                 }
                 else{

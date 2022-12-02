@@ -39,8 +39,6 @@ class AddProduct extends Component{
 
   onChangeAddItem = e => {          //onChangeRegister -> onChangeAddItem
     this.setState({ [e.target.id]: e.target.value });
-    console.log(e.target.value);
-    console.log({[e.target.id]: e.target.value});
   };
 
   addItem = e => {                  //registerSubmit -> addItem
@@ -61,7 +59,7 @@ class AddProduct extends Component{
 
   
   render() {
-    const { errors, description, price, productby, _title,stock,_category,imagepath,imagepath0,imagepath1,imagepath2,imagepath3,imagepath4 } = this.state;
+    const { errors, description, price, productby, _title,stock,category,imagepath,imagepath0,imagepath1,imagepath2,imagepath3,imagepath4 } = this.state;
     return (
       <div className="containerProduct">
       <div className="_row">
@@ -168,10 +166,10 @@ class AddProduct extends Component{
               <div class="form-row">
                 <div class="form-group col-md-12">
                   <label htmlFor="category">Category</label> <br />
-                  {/* <input
+                  <input
                     type="text"
                     className="input-control"
-                    placeholder="Description about product"
+                    placeholder="Category"
                     id="_category"
                     value={category}  
                     onChange={this.onChangeAddItem}
@@ -179,18 +177,7 @@ class AddProduct extends Component{
                     className={classnames('', {
                       invalid: errors.category
                     })}
-                  /> */}
-                  <select>
-  <option value='Electronics' id='_category' onClick={this.onChangeAddItem}>Electronics</option>
-  <option value="Fashion" id='_category' onClick={this.onChangeAddItem}>Fashion</option>
-  <option value="Books">Books</option>
-  <option value="Households">Households</option>
-  <option value="Craft">Craft</option>
-  <option value="Sports">Sports</option>
-  <option value="Furniture">Furniture</option>
-  <option value="Others">Others</option>
-</select>
-                  {' '}
+                  />{' '}
                   <br />   
                   <span className="text-danger">{errors.category}</span>
                 </div>

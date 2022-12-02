@@ -56,9 +56,9 @@ class Hostel extends Component{
       };
 
       openTab = (element) => {
-        const item = sessionStorage.setItem("selectedHostel",JSON.stringify(element));
+        element.rating = Math.floor(element.rating) > 5 ? 5 : Math.floor(element.rating);
+        sessionStorage.setItem("selectedHostel",JSON.stringify(element));
         window.open(`/hostel/${element._id}`,'_blank');
-        //this.props.history.push(generatePath(`/hostel/${element._id}`))
       }
 
       getHostels = async ()=> {
@@ -89,7 +89,7 @@ class Hostel extends Component{
       this.getApiData();
     }
 
-    render (){
+    render(){
         const {errors,country,city,category,rating,hover,isLoading} = this.state;
         if(isLoading){
           return null;
@@ -99,11 +99,7 @@ class Hostel extends Component{
             return(
             <section className="hostelDashboard">
             <div className="left_container">
-                <h2>Details about hostel</h2>
-                <div>
-                    <form noValidate onSubmit={this.addOption}>
-                    <div class="form-row">
-                    <label htmlFor="city">City</label> <br />
+                    <form className="form-hostel" noValidate onSubmit={this.addOption}>
                       <input
                         type="text"
                         className="input-control"
@@ -116,11 +112,6 @@ class Hostel extends Component{
                           invalid: errors.city
                         })}
                       />{' '}
-                      <br />
-                      <span className="text-danger">{errors.city}</span>
-                    </div>
-                    <div class="form-row">
-                    <label htmlFor="category">Category</label> <br />
                       <input
                         type="text"
                         className="input-control"
@@ -133,21 +124,15 @@ class Hostel extends Component{
                           invalid: errors.category
                         })}
                       />{' '}
-                      <br />
                       <span className="text-danger">{errors.category}</span>
-                    </div>
-                    <div className="submit_btn">
                     <button type="submit" className = "searchHostel" onClick={this.getHostels}>
                         Search
                     </button>
-                    </div>
                     </form>
-                </div>
             </div>
 
             
             <div className="right_container">
-                <h2 >List of Hostels</h2>
                 <div className="container-fluid mt-5">
                     <div className = "row text-center">
                         {
@@ -156,7 +141,7 @@ class Hostel extends Component{
                               <div  key={curElem.id} className = "col-10 col-md mt-5">
                             <div className = "card p-2">
                                 <div class = "d-flex align-items-center">
-                                    <div class = "image"> <img src={curElem.imagepath} alt="" class="rounded" height="150" width="150"/> </div>
+                                    <div class = "image"> <img src={curElem.imagepath[0]} alt="" class="rounded" height="150" width="150"/> </div>
                                     <div class="ml-3 w-100">
                                         <h4 class = "mb-0 mt-0 textLeft" onClick={  
                                            ()=> this.openTab(curElem)
@@ -180,9 +165,8 @@ class Hostel extends Component{
             </section>
             )
           } catch (error) {
-            alert("Fill all the details in the detail section");
-            console.log(error);
-            window.location.reload();
+            window.alert("Fill all the details in the detail section");
+            window.location.reload(false);
           }
         }
           

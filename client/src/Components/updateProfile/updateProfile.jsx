@@ -96,7 +96,7 @@ class updateProfile extends Component {
                     </div>
                     <div class="row mt-3">
    
-                    <div class="col-md-12"><label class="_labels">Password</label><input type="password" id="password"  class="form-control" placeholder={fetch_data.password} value={password} onChange={this.onChange}/></div>
+                    <div class="col-md-12"><label class="_labels">Password</label><input type="password" id="password"  class="form-control" placeholder="********" value={password} onChange={this.onChange}/></div>
                     <div class="col-md-12"><label class="_labels">Contact</label><input type="text" id="contact" class="form-control" placeholder={fetch_data.contact} value={contact} onChange={this.onChange}/></div>
                     <div class="col-md-12"><label class="_labels">Country</label><input type="text" id="country" class="form-control" placeholder={fetch_data.country} value={country} onChange={this.onChange}/></div>
                     <div class="col-md-12"><label class="_labels">Gender</label><input type="text" id="gender" class="form-control" placeholder={fetch_data.gender} value={gender} onChange={this.onChange}/></div>

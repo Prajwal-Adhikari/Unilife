@@ -1,27 +1,36 @@
-
-.admin_delete{
-    height: 15rem;
-    margin-bottom: 5rem;
-    width: 100vw;
-}
-._labels{
-    margin-top: 1rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 600;
+.admin_contanier{
+    margin-bottom: 30px;
 }
 
-.admin_search_button{
-    margin-left: 5px;
+.placeholder_admin{
+    height: 35px;
+}
+.search_admin_btn{
+    margin-left: 15px;
     border: none;
-    padding: 5px;
     border-radius: 5px;
-    background-color: aqua;
+    height: 35px;
+    background-color: rgba(102, 243, 231, 0.705);
 }
+
+.search_admin_btn:hover{
+    background-color: #FF9F1C;
+}
+
+._labels{
+    font-weight: 800;
+}
+
+
+
+.delete_section{
+    margin-left: 25vw;
+}
+
 
 .content{
-    margin-left: 30px;
+    margin-left: 50vw;
+    
 }
 
 .admin_input{

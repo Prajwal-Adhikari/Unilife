@@ -16,7 +16,7 @@ class Footer extends Component{
                     <img src={logo} alt="Logo" className="logo-image"/>
                     </div>
                     <div className="description">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quisquam natus doloribus non eum dignissimos ullam aspernatur obcaecati porro deleniti aliquid incidunt perspiciatis consequatur earum recusandae officiis officia, eligendi tenetur minima, dolore amet dolorum enim velit.
+                    Make your University life easier with Unilife. All in one place for businesses and students to do e-commerce in a new way. Search,find and complete your end goal. Add your product and sell them easily.
                     </div>
                     <div className="socialContainer">
 
@@ -40,10 +40,10 @@ class Footer extends Component{
                             <div className="listItem"><a href="/" style={{color:"white"}}> Home</a></div>
                             <div className="listItem"><a href="/about" style={{color:"white"}}>About Us </a></div>
                             <div className="listItem"><a href="/hostel" style={{color:"white"}}> Hostels</a></div>
-                            <div className="listItem"><a href="/dashboard" style={{color:"white"}}> Rooms</a></div>
-                            <div className="listItem"><a href="/dashboard" style={{color:"white"}}> Shop</a></div>
+                            <div className="listItem"><a href="/hostel" style={{color:"white"}}> Rooms</a></div>
+                            <div className="listItem"><a href="/product" style={{color:"white"}}> Shop</a></div>
                             <div className="listItem"><a href="/cart" style={{color:"white"}}> Cart</a></div>
-                            <div className="listItem"><a href="/terms" style={{color:"white"}}> Terms</a></div>
+                            {/* <div className="listItem"><a href="#" style={{color:"white"}}> Terms</a></div> */}
                         </div>
 
 
@@ -56,7 +56,9 @@ class Footer extends Component{
                        <FaPhone className="fa-icons"/> +977 999 888 7771</div>
                     <div className="contactItem">
                        <FaEnvelope className="fa-icons"/> teamunilife@gmail.com</div>
+                <div className="copyright"><p>&copy; Team Unilife copyright 2022 </p></div>
                 </div>
+
             </div>
         )
     }

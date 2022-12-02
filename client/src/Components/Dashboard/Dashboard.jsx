@@ -10,11 +10,13 @@ function Dashboard(){
   const [isError, setIsError] =  useState("");
 
   function openHostelTab (hostel){
+    hostel.rating = Math.floor(hostel.rating) > 5 ? 5 : Math.floor(hostel.rating);
     sessionStorage.setItem("selectedHostel",JSON.stringify(hostel));
     window.open(`/hostel/${hostel._id}`,'_blank');
   }
 
   function openProductTab(product){
+    product.rating = Math.floor(product.rating) > 5 ? 5 : Math.floor(product.rating);
     sessionStorage.setItem("selectedProduct",JSON.stringify(product));
     window.open(`/product/${product._id}`,'_blank');
   }
@@ -97,7 +99,7 @@ function Dashboard(){
                 <div class = "d-flex align-items-center">
                   <div class = "image" onClick={  
                       () => openProductTab(item)
-                      }> <img src={imagepath} alt="" class="rounded" height="150" width="150"/> </div>
+                      }> <img src={imagepath[0]} alt="" class="rounded" height="150" width="150"/> </div>
                     <div class="ml-3 w-100">
                       <h4 class = "mb-0 mt-0 textLeft" onClick={  
                       () => openProductTab(item)
@@ -124,7 +126,7 @@ function Dashboard(){
                 <div class = "d-flex align-items-center">
                   <div class = "image"   onClick={() => {
                         openHostelTab(item);
-                      }}> <img src={imagepath} alt="" class="rounded" height="150" width="150"/> </div>
+                      }}> <img src={imagepath[0]} alt="" class="rounded" height="150" width="150"/> </div>
                     <div class="ml-3 w-100">
                       <h4 class = "mb-0 mt-0 textLeft" onClick={() => {
                         openHostelTab(item);

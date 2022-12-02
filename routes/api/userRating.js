@@ -7,9 +7,7 @@ const Hostel = require("../../models/hostel");
 
 //to update the rating of items
 router.post('/updaterating',(req,res)=>{
-    console.log(req.body.productby);
     if(req.body.productby!==undefined){
-        console.log("running if")
         Product.findOne({_id:req.body.itemId})
         .then((data)=>{
             Product.updateOne({_id:req.body.itemId},{$set:{
@@ -21,7 +19,6 @@ router.post('/updaterating',(req,res)=>{
         })
         .catch((e)=>res.status(500).json(e))
     }else{
-        console.log("running else")
         Hostel.findOne({_id:req.body.itemId})
         .then((data)=>{
             Hostel.updateOne({_id:req.body.itemId},{$set:{
@@ -49,7 +46,10 @@ router.post('/saveuserrating',(req,res)=>{
 //to return the rating user had given for particular item
 router.post('/userrating',(req,res)=>{
     Rating.findOne({userid:req.body.id,itemId:req.body.itemId})
-    .then((data)=>res.json(data.rating))
+    .then((data)=>
+    {
+        res.json(data.rating)
+    })
     .catch((e)=>res.status(500).json(e))
 });
 

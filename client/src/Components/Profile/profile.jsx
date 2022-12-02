@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 import './profile.css'
 import jwt_decode from 'jwt-decode'
-
+import moment from "moment"
 let fetch_data = []
 let list = []
+let logs = []
+let logItems = []
+
 const token = jwt_decode(localStorage.getItem('jwtToken'))
 class Profile extends Component {
   constructor(props) {
@@ -37,7 +40,8 @@ class Profile extends Component {
         return res.json().then((json) => Promise.reject(json))
       })
       .then((data) => {
-        return data
+        console.log(data);
+        return data;
       })
       .catch((e) => {
         console.error(e.error)
@@ -65,8 +69,8 @@ class Profile extends Component {
       .catch((e) => {
         console.error(e.error)
       })
-    console.log(list)
-    this.updateState()
+    // console.log(list)
+    this.Logs()
   }
 
   RemoveHostel = async(elem)=>{
@@ -119,6 +123,33 @@ class Profile extends Component {
       this.listData();
   }
 
+  Logs = async()=>{
+     logs =  await fetch("http://localhost:5000/api/users/logs", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        id:token.id,
+      }),
+    })
+      .then((res) => {
+        if (res.ok) return res.json()
+        return res.json().then((json) => Promise.reject(json))
+      })
+      .then((data) => {
+        console.log(data);
+        return data
+      })
+      .catch((e) => {
+        console.error(e.error)
+      })
+      console.log(logs);
+     // logItems.push(logs);
+      this.updateState();
+  }
+
+  
 
   componentDidMount() {
     this.fetchData()
@@ -258,11 +289,45 @@ class Profile extends Component {
                   </div>
                   </div>
                 </div>
-               
+              
                 </div>
               )
             })}
-          
+             <hr></hr>
+           <div className="listing_logs">
+                <div className="listing_logs_title">
+                  View Logs
+                </div>
+
+               </div>
+               <hr></hr>
+               <div className="listing_table">
+                <table >
+                  <tr className='listing_table_row' id='listing_table_header'>
+                    <th>Product Name</th>
+                    <th>Total Price</th>
+                    <th>Quantity</th>
+                    <th>Date</th>
+                  </tr>
+                  {
+                    logs !== null?
+                      logs.map((logData)=>{
+                        return(
+                        <tr className='listing_table_row'>
+                        <td>{logData.title}</td>
+                        <td>{logData.totalprice}</td>
+                        <td>{logData.quantity}</td>
+                        <td>{moment(logData.date).utc().format('DD/MM/YYYY')}</td>
+                      </tr>
+                     )
+                      }): null
+                   
+                  }
+                   
+                  
+                </table>
+
+               </div>
         </div>
       )
     }
@@ -270,3 +335,4 @@ class Profile extends Component {
 }
 
 export default Profile
+
