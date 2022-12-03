@@ -2,9 +2,6 @@ import axios from 'axios';
 import setAuthToken from '../../utils/setAuthToken';
 import jwt_decode from 'jwt-decode';
 import { GET_ERRORS, SET_CURRENT_USER, USER_LOADING } from './types'; // Register User
-// import { UserContext } from '../../App';
-// import { useContext } from 'react';
-//const {state,dispatch} = useContext(UserContext);
 
 
 export const registerUser = (userData, history) => dispatch => {
@@ -62,14 +59,6 @@ export const saveOptions = (userData,history)=>dispatch=>{
     })
   );
 };
-
-
-// export const loadObjects = () =>  {
-//   axios
-//   .get('/api/users/dashboard')
-//   .then(res=>{return res.data})
-//   .catch(err=>{return err})
-// };
 
 export const saveHostel = (userData,history)=>dispatch=>{
   axios
